@@ -39,6 +39,8 @@ macos-option-as-alt = true
 
 keybind = super+enter=ignore
 
+window-save-state = "always"
+
 # quick terminal
 # quick-terminal-autohide = false
 
