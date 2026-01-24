@@ -1,0 +1,23 @@
+[include]
+   path = ~/.gitconfig_work
+[includeIf "hasconfig:remote.*.url:https://github.com/*/**"]
+  path = ~/.gitconfig_github
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+  path = ~/.gitconfig_github
+
+[credential]
+	helper = store
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = true
+[core]
+  editor = nvim
+	excludesFile = ~/.gitignore_global
+[interactive]
+	diffFilter = delta --color-only
+[merge]
+	conflictStyle = zdiff3
