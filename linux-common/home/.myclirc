@@ -82,7 +82,7 @@ wider_completion_menu = True
 # \A - DSN alias name (from the [alias_dsn] section)
 # \u - Username
 # \x1b[...m - insert ANSI escape sequence
-prompt = '\t \u@\h:\d> '
+prompt = '\t \u@\h:[\p] \d> '
 prompt_continuation = '->'
 
 # Skip intro info on startup and outro info on exit
@@ -103,6 +103,8 @@ enable_pager = True
 
 # Choose a specific pager
 pager = 'less'
+# pager = 'bash -c 'tee "/tmp/mycli-$(date +%F_%T).log" | nvim -R -c "set noswapfile" -c "set ft=csv" -c "nnoremap q :qa!<CR>" -''
+
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
@@ -166,10 +168,10 @@ output.null = "#808080"
 # You can add your favorite queries here. They will be available in the
 # REPL when you type `\f` or `\f <query_name>`.
 [favorite_queries]
-db1 = "SELECT * FROM dbt1"
-task = "SELECT * FROM SysDB.rebalance_task"
-lock = "SELECT * FROM SysDB.ddl_lock"
-truncate lock = "Truncate SysDB.ddl_lock"
+ss = "SELECT * FROM `$1`"
+task = "/*sets:s3*/ SELECT * FROM SysDB.rebalance_task"
+lock = "/*sets:s3*/ SELECT * FROM SysDB.ddl_lock"
+truncate lock = "/*sets:s3*/ TRUNCATE SysDB.ddl_lock"
 np = pager bash -c 'tee "/tmp/mycli-$(date +%F_%T).log" | nvim -R -c "set noswapfile" -c "set ft=csv" -c "nnoremap q :qa!<CR>" -'
 des = "DESCRIBE `$1`"
 cnt = "SELECT COUNT(*) FROM `$1`.`$2`"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 UTILS_COLOR_GREEN="\033[32m"
 UTILS_COLOR_YELLOW="\033[33m"

@@ -6,7 +6,7 @@ function init_dotbot_scripts {
   for script in ${script_dir}/install_*.sh; do
     [[ -f $script ]] || continue
     echo "Running script: $script"
-    bash "$script"
+    sh "$script"
   done
 
   # sh "${script_dir}/install_brew.sh"

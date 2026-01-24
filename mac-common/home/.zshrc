@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="ys"
 
-plugins=(git fzf-tab zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode colored-man-pages)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode colored-man-pages)
 
 HISTFILE="${ZSH}/.zsh_history"
 ZSH_COMPDUMP="${ZSH}/cache/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
@@ -43,6 +43,7 @@ export RIME_DIR="$HOME/Library/Rime"
 
 # -----------------------  go ------------------
 export GOPATH="$HOME/go"
+#export PATH="$PATH:$(go env GOPATH)/bin"
 
 #------------------- fuzzy-shell -------------------
 source "${HOME}/.fuzzy_shell/scripts/export.sh"
@@ -52,9 +53,12 @@ source "${HOME}/.fuzzy_shell/config.env"
 source ${HOME}/.albert-scripts/export.sh
 
 #------------------- nvim  -------------------
-export NVIM_APPNAME=dojo
+export NVIM_APPNAME=nvchad
+# export NVIM_APPNAME=kick-start
 
-#------------------- nvm  -------------------
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# --------------------- env -----------------------
+[[ -f "$HOME/.zsh.env" ]] && { source "$HOME/.zsh.env" }
+[[ -f "$HOME/.zsh.alias" ]] && { source "$HOME/.zsh.alias" }
 
 # . "$HOME/.local/bin/env"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

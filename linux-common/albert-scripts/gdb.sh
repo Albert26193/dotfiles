@@ -14,18 +14,14 @@ ab.ca() {
 
   local logfile="$gdb_log_path/$(date +%F).log"
 
+  #  -ex "set logging off" \
+  #  -ex "set logging file $logfile" \
+  #  -ex "set logging on" \
+  #  -ex "set trace-commands off" \
+  #  -ex "set trace-commands on" \
   cgdb \
     -d "$debugger_path" \
-    -ex "set logging off" \
-    -ex "set logging file $logfile" \
-    -ex "set logging on" \
-    -ex "set trace-commands off" \
-    -ex "printf \"\n\"" \
-    -ex "printf \"------------------ CGDB -----------------\n\"" \
-    -ex "printf \"---------- $(date '+%F %T') ----------\n\"" \
-    -ex "printf \"-----------------------------------------\n\"" \
-    -ex "printf \"\n\"" \
-    -ex "set trace-commands on" \
+    -ex "printf \"---------- CGDB  $(date '+%F %T') -------\n\"" \
     -ex "attach $pid"
 }
 
@@ -33,4 +29,3 @@ ab.gdb.log() {
   local gdb_log_path="${HOME}/.gdb/logs"
   cd "$gdb_log_path" && nvim -R $(ls -l -rt | grep -E ".log$" | tail -n 1 | awk '{print $NF}')
 }
-

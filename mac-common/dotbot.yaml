@@ -24,7 +24,7 @@
 
 - shell:
   - 
-    command: " [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/install_omz_plugins.sh \
+    command: " [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh \
               || echo 'omz installed' "
     stdin: true
     stdout: true

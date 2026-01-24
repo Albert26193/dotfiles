@@ -17,3 +17,7 @@ yarn-error.log*
 # call tree
 *.calltree.result.*
 *.calltree.summary.*
+
+# compile_commands.json
+compile_commands.json
+**/*/compile_commands.json

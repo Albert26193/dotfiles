@@ -2,7 +2,7 @@
 
 function install_uv {
   [ -z ${HOME}/.local/bin/uv ] || {
-    printf "%s" "uv has installed, return 0"
+    printf "%s\n" "uv has installed, return 0"
     return 0
   }
 

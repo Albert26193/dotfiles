@@ -65,11 +65,33 @@ end
 -----------------------------------------------------------------
 hotkey.bind({ "alt" }, "j", function()
 	local ghostty = app.get(APP_NAME)
-
 	-- 已经在前台 → 隐藏
 	if ghostty and ghostty:isFrontmost() then
+		-- 1. 把 Ghostty 藏起来
 		ghostty:hide()
-		print("[hotkey] Ghostty 已在前台，执行隐藏")
+		-- 2. 选择当前 Space 中的下一个可聚焦窗口（不是 Ghostty）
+		hs.timer.doAfter(0.05, function()
+			local wins = hs.window.orderedWindows() or {}
+			for _, w in ipairs(wins) do
+				local owner = w:application()
+				-- 跳过 Ghostty 自己
+				if owner and owner:name() ~= APP_NAME then
+					-- 只要是标准窗口而且可见，就让它上来
+					if w:isStandard() and w:isVisible() then
+						w:focus()
+						print(
+							"[hotkey] Ghostty 隐藏 -> 焦点切到同一 Space 内窗口: "
+								.. (owner:name() or "(unknown app)")
+								.. " / "
+								.. (w:title() or "(untitled)")
+						)
+						return
+					end
+				end
+			end
+			-- 如果这个 Space 里除了 Ghostty 没别的窗口（纯桌面）
+			print("[hotkey] Ghostty 隐藏，但当前 Space 没有其他窗口可聚焦（停留在桌面）")
+		end)
 		return
 	end
 

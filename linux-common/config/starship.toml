@@ -192,6 +192,7 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol$workspace]($style)\]'
 
 [time]
+disabled=false
 format = '\[[$time]($style)\]'
 
 [vagrant]

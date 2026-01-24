@@ -1,5 +1,5 @@
 [include]
-   path = ~/.gitconfig_github
+   path = ~/.gitconfig_work
 [includeIf "hasconfig:remote.*.url:https://github.com/*/**"]
   path = ~/.gitconfig_github
 [includeIf "hasconfig:remote.*.url:git@github.com:*/**"]

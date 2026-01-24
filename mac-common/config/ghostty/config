@@ -1,7 +1,7 @@
 # font
 # font-family = MonaspaceAr
 font-family = IosevkaTermSlab Nerd Font
-font-size = 15
+font-size = 14
 
 # theme
 theme = custom-dracula
@@ -28,14 +28,16 @@ copy-on-select = clipboard
 # cursor
 cursor-style = block
 shell-integration-features = no-cursor
-cursor-color = #fafafa
-cursor-opacity = 0.99
+cursor-color = #3afa6a
+cursor-opacity = 0.7
 
 # disable close app confirm
 # confirm-close-surface = false
 
 # option as alt
 macos-option-as-alt = true
+
+keybind = super+enter=ignore
 
 # quick terminal
 # quick-terminal-autohide = false

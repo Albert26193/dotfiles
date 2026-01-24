@@ -134,7 +134,7 @@ background = "#282a36"
 style = "Block"
 
 [font]
-size = 16
+size = 15
 
 [font.bold]
 family = "Iosevka Nerd Font"
@@ -154,10 +154,10 @@ style = "Light"
 
 [window]
 blur = true
-decorations = "none"
+# decorations = "none"
 # decorations = "Transparent"
 dynamic_padding = true
-opacity = 0.9
+# opacity = 0.98
 
 [window.dimensions]
 columns = 150
@@ -166,3 +166,10 @@ lines = 35
 [window.padding]
 x = 0
 y = 4
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "T", mods = "Command", action = "CreateNewTab" },
+{ key = "L", mods = "Control|Shift", chars = "l" },
+]

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 function install_uv {
   [ ! -f ${HOME}/.local/bin/uv ] || {
