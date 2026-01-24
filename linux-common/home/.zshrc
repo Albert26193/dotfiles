@@ -49,30 +49,11 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 # --------------------- source -----------------------
 [[ -f "$HOME/.albert-scripts/export.sh" ]] && { source "$HOME/.albert-scripts/export.sh" }
 
-#---------------------- tdsql -----------------------
-source "/data/workspace/tdsql-dev-utils/script/export.sh"
-
 # --------------------- cpp -----------------------
 ulimit -c unlimited
-# ccache
-export USE_CCACHE=1
-export CCACHE_SLOPPINESS=file_macro,include_file_mtime,time_macros
-export CCACHE_UMASK=002
-export CCACHE_DIR="/data/.ccache"
-export CC="ccache gcc"
-export CXX="ccache g++"
-ccache -M 150G
-
-export GCC_BASE=/opt/rh/gcc-toolset-10/root/bin
-export GCC=/opt/rh/gcc-toolset-10/root/usr/bin/gcc
-export CC=/opt/rh/gcc-toolset-10/root/usr/bin/gcc
-export CXX=/opt/rh/gcc-toolset-10/root/usr/bin/g++
-source /opt/rh/gcc-toolset-10/enable
 
 # --------------------- homebrew -----------------------
 export PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
-export PATH="/usr/bin:$PATH"
-source /opt/rh/gcc-toolset-10/enable
 
 # --------------------- env -----------------------
 [[ -f "$HOME/.zsh.env" ]] && { source "$HOME/.zsh.env" }
