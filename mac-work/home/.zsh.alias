@@ -1,0 +1,15 @@
+#-------------------- basic --------------------
+alias "nv"="nvim"
+alias "tm"="tmux"
+alias "ll"="ls -l"
+alias "la"="ls -al"
+alias "lg"="lazygit"
+alias "view"="nvim -R"
+alias "lc"="leetgo"
+alias "rl"="realpath"
+
+#-------------------- fuzzy --------------------
+alias "fs"="fuzzy --search"
+alias "fj"="fuzzy --jump"
+alias "fe"="fuzzy --edit"
+alias "hh"="fuzzy --history"

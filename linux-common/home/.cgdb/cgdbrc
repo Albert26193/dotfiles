@@ -1,0 +1,8 @@
+set winsplitorientation=vertical
+set ignorecase
+set ts=4
+set wso=vertical
+# set eld=shortarrow
+set hls
+map <F9> :until<cr>
+set syn=style

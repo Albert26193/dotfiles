@@ -1,0 +1,58 @@
+# font
+# font-family = MonaspaceAr
+font-family = IosevkaTermSlab Nerd Font
+font-size = 14
+
+# theme
+theme = custom-dracula
+
+# background
+adjust-cell-height = 5%
+background-opacity = 1
+background-blur-radius = 40
+
+# mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+# window
+window-padding-balance = true
+window-padding-x = 10
+window-padding-y = 4
+window-save-state = always
+macos-titlebar-style= transparent
+
+# copy
+copy-on-select = clipboard
+
+# cursor
+cursor-style = block
+shell-integration-features = no-cursor
+cursor-color = #3afa6a
+cursor-opacity = 0.7
+
+# disable close app confirm
+# confirm-close-surface = false
+
+# option as alt
+macos-option-as-alt = true
+
+keybind = super+enter=ignore
+
+# quick terminal
+# quick-terminal-autohide = false
+
+# keybind
+# keybind = global:alt+j=toggle_quick_terminal
+
+# no tabs
+# keybind = all:cmd+t=ignore
+# keybind = all:cmd+shift+t=ignore
+# keybind = all:cmd+alt+t=ignore
+# keybind = all:ctrl+shift+t=ignore
+
+# no split
+# keybind = all:cmd+d=ignore
+# keybind = all:cmd+shift+d=ignore
+# keybind = all:cmd+alt+d=ignore
+# keybind = all:ctrl+shift+d=ignore

@@ -1,0 +1,17 @@
+#-------------------- basic --------------------
+alias "nv"="nvim"
+alias "tm"="tmux"
+alias "ll"="ls -l"
+alias "la"="ls -al"
+alias "lg"="lazygit"
+alias "view"="nvim -R"
+alias "lc"="leetgo"
+
+#-------------------- td --------------------
+alias "td.source"="source /data/workspace/tdsql-dev-utils/script/export.sh"
+alias "td.sql"="mysql --comments --host 127.0.0.1 -u root -ptdsql2.5 --port "
+alias "td.cli"="mycli --host 127.0.0.1 -u root -ptdsql2.5 --port"
+alias "td.cli.mtr"="mycli --host 127.0.0.1 -u test_mtr_1234 -ptest_mtr_1234 --port"
+alias "mc"="mtr.cases"
+alias "mcdc"="mtr.cases.cdc"
+alias "cbc"="codebuddy-code"
