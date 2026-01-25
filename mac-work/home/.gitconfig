@@ -17,6 +17,8 @@
 [core]
   editor = nvim
 	excludesFile = ~/.gitignore_global
+	hooksPath = ~/.git-hooks
+	quotepath = false
 [interactive]
 	diffFilter = delta --color-only
 [merge]

@@ -53,8 +53,7 @@ source "${HOME}/.fuzzy_shell/config.env"
 source ${HOME}/.albert-scripts/export.sh
 
 #------------------- nvim  -------------------
-export NVIM_APPNAME=nvchad
-# export NVIM_APPNAME=kick-start
+export NVIM_APPNAME=dojo
 
 # --------------------- env -----------------------
 [[ -f "$HOME/.zsh.env" ]] && { source "$HOME/.zsh.env" }
