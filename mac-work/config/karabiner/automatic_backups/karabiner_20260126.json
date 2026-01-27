@@ -4,6 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "description": "Swap ~ and ESC",
