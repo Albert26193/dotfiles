@@ -21,6 +21,10 @@
       force: true
       glob: true
       path: ./config/*
+    "~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json":
+      force: true
+      glob: true
+      path: ./misc/projects.json
 
 - shell:
   - 
