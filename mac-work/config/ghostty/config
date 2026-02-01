@@ -1,7 +1,7 @@
 # font
 # font-family = MonaspaceAr
 font-family = IosevkaTermSlab Nerd Font
-font-style = Light
+# font-style = Light
 font-size = 14
 
 # theme
