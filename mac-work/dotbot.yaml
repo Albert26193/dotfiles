@@ -24,7 +24,11 @@
     "~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json":
       force: true
       glob: true
-      path: ./misc/projects.json
+      path: ./misc/project-manager/projects.json
+    "~/.config/zed":
+      force: true
+      glob: true
+      path: ./misc/zed/settings.json
 
 - shell:
   - 
