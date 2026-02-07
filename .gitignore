@@ -9,6 +9,8 @@
 
 **/*/__pycache__
 
+**/*/.codex
+
 **/*/auth.json
 **/*/sessions
 
