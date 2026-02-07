@@ -14,18 +14,20 @@ function install_brew {
 }
 
 function install_brew_packages {
-  # local brew_installer_name="linuxbrew"
   local packages=("lazygit" "neovim" "tailspin" "delta" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git")
   printf "%s\n" "${packages[*]}"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+  # 一次性获取所有已安装的 brew 包列表，避免循环中重复调用
+  local installed
+  installed=$(brew list --formula -1)
+
   for package in "${packages[@]}"; do
-    command -v "$package" >/dev/null 2>&1 && {
+    if echo "$installed" | grep -qx "$package"; then
       echo "has installed $package"
       continue
-    }
-    # cd /home/linuxbrew && su "$brew_installer_name" -c "env PATH=/home/linuxbrew/.linuxbrew:$PATH brew install ${package}"
+    fi
     bash -c "env PATH=/home/linuxbrew/.linuxbrew:$PATH brew install ${package}"
-    # brew install "${package}"
   done
 }
 

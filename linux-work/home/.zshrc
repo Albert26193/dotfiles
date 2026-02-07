@@ -30,10 +30,6 @@ source "${HOME}/.fuzzy_shell/scripts/export.sh"
 export NVIM_APPNAME="dojo"
 export EDITOR="nvim"
 export VISUAL="nvim"
-# support c-x c-e
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^x^e' edit-command-line
 
 #---------------------- nvm -----------------------
 export NVM_DIR="$HOME/.nvm"
@@ -77,3 +73,12 @@ source /opt/rh/gcc-toolset-10/enable
 # --------------------- env -----------------------
 [[ -f "$HOME/.zsh.env" ]] && { source "$HOME/.zsh.env" }
 [[ -f "$HOME/.zsh.alias" ]] && { source "$HOME/.zsh.alias" }
+
+# --------------------- shortcuts -----------------------
+# ctrl-x ctrl-e to use nvim editor
+function setup_edit_command_line() {
+    autoload -U edit-command-line
+    zle -N edit-command-line
+    bindkey '^x^e' edit-command-line
+}
+add-zsh-hook precmd setup_edit_command_line
