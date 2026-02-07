@@ -50,7 +50,7 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 [[ -f "$HOME/.albert-scripts/export.sh" ]] && { source "$HOME/.albert-scripts/export.sh" }
 
 #---------------------- tdsql -----------------------
-source "/data/workspace/tdsql-dev-utils/script/export.sh"
+[[ -f "/data/ws-shared/tdsql-dev-utils/scripts/export.sh" ]] && { source "/data/ws-shared/tdsql-dev-utils/scripts/export.sh" }
 
 # --------------------- cpp -----------------------
 ulimit -c unlimited
@@ -71,7 +71,7 @@ source /opt/rh/gcc-toolset-10/enable
 
 # --------------------- homebrew -----------------------
 export PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
-export PATH="/usr/bin:$PATH"
+# export PATH="/usr/bin:$PATH"
 source /opt/rh/gcc-toolset-10/enable
 
 # --------------------- env -----------------------
