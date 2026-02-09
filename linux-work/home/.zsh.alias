@@ -10,9 +10,8 @@ alias "rl"="realpath"
 alias "ya"="yazi"
 
 #-------------------- td --------------------
-alias "td.source"="source /data/workspace/tdsql-dev-utils/script/export.sh"
 alias "dotbot.new"="dotbot -c /data/ws-shared/tdsql-dev-utils/scripts/init/dotbot.yaml"
-alias "tt"="source /data/workspace/tdsql-dev-utils/script/export.sh"
+alias "tt"="source /data/ws-shared/tdsql-dev-utils/scripts/export.sh"
 alias "tw"="mtr.view"
 alias "t8"="mycli --host 127.0.0.1 -u root -ptdsql2.5 --port 8888"
 alias "td.sql"="mysql --comments --host 127.0.0.1 -u root -ptdsql2.5 --port "
