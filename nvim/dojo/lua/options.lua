@@ -80,10 +80,10 @@ o.sidescrolloff = 4 -- Keep 4 columns around cursor
 opt.shortmess:append "sI"
 
 -- Fix for tmux true color
-if vim.env.TMUX then
-  vim.cmd([[let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"]])
-  vim.cmd([[let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"]])
-end
+-- if vim.env.TMUX then
+--   vim.cmd([[let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"]])
+--   vim.cmd([[let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"]])
+-- end
 
 -------------------- auto reload ----------------------
 vim.o.autoread = true
