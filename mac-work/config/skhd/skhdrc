@@ -29,5 +29,5 @@ alt - k : open -a '/Applications/企业微信.app/'
 # alt - p : open -a '/Users/albert/Applications/Chrome Apps.localized/Plane.app'
 alt - o : open -a '/Applications/Obsidian.app'
 alt - i : open -a '/Applications/ExcalidrawZ.app/'
-alt - m : open -a '/Applications/WezTerm.app/'
+alt - m : open -a '/Applications/Alacritty.app/'
 
