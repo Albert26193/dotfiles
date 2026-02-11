@@ -10,6 +10,7 @@ alias "rl"="realpath"
 alias "ya"="yazi"
 
 #-------------------- td --------------------
+alias "td.dotbot"="dotbot -c /data/ws-shared/tdsql-dev-utils/scripts/init/dotbot.yaml"
 alias "td.source"="source /data/workspace/tdsql-dev-utils/script/export.sh"
 alias "tt"="source /data/workspace/tdsql-dev-utils/script/export.sh"
 alias "tt"="source /data/ws-shared/tdsql-dev-utils/scripts/export.sh"
