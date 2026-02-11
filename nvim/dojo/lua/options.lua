@@ -5,6 +5,8 @@ local g = vim.g     -- Global variables
 local o = vim.o     -- Set options
 local opt = vim.opt -- Set options (lua list/map-like)
 
+o.ttyfast = true
+
 -----------------------------------------------------------
 -- General
 -----------------------------------------------------------
