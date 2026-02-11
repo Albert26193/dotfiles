@@ -8,6 +8,7 @@ alias "view"="nvim -R"
 alias "lc"="leetgo"
 alias "rl"="realpath"
 alias "ya"="yazi"
+alias "op"="opencode"
 
 #-------------------- td --------------------
 alias "td.dotbot"="dotbot -c /data/ws-shared/tdsql-dev-utils/scripts/init/dotbot.yaml"

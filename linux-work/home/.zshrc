@@ -67,7 +67,7 @@ source /opt/rh/gcc-toolset-10/enable
 
 # --------------------- homebrew -----------------------
 export PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
-# export PATH="/usr/bin:$PATH"
+export PATH=/root/.opencode/bin:$PATH
 source /opt/rh/gcc-toolset-10/enable
 
 # --------------------- env -----------------------
@@ -82,3 +82,4 @@ function setup_edit_command_line() {
     bindkey '^x^e' edit-command-line
 }
 add-zsh-hook precmd setup_edit_command_line
+
