@@ -137,19 +137,19 @@ style = "Block"
 size = 15
 
 [font.bold]
-family = "Iosevka Nerd Font"
+family = "IosevkaTermSlab Nerd Font"
 style = "Normal"
 
 [font.bold_italic]
-family = "Iosevka Nerd Font"
+family = "IosevkaTermSlab Nerd Font"
 style = "Normal Italic"
 
 [font.italic]
-family = "Iosevka Nerd Font"
+family = "IosevkaTermSlab Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "Iosevka Nerd Font"
+family = "IosevkaTermSlab Nerd Font"
 style = "Light"
 
 [window]
