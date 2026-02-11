@@ -1,7 +1,6 @@
 -----------------------------------------------------------
 -- General Neovim settings and configuration
 -----------------------------------------------------------
-
 local g = vim.g     -- Global variables
 local o = vim.o     -- Set options
 local opt = vim.opt -- Set options (lua list/map-like)
@@ -49,11 +48,11 @@ o.autoindent = true  -- Copy indent from current line
 -----------------------------------------------------------
 -- Memory, CPU
 -----------------------------------------------------------
-o.hidden = true     -- Enable background buffers
-o.history = 100     -- Remember N lines in history
-o.lazyredraw = true -- Faster scrolling
-o.synmaxcol = 240   -- Max column for syntax highlight
-o.updatetime = 250  -- ms to wait for trigger an event
+o.hidden = true    -- Enable background buffers
+o.history = 100    -- Remember N lines in history
+--o.lazyredraw = true -- Faster scrolling
+o.synmaxcol = 240  -- Max column for syntax highlight
+o.updatetime = 250 -- ms to wait for trigger an event
 
 -----------------------------------------------------------
 -- Search
