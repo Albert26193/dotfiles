@@ -30,19 +30,19 @@ shell-integration-features = no-cursor
 cursor-color = #3afa6a
 cursor-opacity = 0.7
 
-# disable close app confirm
-# confirm-close-surface = false
-
 # option as alt
 macos-option-as-alt = true
 
-keybind = super+enter=ignore
-
-window-save-state = "always"
-
-# quick terminal
-# quick-terminal-autohide = false
-
 # keybind
+keybind = super+enter=ignore
+keybind = cmd+o=esc:o
+keybind = cmd+p=esc:p
+keybind = cmd+b=esc:b
+keybind = cmd+j=esc:j
+keybind = cmd+k=esc:k
 # keybind = global:alt+j=toggle_quick_terminal
+
+# misc
+# quick-terminal-autohide = false
+# confirm-close-surface = false
 
