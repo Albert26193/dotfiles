@@ -1,6 +1,6 @@
 # Dracula
 [colors.primary]
-background = "#282a36"
+background = "#24242d"
 foreground = "#f8f8f2"
 bright_foreground = "#ffffff"
 [colors.cursor]
@@ -73,17 +73,21 @@ style = "Light"
 blur = true
 dynamic_padding = true
 option_as_alt = "Both"
-# decorations = "none"
-# decorations = "Transparent"
+# decorations = "Buttonless"
+#decorations = "None"
 # opacity = 0.98
+
+[window.position]
+x = 0
+y = 50
 
 [window.dimensions]
 columns = 150
 lines = 35
 
 [window.padding]
-x = 0
-y = 4
+x = 4
+y = 12
 
 [keyboard]
 bindings = [
