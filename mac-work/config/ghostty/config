@@ -27,8 +27,8 @@ copy-on-select = clipboard
 # cursor
 cursor-style = block
 shell-integration-features = no-cursor
-cursor-color = #3afa6a
-cursor-opacity = 0.7
+cursor-color = #3aff9a
+cursor-opacity = 0.5
 
 # option as alt
 macos-option-as-alt = true
