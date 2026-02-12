@@ -14,7 +14,7 @@ function install_brew {
 }
 
 function install_brew_packages {
-  local packages=("lazygit" "neovim" "tailspin" "delta" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git")
+  local packages=("lazygit" "neovim" "tailspin" "delta" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git" "zoxide")
   printf "%s\n" "${packages[*]}"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

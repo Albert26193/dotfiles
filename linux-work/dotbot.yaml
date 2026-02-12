@@ -21,9 +21,10 @@
       force: true
       glob: true
       path: ./config/*
-    ~/.dotbot-bin/:
+    ~/.local/bin/:
       force: true
-      path: ./bin
+      glob: true
+      path: ./local-bin/*
     ~/.albert-scripts/:
       force: true
       path: ./albert-scripts
