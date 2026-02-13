@@ -50,7 +50,7 @@ function check_install_oh_my_zsh_plugins {
 
 { command -v zsh >/dev/null; } || {
   echo "has not zsh installed"
-  exit 0
+  exit 1
 } &&
   check_install_oh_my_zsh &&
   check_install_oh_my_zsh_plugins
