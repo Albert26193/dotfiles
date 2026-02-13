@@ -14,11 +14,11 @@ function install_brew {
 }
 
 function install_brew_packages {
-  local packages=("lazygit" "neovim" "tailspin" "delta" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git" "zoxide")
+  local packages=("lazygit" "neovim" "tailspin" "delta" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git" "zoxide" "tmuxp")
   printf "%s\n" "${packages[*]}"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-  # 一次性获取所有已安装的 brew 包列表，避免循环中重复调用
+  # Get all brew list
   local installed
   installed=$(brew list --formula -1)
 
