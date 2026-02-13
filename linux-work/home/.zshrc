@@ -10,6 +10,7 @@ source $ZSH/oh-my-zsh.sh
 
 # --------------------- zsh -----------------------
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
+DISABLE_AUTO_TITLE='true'
 
 # --------------------- general -------------------
 export TERM="xterm-256color"
@@ -39,7 +40,7 @@ export NVM_DIR="$HOME/.nvm"
 #----------------------- bin -----------------------
 export PATH="$PATH:/data/bin"
 export PATH="$PATH:~/.root/bin"
-export PATH="$PATH:$(go env GOPATH)/bin"
+{ command -v go 2>&1 >/dev/null } && { export PATH="$PATH:$(go env GOPATH)/bin" }
 [[ -f "$HOME/.local/bin/env" ]] && { source "$HOME/.local/bin/env" }
 
 # --------------------- source -----------------------
