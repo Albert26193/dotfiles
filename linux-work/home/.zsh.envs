@@ -1,0 +1,21 @@
+# ---------------------- uv -----------------------
+# export UV_PYTHON=3.11
+
+# ---------------------- cc -----------------------
+export CLAUDE_CODE_AUTO_COMPACT_WINDOW=600000
+
+# --------------------- cpp -----------------------
+ulimit -c unlimited
+export USE_CCACHE=1
+export CCACHE_SLOPPINESS=file_macro,include_file_mtime,time_macros
+export CCACHE_UMASK=002
+export CCACHE_DIR="/data/.ccache"
+export CC="ccache gcc"
+export CXX="ccache g++"
+ccache -M 100G >/dev/null
+
+export GCC_BASE=/opt/rh/gcc-toolset-10/root/bin
+export GCC=/opt/rh/gcc-toolset-10/root/usr/bin/gcc
+export CC=/opt/rh/gcc-toolset-10/root/usr/bin/gcc
+export CXX=/opt/rh/gcc-toolset-10/root/usr/bin/g++
+[[ ":$PATH:" != *":/opt/rh/gcc-toolset-10/"* ]] && source /opt/rh/gcc-toolset-10/enable

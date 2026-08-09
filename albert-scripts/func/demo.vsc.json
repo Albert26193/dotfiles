@@ -1,0 +1,246 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "shell": {
+      "executable": "/bin/bash",
+      "args": [
+        "-c"
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "label": "vsc.pick",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.pick.fzf",
+        "${workspaceFolder}",
+        ".git,.codebuddy,depends,src/duckdb/build"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "last",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.get.branch",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.get.branch",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.get.mergebase",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.get.mergebase",
+        "${workspaceFolder}",
+        "main"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "last",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.open.plan",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.open.issue",
+        "${workspaceFolder}",
+        "${workspaceFolder}/note/A-Issue/${workspaceFolderBasename}",
+        "plan.md"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.open.chat",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.open.chat",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.new.chat",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.new.chat",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.open.talk",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.open.talk",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.new.talk",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.new.talk",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.open.iter",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.open",
+        "iter",
+        "${workspaceFolder}",
+        "${workspaceFolder}/note/A-Issue/${workspaceFolderBasename}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.new.iter",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.new.iter",
+        "${workspaceFolder}",
+        "${workspaceFolder}/note/A-Issue/${workspaceFolderBasename}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.ai.dev",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.ai.dev",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "vsc.ai.chat",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.ai.chat",
+        "${workspaceFolder}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "mtr_work_dir",
+      "type": "promptString",
+      "description": "mtr worker dir under mysql-test/var",
+      "default": "empty"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+personality = "pragmatic"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+approval_policy="never"
+sandbox_mode="danger-full-access"
+model_context_window = 1000000
+model_auto_compact_token_limit=500000
+
+[projects."/data/**/*"]
+trust_level = "trusted"
+
+[projects."/root/.codex-internal"]
+trust_level = "trusted"
+
+[projects."/data/workspace/TDProxyEngine"]
+trust_level = "trusted"
+
+[projects."/data/ws-shared/tdsql-dev-utils"]
+trust_level = "trusted"
+
+[projects."/root/temp"]
+trust_level = "trusted"
+
+[features]
+goals = true
+
+[tui]
+status_line = ["model-with-reasoning", "context-remaining", "current-dir", "model-name", "project-root", "git-branch", "context-used", "context-window-size"]

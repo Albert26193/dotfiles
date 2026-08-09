@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.albert-scripts/func/claude-save.sh --out-dir <your_path>/.ai_dev_chat",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
+  }
+}

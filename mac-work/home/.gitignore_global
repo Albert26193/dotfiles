@@ -1,0 +1,23 @@
+# basic build
+ *.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+*.patch
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# call tree
+*.calltree.result.*
+*.calltree.summary.*
+
+# compile_commands.json
+compile_commands.json
+**/*/compile_commands.json

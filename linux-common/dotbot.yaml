@@ -1,0 +1,51 @@
+- defaults:
+    link:
+      relink: true
+      type: symlink
+      relative: false
+      canonicalize: true
+
+- clean:
+    ~/:
+      force: false
+    ~/.config:
+      force: true
+      recursive: true
+
+- link:
+    ~/:
+      force: true
+      glob: true
+      path: ./home/.*
+    ~/.config/:
+      force: true
+      glob: true
+      path: ./config/*
+    ~/.albert-scripts/:
+      force: true
+      path: ../albert-scripts
+    ~/.claude/:
+      force: true
+      glob: true
+      path: ./home-files/.claude/*
+    ~/.codex/:
+      force: true
+      glob: true
+      path: ./home-files/.codex/*
+    ~/.config/opencode/:
+      force: true
+      glob: true
+      path: ./config-files/opencode/*
+
+- shell:
+  - 
+    command: "if ! command -v zsh &>/dev/null; then echo 'Error: zsh is not installed, skipping init.sh'; exit 1; fi && bash ./init-scripts/init.sh"
+    stdin: true
+    stdout: true
+    stderr: true
+    description: for test
+    quiet: false
+
+# - create:
+#     - ~/downloads
+#     - ~/.local

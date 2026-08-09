@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# --------------------- shortcuts -----------------------
+# ctrl-x ctrl-e to use nvim editor
+function setup_edit_command_line() {
+    autoload -U edit-command-line
+    zle -N edit-command-line
+    bindkey '^x^e' edit-command-line
+}
+add-zsh-hook precmd setup_edit_command_line
+
+# rebind Ctrl+R for fuzzy history search (workaround for zsh-vi-mode)
+function setup_fuzzy_history_keybind() {
+    bindkey -s '^R' 'ab.fs.history.exec\n'
+}
+add-zsh-hook precmd setup_fuzzy_history_keybind

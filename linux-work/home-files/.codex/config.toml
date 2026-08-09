@@ -1,0 +1,81 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "xhigh"
+approval_policy="never"
+sandbox_mode="danger-full-access"
+
+model_reasoning_summary="concise"
+model_verbosity="low"
+personality="pragmatic"
+
+model_context_window = 1000000
+model_auto_compact_token_limit=500000
+service_tier = "priority"
+
+model_provider = "OpenAI"
+review_model = "gpt-5.6-luna"
+disable_response_storage = true
+network_access = "enabled"
+
+[projects."/data/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/data/workspace5/ainode"]
+trust_level = "trusted"
+
+[projects."/data/workspace6/WiseCat"]
+trust_level = "trusted"
+
+[projects."/data/workspace/TDProxyEngine"]
+trust_level = "trusted"
+
+[projects."/data/tmp/ruyi-agent"]
+trust_level = "trusted"
+
+[projects."/root/.codex"]
+trust_level = "trusted"
+
+[projects."/data/ws-shared/tdsql-dev-utils"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 2
+"gpt-5.6-sol" = 4
+
+# HTTP (Streamable) MCP Servers
+[mcp_servers.docs-langchain]
+url = "https://docs.langchain.com/mcp"
+
+[mcp_servers.cloud-chat-ui]
+command = "npx"
+args = ["@tencent/cloud-chat-ui-mcp"]
+
+[mcp_servers.gongfengStreamable]
+type = "http"
+url = "https://mcpgw.knot.woa.com/gongfeng"
+
+[mcp_servers.tapd_mcp_http]
+type = "http"
+url = "https://mcpgw.knot.woa.com/tapd"
+
+[mcp_servers.iWiki]
+type = "http"
+url = "https://prod.mcp.it.woa.com/app_iwiki_mcp/mcp3"
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+
+[mcp_servers.context7]
+type = "http"
+url = "https://mcp.context7.com/mcp"
+
+[model_providers.OpenAI]
+name = "OpenAI"
+base_url = "https://ai.chaoszhu.com"
+wire_api = "responses"
+supports_websockets = true
+requires_openai_auth = true
+
+[features]
+responses_websockets_v2 = true
+goals = true

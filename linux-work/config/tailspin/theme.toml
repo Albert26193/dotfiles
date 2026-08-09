@@ -1,0 +1,12 @@
+[[keywords]]
+words = ['cmake']
+style = { fg = "green" }
+
+[[keywords]]
+words = ['null', 'true', 'false', 'error', 'Error', 'ERROR']
+style = { fg = "black", italic = true, bg="red", bold=true }
+
+[[regexes]]
+regex = 'Error (.*)\.'
+style = { fg = "red" }
+

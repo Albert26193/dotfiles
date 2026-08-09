@@ -1,0 +1,35 @@
+session_name: 'main'
+start_directory: /home/albert # 放在顶层，所有窗口默认继承
+windows:
+- window_name: config
+  layout: fd39,426x62,0,0{142x62,0,0,0,141x62,143,0,1,141x62,285,0,2}
+  panes:
+    - null
+    - null
+    - focus: true
+- window_name: llm
+  layout: 7d44,426x62,0,0{142x62,0,0,3,141x62,143,0,4,141x62,285,0,5}
+  panes:
+    - null
+    - null
+    - focus: true
+- window_name: proj
+  layout: fd4e,426x62,0,0{142x62,0,0,6,141x62,143,0,7,141x62,285,0,8}
+  panes:
+    - null
+    - null
+    - focus: true
+- window_name: coding
+  layout: 04c0,426x62,0,0{142x62,0,0,9,141x62,143,0,10,141x62,285,0,11}
+  focus: true
+  panes:
+    - null
+    - null
+    - focus: true
+- window_name: misc
+  layout: 04c0,426x62,0,0{142x62,0,0,9,141x62,143,0,10,141x62,285,0,11}
+  panes:
+    - null
+    - null
+    - focus: true
+

@@ -1,0 +1,34 @@
+personality = "pragmatic"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "xhigh"
+approval_policy="never"
+sandbox_mode="danger-full-access"
+model_context_window = 1000000
+model_auto_compact_token_limit=400000
+
+[projects."/home/albert/temp"]
+trust_level = "trusted"
+
+[projects."/home/albert/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/albert"]
+trust_level = "trusted"
+
+[projects."/home/albert/.agents/skills"]
+trust_level = "trusted"
+
+[projects."/home/albert/remote-codespace/vitepress-clear-blog"]
+trust_level = "trusted"
+
+[projects."/home/albert/.my-skills"]
+trust_level = "trusted"
+
+[tui]
+theme = "monokai-extended"
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-used", "context-window-size"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+

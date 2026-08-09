@@ -1,0 +1,5 @@
+# --------------- Claude Code -----------------
+export CLAUDE_CODE_AUTO_COMPACT_WINDOW=400000
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export CLAUDE_CODE_ATTRIBUTION_HEADER=0
+# export CLAUDE_ENV_FILE=~/temp

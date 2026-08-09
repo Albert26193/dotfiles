@@ -1,0 +1,378 @@
+[
+    // ============================================================================
+    // WHICH KEY - Keybinding Menu
+    // ============================================================================
+    {
+        "key": "ctrl+x",
+        "command": "whichkey.show",
+        "when": "!editorFocus || (editorFocus && vim.mode == 'Normal')"
+    },
+    // ============================================================================
+    // FIND & SEARCH
+    // ============================================================================
+    {
+        "_comment": "Toggle find in selection mode",
+        "key": "ctrl+f",
+        "command": "toggleFindInSelection",
+        "when": "editorFocus"
+    },
+    {
+        "_comment": "Open find widget with / key (vim style)",
+        "key": "/",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "actions.find"
+            ]
+        },
+        "when": "editorFocus && !findInputFocussed && !inSearchEditor && vim.mode == 'Normal'"
+    },
+    {
+        "_comment": "Close find widget and return to vim normal mode",
+        "name": "close find widget and vim escape",
+        "key": "enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.focusActiveEditorGroup",
+                "extension.vim_escape"
+            ]
+        },
+        "when": "editorFocus && findWidgetVisible && !isComposing && findInputFocussed"
+    },
+    {
+        "_comment": "Find next match (vim n key style)",
+        "name": "find next and vim escape",
+        "key": "n",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "editor.action.nextMatchFindAction",
+                "extension.vim_escape"
+            ]
+        },
+        "when": "editorFocus && vim.mode == 'Normal' && findWidgetVisible && !findInputFocussed"
+    },
+    {
+        "_comment": "Find previous match (vim N key style)",
+        "name": "find previous and vim escape",
+        "key": "shift+n",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "editor.action.previousMatchFindAction",
+                "extension.vim_escape"
+            ]
+        },
+        "when": "editorFocus && vim.mode != 'Insert' && findWidgetVisible && !findInputFocussed"
+    },
+    // ============================================================================
+    // SEARCH EDITOR
+    // ============================================================================
+    {
+        "_comment": "Tab navigation in search editor",
+        "name": "focus on search editor input",
+        "key": "tab",
+        "command": "workbench.action.nextEditorInGroup",
+        "when": "inSearchEditor"
+    },
+    {
+        "_comment": "Focus search query input when not focused",
+        "name": "focus on search editor input",
+        "key": "cmd+f",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "search.action.focusQueryEditorWidget"
+            ]
+        },
+        "when": "inSearchEditor && !inputBoxFocus"
+    },
+    {
+        "_comment": "Cycle to next input box when already focused",
+        "name": "focus on next search box",
+        "key": "cmd+f",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "search.focus.nextInputBox"
+            ]
+        },
+        "when": "inSearchEditor && inputBoxFocus"
+    },
+    // ============================================================================
+    // INTELLISENSE & AUTOCOMPLETION
+    // ============================================================================
+    {
+        "_comment": "Trigger IntelliSense with Ctrl+N (vim style)",
+        "key": "ctrl+n",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible && vim.mode == 'Insert'"
+    },
+    {
+        "_comment": "Trigger IntelliSense with Ctrl+P (vim style)",
+        "key": "ctrl+p",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible && vim.mode == 'Insert'"
+    },
+    // ============================================================================
+    // WINDOW MANAGEMENT
+    // ============================================================================
+    {
+        "_comment": "Focus last editor group and enable always on top (floating window)",
+        "name": "focus on last editor group(floating window)",
+        "key": "cmd+e",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.focusLastEditorGroup",
+                "workbench.action.enableWindowAlwaysOnTop"
+            ]
+        },
+        "when": "!activeEditorGroupLast"
+    },
+    {
+        "_comment": "Focus first editor group and disable always on top",
+        "name": "focus on first editor group(floating window)",
+        "key": "cmd+r",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.disableWindowAlwaysOnTop",
+                "workbench.action.focusFirstEditorGroup"
+            ]
+        },
+        "when": "isAuxiliaryWindow"
+    },
+    // ============================================================================
+    // REFERENCE PEEK VIEW
+    // ============================================================================
+    {
+        "_comment": "Open reference peek view to the side",
+        "name": "open peekview on side",
+        "key": "cmd+enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "openReferenceToSide",
+                "closeReferenceSearch"
+            ]
+        },
+        "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand && !treestickyScrollFocused"
+    },
+    {
+        "_comment": "Close reference peek view and reset editor widths",
+        "name": "close peekview and reset widths",
+        "key": "escape",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "closeReferenceSearch",
+                "workbench.action.evenEditorWidths"
+            ]
+        },
+        "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand && !treestickyScrollFocused"
+    },
+    {
+        "_comment": "Select item from reference list and reset editor widths",
+        "name": "choose list item and vim escaped",
+        "key": "enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "list.select",
+                "workbench.action.evenEditorWidths"
+            ]
+        },
+        "when": "listFocus && referenceSearchVisible && !inputFocus && !treeElementCanCollapse && !treeElementCanExpand && !treestickyScrollFocused"
+    },
+    {
+        "_comment": "General escape handler in normal mode",
+        "key": "escape",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "closeFindWidget",
+                "removeSecondaryCursors",
+                "extension.vim_escape",
+                "workbench.action.evenEditorWidths"
+            ]
+        },
+        "when": "editorFocus && !referenceSearchVisible && !editorHasMultipleSelections && vim.mode == 'Normal'"
+    },
+    {
+        "_comment": "Expand window when reference peek view is visible",
+        "name": "expand window when reference peek view visible",
+        "key": "ctrl+w z",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.increaseViewSize",
+                "workbench.action.increaseViewSize",
+                "workbench.action.increaseViewSize",
+                "workbench.action.increaseViewSize",
+                "workbench.action.increaseViewSize",
+                "workbench.action.increaseViewSize"
+            ]
+        },
+        "when": "referenceSearchVisible && !inputFocus"
+    },
+    // ============================================================================
+    // AI ASSISTANTS
+    // ============================================================================
+    // Claude Code
+    // ----------------------------------------------------------------------------
+    {
+        "_comment": "Open codex and attach current file and selection",
+        "key": "cmd+l",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "chatgpt.addToThread",
+            ]
+        }
+    },
+    {
+        "_comment": "Open claude code and attach current file and selection",
+        "key": "cmd+i",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "claude-code.insertAtMentioned",
+            ]
+        }
+    },
+    {
+        "_comment": "Open codex and attach current file and selection",
+        "key": "shift+cmd+l",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "chatgpt.addToThread",
+            ]
+        }
+    },
+    // ----------------------------------------------------------------------------
+    {
+        "_comment": "Add editor selection to CodeBuddy chat",
+        "key": "shift+cmd+l",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.focusAuxiliaryBar",
+                "tencentcloud.codingcopilot.addToChat",
+                "workbench.action.focusAuxiliaryBar",
+            ]
+        },
+        // "when": "editorFocus && !findInputFocussed && !inSearchEditor && vim.mode == 'Normal'"
+        // "when": "editorHasSelection"
+    },
+    {
+        "_comment": "Start new CodeBuddy chat session",
+        "key": "cmd+n",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "tencentcloud.codingcopilot.chat.startNewChat",
+                "tencentcloud.codingcopilot.addToChat",
+                "workbench.action.focusAuxiliaryBar",
+            ]
+        },
+        // "when": "!editorHasSelection"
+    },
+    {
+        "_comment": "Toggle CodeBuddy auxiliary sidebar",
+        "key": "cmd+alt+b",
+        "command": "workbench.action.toggleAuxiliaryBar"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b\n"
+        },
+        "when": "terminalFocus"
+    },
+    // ============================================================================
+    // KEY UNBINDINGS (Remove default bindings)
+    // ============================================================================
+    {
+        "_comment": "Remove default filter lines binding",
+        "key": "cmd+k cmd+s",
+        "command": "-filterlines.includeLinesWithString"
+    },
+    {
+        "_comment": "Remove default vim Ctrl+Q binding",
+        "key": "ctrl+q",
+        "command": "-extension.vim_winCtrlQ",
+        "when": "editorTextFocus && vim.active && vim.use<C-q> && !inDebugRepl"
+    },
+    // ============================================================================
+    // Tmux
+    // ============================================================================
+    {
+        "key": "ctrl+b l",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalHasBeenCreated && panelPosition == 'bottom' || config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalProcessSupported && panelPosition == 'bottom'"
+    },
+    {
+        "key": "ctrl+b j",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalHasBeenCreated && panelPosition != 'bottom' || config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalProcessSupported && panelPosition != 'bottom'"
+    },
+    {
+        "key": "ctrl+b h",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalHasBeenCreated && panelPosition == 'bottom' || config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalProcessSupported && panelPosition == 'bottom'"
+    },
+    {
+        "key": "ctrl+b k",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalHasBeenCreated && panelPosition != 'bottom' || config.tmuxKeybinding.enableCtrlBPrefix && terminalFocus && terminalProcessSupported && panelPosition != 'bottom'"
+    },
+    // ============================================================================
+    // which key hack
+    // ============================================================================
+    {
+        "key": "ctrl+x",
+        "command": "whichkey.triggerKey",
+        "args": "C-x",
+        "when": "whichkeyVisible"
+    },
+    {
+        "key": "ctrl+z",
+        "command": "whichkey.triggerKey",
+        "args": "C-z",
+        "when": "whichkeyVisible"
+    },
+    // ============================================================================
+    // VIM-STYLE WORD SEARCH (* and #)
+    // ============================================================================
+    // {
+    //     "_comment": "* - Search forward for word under cursor (Zed-style: populate search bar, keep editor focus)",
+    //     "key": "*",
+    //     "command": "runCommands",
+    //     "args": {
+    //         "commands": [
+    //             "editor.action.addSelectionToNextFindMatch",
+    //             "actions.findWithSelection",
+    //             "workbench.action.focusActiveEditorGroup"
+    //         ]
+    //     },
+    //     "when": "editorTextFocus && vim.mode == 'Normal'"
+    // },
+    // {
+    //     "_comment": "# - Search backward for word under cursor (Zed-style: populate search bar, keep editor focus)",
+    //     "key": "#",
+    //     "command": "runCommands",
+    //     "args": {
+    //         "commands": [
+    //             "editor.action.addSelectionToNextFindMatch",
+    //             "actions.findWithSelection",
+    //             "workbench.action.focusActiveEditorGroup",
+    //             "editor.action.previousMatchFindAction"
+    //         ]
+    //     },
+    //     "when": "editorTextFocus && vim.mode == 'Normal'"
+    // },
+]

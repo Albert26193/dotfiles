@@ -1,0 +1,80 @@
+- defaults:
+    link:
+      relink: true
+      type: symlink
+      relative: false
+      canonicalize: true
+
+- clean:
+    ~/:
+      force: false
+    ~/.config:
+      force: true
+      recursive: true
+
+- link:
+    ~/:
+      force: true
+      glob: true
+      path: ./home/.*
+    ~/.config/:
+      force: true
+      glob: true
+      path: ./config/*
+    "~/.albert-scripts/":
+      force: true
+      path: ../albert-scripts
+    "~/.claude/":
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.claude/*
+    "~/.config/zed/settings.json":
+      force: true
+      glob: true
+      path: ./misc/zed/settings.json
+    "~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json":
+      force: true
+      glob: true
+      path: ./misc/project-manager/projects.json
+    # CodeBuddy
+    "~/Library/Application Support/CodeBuddy CN/User/settings.json":
+      force: true
+      glob: true
+      path: ./misc/CodeBuddy/settings.json
+    "~/Library/Application Support/CodeBuddy CN/User/keybindings.json":
+      force: true
+      glob: true
+      path: ./misc/CodeBuddy/keybindings.json
+    "~/Library/Application Support/CodeBuddy CN/User/globalStorage/alefragnani.project-manager/projects.json":
+      force: true
+      glob: true
+      path: ./misc/project-manager/codebuddy-projects.json
+    # Cursor
+    "~/Library/Application Support/Cursor/User/settings.json":
+      force: true
+      glob: true
+      path: ./misc/cursor/settings.json
+    "~/Library/Application Support/Cursor/User/keybindings.json":
+      force: true
+      glob: true
+      path: ./misc/cursor/keybindings.json
+    "~/Library/Application Support/Cursor/User/globalStorage/alefragnani.project-manager/projects.json":
+      force: true
+      glob: true
+      path: ./misc/project-manager/cursor-projects.json
+
+- shell:
+  - 
+    command: " [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh \
+              || echo 'omz installed' "
+    stdin: true
+    stdout: true
+    stderr: true
+    description: for test
+    quiet: false
+
+# - create:
+#     - ~/downloads
+#     - ~/.local
+

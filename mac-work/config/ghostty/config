@@ -1,0 +1,70 @@
+# font
+font-family = "IosevkaTermSlab Nerd Font"
+font-size = 15
+
+# theme
+theme = custom-dracula
+# theme = TokyoNight Moon
+
+# background
+adjust-cell-height = 5%
+background-opacity = 1
+background-blur-radius = 40
+
+# mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+# window
+window-padding-balance = true
+window-padding-x = 10
+window-padding-y = 4
+window-save-state = always
+macos-titlebar-style= transparent
+
+# copy
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+clipboard-paste-bracketed-safe = false
+
+# cursor
+# shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-color = #3aff9a
+cursor-opacity = 0.5
+
+# option as alt
+macos-option-as-alt = true
+
+# keybind
+keybind = super+enter=ignore
+keybind = cmd+i=esc:i
+keybind = cmd+o=esc:o
+keybind = cmd+i=esc:i
+keybind = cmd+p=esc:p
+keybind = cmd+b=esc:b
+keybind = cmd+j=esc:j
+keybind = cmd+k=esc:k
+keybind = cmd+l=esc:l
+keybind = shift+enter=text:\n
+# keybind = global:alt+j=toggle_quick_terminal
+
+# misc
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+shell-integration-features = ssh-env, ssh-terminfo
+mouse-hide-while-typing = true
+# quick-terminal-autohide = false
+# confirm-close-surface = false
+
+# notify
+# notify-on-command-finish = never | unfocused | always
+# notify-on-command-finish-action = bell , no-notify
+# notify-on-command-finish-after = 5s
+app-notifications=no-clipboard-copy
+
+# term
+term = xterm-256color
+

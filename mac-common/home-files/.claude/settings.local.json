@@ -1,0 +1,71 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Ls",
+      "Mkdir",
+      "Rmdir",
+      "Cp",
+      "Mv",
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+      "Bash(go:*)",
+      "Bash(python:*)",
+      "Bash(eslint:*)",
+      "Bash(prettier:*)",
+      "Bash(jest:*)",
+      "Bash(pytest:*)",
+      "Bash(git:status)",
+      "Bash(git:add:*)",
+      "Bash(git:commit:*)",
+      "Bash(git:branch:*)",
+      "Bash(git:checkout:feature/*)",
+      "Bash(git:checkout:bugfix/*)",
+      "Bash(git:pull:*)",
+      "Bash(git:fetch:*)"
+    ],
+    "deny": [
+      "Bash(git:checkout:main)",
+      "Bash(git:checkout:master)",
+      "Bash(git:push)",
+      "Bash(git:push:origin)",
+      "Bash(git:checkout:release/*)",
+      "Bash(sudo:*)",
+      "Bash(chmod:-R*)",
+      "Bash(chown:-R*)"
+    ],
+    "initialPermissionMode": "plan",
+    "requireExplicitApproval": [
+      "Bash(git:merge:*:dev)",
+      "Bash(git:push:*:dev)",
+      "Bash(git:rebase:*)",
+      "Bash(git:tag:*)",
+      "Bash(docker:build:*)",
+      "Bash(docker:run:*)",
+      "Bash(rm:*)"
+    ]
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
+  },
+  "enabledPlugins": {
+    "claude-code-internal@claude-code-internal-plugins": true,
+    "claude-hud@claude-hud": true
+  },
+  "skipWebFetchPreflight": true,
+  "extraKnownMarketplaces": {
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
+      }
+    }
+  },
+  "effortLevel": "high"
+}

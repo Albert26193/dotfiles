@@ -1,0 +1,34 @@
+[
+	{
+		"name": "dotfiles",
+		"rootPath": "~/.dotfiles",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "open_deep_research",
+		"rootPath": "vscode-remote://ssh-remote+albert.ark.frp/data/ws1/open_deep_research",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "my-skills",
+		"rootPath": "vscode-remote://ssh-remote+albert.ark.frp/home/albert/.my-skills",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "my-blog",
+		"rootPath": "/Users/albert/CodeSpace/my-notes/my-blog",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	}
+]

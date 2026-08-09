@@ -1,0 +1,106 @@
+# Dracula
+[colors.primary]
+background = "#1e1f28"
+foreground = "#f8f8f2"
+bright_foreground = "#ffffff"
+[colors.cursor]
+text = "#282a36"
+cursor = "#f8f8f2"
+[colors.vi_mode_cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+[colors.selection]
+text = "CellForeground"
+background = "#44475a"
+[colors.normal]
+black = "#21222c"
+red = "#ff5555"
+green = "#50fa7b"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
+[colors.bright]
+black = "#6272a4"
+red = "#ff6e6e"
+green = "#69ff94"
+yellow = "#ffffa5"
+blue = "#d6acff"
+magenta = "#ff92df"
+cyan = "#a4ffff"
+white = "#ffffff"
+[colors.search.matches]
+foreground = "#44475a"
+background = "#50fa7b"
+[colors.footer_bar]
+background = "#282a36"
+foreground = "#f8f8f2"
+[colors.hints.start]
+foreground = "#282a36"
+background = "#f1fa8c"
+[colors.hints.end]
+foreground = "#f1fa8c"
+background = "#282a36"
+
+[cursor]
+style = "Block"
+
+[font]
+size = 14
+
+[font.offset]
+x = 0
+y = 2
+
+[font.bold]
+family = "IosevkaTermSlab Nerd Font"
+style = "Normal"
+
+[font.bold_italic]
+family = "IosevkaTermSlab Nerd Font"
+style = "Normal Italic"
+
+[font.italic]
+family = "IosevkaTermSlab Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "IosevkaTermSlab Nerd Font"
+style = "Light"
+
+[window]
+blur = true
+dynamic_padding = true
+option_as_alt = "Both"
+# decorations = "Buttonless"
+#decorations = "None"
+# opacity = 0.98
+
+[window.position]
+x = 0
+y = 50
+
+[window.dimensions]
+columns = 150
+lines = 35
+
+[window.padding]
+x = 6
+y = 12
+
+[selection]
+save_to_clipboard = true
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "T", mods = "Command", action = "CreateNewTab" },
+{ key = "L", mods = "Control|Shift", chars = "l" },
+{ key = "P", mods = "Command", chars = "\u001bp" },
+{ key = "B", mods = "Command", chars = "\u001bb" },
+{ key = "j", mods = "Command", chars = "\u001bj" },
+{ key = "l", mods = "Command", chars = "\u001bl" },
+{ key = "Enter", mods = "Shift", chars = "\n" }
+]
+

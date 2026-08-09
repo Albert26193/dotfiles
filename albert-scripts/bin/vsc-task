@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+source "$HOME/.albert-scripts/func/common.vsc.sh"
+
+if [[ -f "$HOME/.albert-scripts/func/db.vsc.sh" ]]; then
+  source "$HOME/.albert-scripts/func/db.vsc.sh"
+fi
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: vsc-task <function> [args...]" >&2
+  exit 1
+fi
+
+"$@"

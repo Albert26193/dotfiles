@@ -1,0 +1,74 @@
+- defaults:
+    link:
+      relink: true
+      type: symlink
+      relative: false
+      canonicalize: true
+
+- clean:
+    ~/:
+      force: false
+    ~/.config:
+      force: true
+      recursive: true
+
+- link:
+    ~/:
+      force: true
+      glob: true
+      path: ./home/.*
+    ~/.config/:
+      force: true
+      glob: true
+      path: ./config/*
+    ~/.albert-scripts/:
+      force: true
+      path: ../albert-scripts
+    ~/.local/bin/:
+      force: true
+      glob: true
+      path: ./local-bin/*
+    ~/.tclaude/:
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.tclaude/*
+    ~/.tcodex/:
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.tcodex/*
+    ~/.codebuddy/:
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.codebuddy/*
+    ~/.claude/:
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.claude/*
+    ~/.codex/:
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.codex/*
+    ~/.config/opencode/:
+      force: true
+      create: true
+      glob: true
+      path: ./config-files/opencode/*
+
+- shell:
+  - 
+    command: " [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh \
+              || echo 'omz installed' "
+    stdin: true
+    stdout: true
+    stderr: true
+    description: for test
+    quiet: false
+
+# - create:
+#     - ~/downloads
+#     - ~/.local

@@ -1,0 +1,14 @@
+git:
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --oneline {{branchName}}"
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --oneline
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
+  log:
+    showGraph: always
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+
+

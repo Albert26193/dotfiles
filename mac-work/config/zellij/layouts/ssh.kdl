@@ -1,0 +1,72 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+  }
+
+  tab name="pod1" {
+    pane {
+      command "ssh"
+      args "root.21.91.235.65-aio1"
+    }
+  }
+
+  tab name="pod2" {
+    pane {
+      command "ssh"
+      args "root.21.91.235.149-pod2"
+    }
+  }
+
+  tab name="pod3" {
+    pane {
+      command "ssh"
+      args "root.21.91.146.14-pod3"
+    }
+  }
+
+  tab name="pod4" {
+    pane {
+      command "ssh"
+      args "root.21.214.96.252-pod4"
+    }
+  }
+
+  tab name="pod5" {
+    pane {
+      command "ssh"
+      args "root.21.91.71.79-pod5"
+    }
+  }
+
+  tab name="pod6" {
+    pane {
+      command "ssh"
+      args "root.21.214.199.211-pod6"
+    }
+  }
+
+  tab name="study7" {
+    pane {
+      command "ssh"
+      args "root.21.91.71.124-study7"
+    }
+  }
+
+  tab name="tab8" {
+    pane {
+      command "ssh"
+      args "root.9.134.133.244.cvm"
+    }
+  }
+
+  tab name="tab9" {
+    pane
+  }
+
+  tab name="tab10" {
+    pane
+  }
+}

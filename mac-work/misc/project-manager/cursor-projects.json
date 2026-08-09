@@ -1,0 +1,478 @@
+[
+	{
+		"name": "aio1-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.65-aio1/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "aio1-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.65-aio1/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "cvm-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "cvm-w2",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace2",
+		"paths": [],
+		"tags": [
+			"w2"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "cvm-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p2-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p2-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p3-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p3-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p4-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.96.252-pod4/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p4-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.96.252-pod4/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "z-old-proxy-2.0-pod5",
+		"rootPath": "vscode-remote://ssh-remote+proxy.21.6.95.179-pod5/data/workspace",
+		"paths": [],
+		"tags": [
+			"misc"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "z-p7-tdsql-master",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.124-study7/data/workspace",
+		"paths": [],
+		"tags": [
+			"misc"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p6-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "p6-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "pod5-w1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace",
+		"paths": [],
+		"tags": [
+			"w1"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "pod5-w2",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace2",
+		"paths": [],
+		"tags": [
+			"w2"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "pod5-w3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace3",
+		"paths": [],
+		"tags": [
+			"w3"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "obsidian-draft",
+		"rootPath": "/Users/albert/Documents/obsidian-draft",
+		"paths": [],
+		"tags": [
+			"misc"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": ".dotfiles",
+		"rootPath": "vscode-remote://ssh-remote+albert.53.68.ark.frp/home/albert/.dotfiles",
+		"paths": [],
+		"tags": [
+			"ark"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ws-misc",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/ws-misc",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-pod3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-pod4",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.96.252-pod4/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-cvm",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "onetouch-proxy",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/ws-misc/onetouch-proxy",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-pod2",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-pod5",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-pod1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.65-aio1/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-pod6",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [
+			"2.5"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-pod1",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.65-aio1/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-pod2",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-pod3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-pod4",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.96.252-pod4/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-pod5",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-pod6",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ainode-cvm",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace5/ainode",
+		"paths": [],
+		"tags": [
+			"ainode"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "TDProxyEngine-study",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.124-study7/data/workspace/TDProxyEngine",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "semantics-ai",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.96.252-pod4/data/ws-misc/semantics-ai",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "semantic-ai-pod5",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/ws-misc/semantic-ai",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "ruyi-agent",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/tmp/ruyi-agent",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "nexa-shark-pod5",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/ref/nexa-shark",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod1",
+		"rootPath": "vscode-remote://ssh-remote+7b22686f73744e616d65223a22726f6f742e32312e39312e3233352e36352d61696f31227d/data/workspace6/WiseCat",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod2",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace6/Nexa-knowledge",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod3",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace6/Nexa-knowledge",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod4",
+		"rootPath": "vscode-remote://ssh-remote+7b22686f73744e616d65223a22726f6f742e32312e3231342e39362e3235322d706f6434227d/data/workspace6/WiseCat",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod5",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace6/WiseCat",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod6",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace6/Nexa-knowledge",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-pod7",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.49-pod7/data/workspace6/Nexa-knowledge",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "knowledge-cvm",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace6/WiseCat",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
+	}
+]

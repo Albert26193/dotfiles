@@ -1,0 +1,47 @@
+#-------------------- basic --------------------
+alias "nv"="nvim"
+alias "tm"="tmux"
+alias "ll"="ls -l"
+alias "la"="ls -al"
+alias "lg"="lazygit"
+alias "view"="nvim -R"
+alias "lc"="leetgo"
+alias "rl"="realpath"
+
+#-------------------- fuzzy --------------------
+alias "fs"="ab.fs.search"
+alias "fj"="ab.fs.jump"
+alias "fe"="ab.fs.edit"
+alias "fh"="ab.fs.history"
+alias "cs"="ab.fs.current.search"
+alias "cj"="ab.fs.current.jump"
+alias "ce"="ab.fs.current.edit"
+
+#--------------------- tmux --------------------
+alias "tcd"="IS_SANDBOX=1 tclaude --dangerously-skip-permissions --effort=medium"
+alias "ccd"="IS_SANDBOX=1 claude --dangerously-skip-permissions --effort=xhigh"
+alias "cbd"="codebuddy --dangerously-skip-permissions"
+alias "txd"="tcodex --dangerously-bypass-approvals-and-sandbox"
+
+alias "exp.cc.ds"="source ~/.claude/ds.env"
+alias "exp.cc.gpt"="source ~/.claude/gpt.env"
+alias "exp.cc.cc"="source ~/.claude/cc.env"
+
+#--------------------- tmux --------------------
+alias "tp.gho"="tmuxp load -y $HOME/.dotfiles/mac-work/tmuxp/ssh.gho.yaml"
+alias "tp.ala"="tmuxp load -y $HOME/.dotfiles/mac-work/tmuxp/ssh.ala.yaml"
+alias "tp.re.gho"="tmux kill-session -t gho && tmuxp load -y $HOME/.dotfiles/mac-work/tmuxp/ssh.gho.yaml"
+alias "tp.re.ala"="tmux kill-session -t ala && tmuxp load -y $HOME/.dotfiles/mac-work/tmuxp/ssh.ala.yaml"
+alias "tp.kill.server"="tmux kill-server"
+alias "tp.kill.gho"="tmux kill-session -t gho"
+alias "tp.kill.ala"="tmux kill-session -t ala"
+
+#--------------------- autossh --------------------
+alias "assh"="autossh -M 0"
+
+#-------------- claude-code-internal ---------------
+alias "cid"="IS_SANDBOX=1 claude-internal --dangerously-skip-permissions"
+
+#-------------------- export --------------------
+alias exp.mysql.sh="export MYSQL_PWD=$mysql_pwd_sh"
+alias exp.mysql.local="export MYSQL_PWD=$mysql_pwd_local"

@@ -1,0 +1,4 @@
+#!/bin/bash
+nvim -R -c "set noswapfile" \
+  -c "nnoremap q :qa!<CR>" -
+

@@ -1,0 +1,47 @@
+#-------------------- basic --------------------
+alias "nv"="nvim"
+alias "tm"="tmux"
+alias "ll"="ls -l"
+alias "la"="ls -al"
+alias "lg"="lazygit"
+alias "view"="nvim -R"
+alias "lc"="leetgo"
+alias "rl"="realpath"
+alias "ya"="yazi"
+
+#-------------------- td --------------------
+alias "td.source"="source /data/workspace/tdsql-dev-utils/script/export.sh"
+alias "tt"="source /data/workspace/tdsql-dev-utils/script/export.sh"
+alias "tw"="mtr.view"
+alias "t8"="mycli --host 127.0.0.1 -u root -ptdsql2.5 --port 8888"
+alias "td.sql"="mysql --comments --host 127.0.0.1 -u root -ptdsql2.5 --port "
+alias "td.cli"="mycli --host 127.0.0.1 -u root -ptdsql2.5 --port"
+alias "td.cli.mtr"="mycli --host 127.0.0.1 -u test_mtr_1234 -ptest_mtr_1234 --port"
+alias "mc"="mtr.cases"
+alias "mcdc"="mtr.cases.cdc"
+alias "cbc"="codebuddy-code"
+
+#-------------------- fuzzy --------------------
+alias "fs"="ab.fs.search"
+alias "fj"="ab.fs.jump"
+alias "fe"="ab.fs.edit"
+alias "fh"="ab.fs.history"
+alias "cs"="ab.fs.current.search"
+alias "cj"="ab.fs.current.jump"
+alias "ce"="ab.fs.current.edit"
+
+#-------------------- cc --------------------
+alias "ccd"="IS_SANDBOX=1 claude --dangerously-skip-permissions"
+alias "hcc"="IS_SANDBOX=1 happy claude --dangerously-skip-permissions"
+alias "exp.cc.ds"="source ~/.claude/ds.env"
+alias "exp.cc.gpt"="source ~/.claude/gpt.env"
+alias "exp.cc.cc"="source ~/.claude/cc.env"
+alias "exp.cc.antigravity"="source ~/.claude/antigravity.env"
+
+#-------------------- export --------------------
+alias exp.mysql.sh="export MYSQL_PWD=$mysql_pwd_sh"
+alias exp.mysql.local="export MYSQL_PWD=$mysql_pwd_local"
+
+#-------------------- tmuxp --------------------
+alias tp.main="tmuxp load -y ~/.dotfiles/linux-common/tmuxp/main.yaml"
+alias tp.docker="tmuxp load -y ~/.dotfiles/linux-common/tmuxp/docker.yaml"

@@ -1,0 +1,34 @@
+- defaults:
+    link:
+      relink: true
+      type: symlink
+      relative: false
+      canonicalize: true
+
+- clean:
+    ~/:
+      force: false
+    ~/.config:
+      force: true
+      recursive: true
+
+- link:
+    ~/.config/:
+      force: true
+      glob: true
+      path: ./*
+      exclude: [ dotbot.yaml, scripts ]
+
+# - shell:
+#   - 
+#     command: " [ -z $HOME/.oh-my-zsh/ ] && bash ./init-scripts/install_omz_plugins.sh \
+#               || echo 'omz installed' "
+#     stdin: true
+#     stdout: true
+#     stderr: true
+#     description: for test
+#     quiet: false
+
+# - create:
+#     - ~/downloads
+#     - ~/.local

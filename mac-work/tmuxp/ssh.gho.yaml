@@ -1,0 +1,49 @@
+session_name: gho
+windows:
+  - window_name: pod1
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.235.65-aio1
+  - window_name: pod2
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.235.149-pod2
+  - window_name: pod3
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.146.14-pod3
+  - window_name: pod4
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.214.96.252-pod4
+  - window_name: pod5
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.71.79-pod5
+  - window_name: pod6
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.214.199.211-pod6
+  - window_name: pod7
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.146.49-pod7
+  - window_name: cvm8
+    panes:
+      - shell_command:
+          - autossh -M 0 root.9.134.133.244.cvm
+  - window_name: ark9
+    panes:
+      - shell_command:
+          - autossh -M 0 albert.53.68.ark.frp
+  - window_name: frp.24-10
+    panes:
+      - shell_command:
+          - autossh -M 0 frp.53.68_24.24
+  - window_name: study11
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.202.137-study11
+  - window_name: mac12
+    panes:
+      - ""
