@@ -38,7 +38,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [tui.model_availability_nux]
-"gpt-5.5" = 2
+"gpt-5.5" = 3
 "gpt-5.6-sol" = 4
 
 # HTTP (Streamable) MCP Servers
@@ -73,8 +73,9 @@ url = "https://mcp.context7.com/mcp"
 name = "OpenAI"
 base_url = "https://ai.chaoszhu.com"
 wire_api = "responses"
-supports_websockets = true
-requires_openai_auth = true
+requires_openai_auth = false
+env_key = "CODEX_KEY_CHAOS"
+# supports_websockets = true
 
 [features]
 responses_websockets_v2 = true

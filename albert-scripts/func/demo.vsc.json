@@ -233,6 +233,24 @@
         "group": "last"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "vsc.open.envsetup",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.open.vscode",
+        "${env:HOME}/.vscode-server/server-env-setup"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "group": "last"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [
