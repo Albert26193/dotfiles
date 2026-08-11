@@ -2328,6 +2328,21 @@
       "bindings": [
         {
           "commands": [
+            "kilo-code.new.addToContext",
+          ],
+          "key": "k",
+          "name": "🔆 Claude Code: Add to Context",
+          "type": "commands"
+        },
+      ],
+      "key": "k",
+      "name": "🔆 Claude Code",
+      "type": "bindings"
+    },
+    {
+      "bindings": [
+        {
+          "commands": [
             "claude-code.insertAtMentioned",
           ],
           "key": "k",
@@ -2351,7 +2366,7 @@
           "type": "commands"
         },
       ],
-      "key": "k",
+      "key": "K",
       "name": "🔆 Claude Code",
       "type": "bindings"
     },

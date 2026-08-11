@@ -229,6 +229,7 @@
         "args": {
             "commands": [
                 "copy-code-as-markdown.CopySelectionAsMarkdown",
+                "chatgpt.sidebarView.focus",
                 "chatgpt.addToThread",
             ]
         }
@@ -346,14 +347,14 @@
         "command": "-composer.sendToAgent",
         "when": "editorHasPromptBar && editorPromptBarFocused"
     },
-    {
-        "key": "cmd+l",
-        "command": "kilo-code.new.addToContext",
-        "when": "editorHasSelection && editorTextFocus"
-    },
-    {
-        "key": "cmd+k cmd+a",
-        "command": "-kilo-code.new.addToContext",
-        "when": "editorHasSelection && editorTextFocus"
-    }
+    // {
+    //     "key": "cmd+l",
+    //     "command": "kilo-code.new.addToContext",
+    //     "when": "editorHasSelection && editorTextFocus"
+    // },
+    // {
+    //     "key": "cmd+k cmd+a",
+    //     "command": "-kilo-code.new.addToContext",
+    //     "when": "editorHasSelection && editorTextFocus"
+    // }
 ]
