@@ -54,8 +54,10 @@ add_to_path "/opt/homebrew/bin"
 
 # --------------------- env -----------------------
 [[ -f "$HOME/.zsh.env" ]] && { source "$HOME/.zsh.env" }
+[[ -f "$HOME/.zsh.envs" ]] && { source "$HOME/.zsh.envs" }
 [[ -f "$HOME/.zsh.alias" ]] && { source "$HOME/.zsh.alias" }
 [[ -f "$HOME/.zsh.keybindings" ]] && { source "$HOME/.zsh.keybindings" }
+[[ -f "$HOME/.misc.env" ]] && { source "$HOME/.misc.env" }
 
 # >>> otty shell integration >>>
 # Added by Otty — toggle in Settings > Shell > Shell Integration.
