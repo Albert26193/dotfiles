@@ -34,6 +34,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', 'gp', vim.diagnostic.open_float, opts)
+
+  -- Inlay hints (VSCode-style inline type/parameter annotations)
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
 end
 
 -- Configure diagnostic display
@@ -87,7 +92,22 @@ for _, server in ipairs(servers) do
         diagnostics = { globals = { 'vim' } },
         workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
         telemetry = { enable = false },
+        hint = { enable = true }, -- lua_ls only emits inlay hints when this is on
       },
+    }
+  end
+
+  -- TypeScript/JavaScript: ts_ls only emits inlay hints when these are on
+  if server == "ts_ls" then
+    local inlay = {
+      includeInlayParameterNameHints = "all",
+      includeInlayVariableTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+    }
+    opts.settings = {
+      typescript = { inlayHints = inlay },
+      javascript = { inlayHints = inlay },
     }
   end
 

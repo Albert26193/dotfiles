@@ -884,15 +884,9 @@ lazy.setup({
     { "isobit/vim-caddyfile" },
     -- diff
     { "sindrets/diffview.nvim" },
-    {
-      "julienvincent/hunk.nvim",
-      cmd = { "DiffEditor" },
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        -- 二选一，用于显示文件图标；不需要图标也可以删掉
-        "nvim-tree/nvim-web-devicons",
-        -- "echasnovski/mini.icons",
-      },
-    }
-  }
+    -- inline diff viewer (delta-style, real buffers not virtual lines)
+    -- note that there is probably no lazy.nvim benefit, as this plugin is lazy loaded by default
+    { "kokusenz/deltaview.nvim" }
+  },
+
 })

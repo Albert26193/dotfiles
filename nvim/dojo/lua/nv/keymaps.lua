@@ -26,6 +26,11 @@ map('n', '<C-s>', ':w<CR>', opts)
 -- Telescope find files (VSCode-like)
 map('n', '<M-p>', '<cmd>Telescope find_files<CR>', { desc = 'Find files (Telescope)' })
 
+-- Unified quick open (VSCode Ctrl+P style: buffers + recent + files, frecency-sorted)
+map('n', '<C-p>', function()
+  Snacks.picker.smart()
+end, { desc = 'Quick open (smart picker)' })
+
 -- sidebar (VSCode-like)
 -- map('n', '<M-b>', '<cmd> NvimTreeToggle <CR>', { desc = 'toggle nvim tree' })
 

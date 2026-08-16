@@ -23,7 +23,12 @@ o.completeopt = 'menuone,noinsert,noselect' -- Autocomplete options
 o.number = true         -- Show line number
 o.relativenumber = true -- Show relative line numbers
 o.showmatch = true      -- Highlight matching parenthesis
-o.foldmethod = 'marker' -- Enable folding (default 'foldmarker')
+-- Folding: treesitter-based, everything open on file load
+o.foldmethod = 'expr'
+o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+o.foldlevel = 99      -- Open all folds by default
+o.foldlevelstart = 99 -- Same, for newly opened files
+o.foldtext = ''       -- Keep syntax highlighting on the folded line (0.10+)
 o.colorcolumn = '100'   -- Line length marker at 100 columns
 o.splitright = true     -- Vertical split to the right
 o.splitbelow = true     -- Horizontal split to the bottom

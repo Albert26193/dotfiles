@@ -57,6 +57,17 @@ local function setup()
     -- 🎯 Quick symbol search (space space)
     { "<leader><space>", telescope_cmd("Telescope lsp_document_symbols"), desc = "🎯 Search symbol" },
 
+    -- 🎨 Command palette (VSCode Ctrl+Shift+P style)
+    { "<leader>:", telescope_cmd("Telescope commands"), desc = "🎨 Command palette" },
+    { "<leader>K", telescope_cmd("Telescope keymaps"), desc = "🎨 Search keymaps" },
+
+    -- 💡 Inlay hints toggle
+    { "<leader>i", function()
+      local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+      vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
+      vim.notify("Inlay hints " .. (enabled and "off" or "on"))
+    end, desc = "💡 Toggle inlay hints" },
+
     -- 🦢 Yazi toggle
     { "<leader>y", function()
       -- Check if yazi.nvim is available
