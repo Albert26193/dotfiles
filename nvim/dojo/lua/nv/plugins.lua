@@ -162,7 +162,8 @@ lazy.setup({
       opts = {
         ensure_installed = {
           'python', 'cpp', 'c', 'proto', 'dockerfile',
-          'starlark', 'bash', 'javascript', 'lua', 'json'
+          'starlark', 'bash', 'javascript', 'lua', 'json',
+          'markdown', 'markdown_inline', 'html', 'yaml',
         },
         sync_install = false,
         auto_install = true,
@@ -668,9 +669,19 @@ lazy.setup({
     -- Markdown Render
     {
       "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "Avante" },
+      ft = { "markdown" },
       dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-      opts = {},
+      opts = {
+        -- Obsidian 观感:所有模式都渲染(配合 anti_conceal 在光标行露出原始语法)
+        preset = "obsidian",
+        -- 显式限定作用范围,不依赖 lazy ft 隐式推导
+        file_types = { "markdown" },
+        -- 懒加载下首次渲染后重启高亮器,清除动态禁用残留
+        restart_highlighter = true,
+        -- 朴素表格边框(显式留档,默认即此)
+        pipe_table = { preset = "none" },
+        -- completions 保持默认关闭
+      },
     },
 
     -- OSC52 Clipboard
