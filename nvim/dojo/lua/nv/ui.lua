@@ -21,7 +21,7 @@ require("one_monokai").setup({
   },
   highlights = function(colors)
     return {
-      Normal                                = { bg = colors.bg:darken(0) },
+      Normal                                = { bg = colors.bg:darken(0.7) },
       DiffChange                            = { fg = colors.white:darken(0.3) },
       ErrorMsg                              = { fg = colors.pink, standout = true },
       EasyMotionShade                       = { fg = "#3c4b4c" },
@@ -57,7 +57,7 @@ require("one_monokai").setup({
       ["@lsp.typemod.variable.classScope"]  = { fg = colors.orange },
       ["@lsp.typemod.variable.fileScope"]   = { fg = colors.fg },
     }
-end,
+  end,
   italics = false,
 })
 vim.cmd.colorscheme("one_monokai")

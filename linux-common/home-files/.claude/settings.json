@@ -20,5 +20,10 @@
   "skipWebFetchPreflight": true,
   "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "editorMode": "vim",
+  "awaySummaryEnabled": true,
+  "preferredNotifChannel": "terminal_bell",
+  "teammateMode": "auto",
+  "tui": "fullscreen"
 }
