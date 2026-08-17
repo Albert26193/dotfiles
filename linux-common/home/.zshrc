@@ -49,6 +49,9 @@ add_to_path "$BUN_INSTALL/bin:$PATH"
 { command -v go 2>&1 >/dev/null } && { add_to_path "$(go env GOPATH)/bin" }
 [[ -f "$HOME/.local/bin/env" ]] && { source "$HOME/.local/bin/env" }
 
+#---------------------- mise -----------------------
+{ command -v mise 2>&1 >/dev/null } && { eval "$(mise activate zsh)" }
+
 #--------------------- zoxide ----------------------
 { command -v zoxide 2>&1 >/dev/null } && { eval "$(zoxide init zsh)" }
 

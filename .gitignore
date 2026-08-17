@@ -18,3 +18,10 @@
 **/.codex/tmp
 
 **/.gitconfig_work
+
+# mise 运行时/机器本地文件（config/mise/ 被整目录 symlink 到 ~/.config/mise，
+# 这些文件一旦被 mise 写入会落在仓库工作区，不能误提交）
+**/config/mise/trust/
+**/config/mise/config.local.toml
+**/config/mise/config.*.local.toml
+**/config/mise/settings.toml

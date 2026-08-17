@@ -66,3 +66,7 @@ link: ## 通过 dotbot 建立对应树 symlink
 	$(call require_dir)
 	@dotbot -c "$(PROJ_DIR)/$(DIR)/dotbot.yaml"
 .PHONY: link
+
+brew: ## eval $(brew shellenv) 并验证 brew 可用
+	@eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew --version
+.PHONY: brew
