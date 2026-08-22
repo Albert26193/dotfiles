@@ -1,5 +1,5 @@
 {
-  "model": "claude-opus-5[1m]",
+  "model": "fable",
   "hooks": {
     "SessionStart": [
       {
@@ -19,11 +19,11 @@
   },
   "skipWebFetchPreflight": true,
   "effortLevel": "xhigh",
+  "awaySummaryEnabled": true,
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "editorMode": "vim",
-  "awaySummaryEnabled": true,
   "preferredNotifChannel": "terminal_bell",
-  "teammateMode": "auto",
-  "tui": "fullscreen"
+  "teammateMode": "auto"
 }

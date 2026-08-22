@@ -1,5 +1,5 @@
 # ==============================================================================
-# dotfiles 构建入口（最小集：init / link / help）
+# dotfiles 构建入口（最小集：init / link / help / brew）
 #
 # 按「中大型工程下的 Makefile 编写」三段式切分：
 #   Variables(Part 1)  - 路径、参数、默认值
@@ -10,6 +10,7 @@
 #   make init DIR=mac-common    执行该树 init-scripts/init.sh（安装工具/依赖）
 #   make link DIR=mac-common    通过 dotbot 执行该树 dotbot.yaml（建立配置 symlink）
 #   make help                   打印用法
+#   make brew                   执行 eval $(brew shellenv) 并验证 brew 可用
 # ==============================================================================
 
 SHELL := /bin/bash
@@ -26,6 +27,9 @@ PROJ_DIR    := $(shell dirname "$(MKFILE_PATH)")
 # 目标树，必须由命令行显式指定（默认空，未指定时在 defines 里校验报错）
 # 取值：mac-common / mac-work / linux-common / linux-work
 DIR :=
+
+# brew 可执行文件候选路径，按序探测第一个存在者（Apple Silicon / Intel Mac / Linuxbrew）
+BREW_BIN := $(shell for p in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do [ -x "$$p" ] && echo "$$p" && break; done)
 
 # ------------------------------------------------------------------------------
 # Defines(Part 2)
@@ -68,5 +72,6 @@ link: ## 通过 dotbot 建立对应树 symlink
 .PHONY: link
 
 brew: ## eval $(brew shellenv) 并验证 brew 可用
-	@eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew --version
+	@test -n "$(BREW_BIN)" || { echo "error: 未找到 brew（已探测 /opt/homebrew、/usr/local、/home/linuxbrew）"; exit 1; }
+	@eval "$$($(BREW_BIN) shellenv)" && brew --version
 .PHONY: brew
