@@ -52,13 +52,15 @@ local function setup()
     wk.show({ keys = "<leader>" })
   end, { desc = "Show WhichKey (leader)" })
 
+  -- 🎨 Command palette (Alt+Shift+P, VSCode Cmd+Shift+P style)
+  vim.keymap.set("n", "<M-S-p>", telescope_cmd("Telescope commands"), { desc = "🎨 Command palette" })
+
   -- Leader key mappings
   wk.add({
     -- 🎯 Quick symbol search (space space)
     { "<leader><space>", telescope_cmd("Telescope lsp_document_symbols"), desc = "🎯 Search symbol" },
 
-    -- 🎨 Command palette (VSCode Ctrl+Shift+P style)
-    { "<leader>:", telescope_cmd("Telescope commands"), desc = "🎨 Command palette" },
+    -- 🎨 Search keymaps
     { "<leader>K", telescope_cmd("Telescope keymaps"), desc = "🎨 Search keymaps" },
 
     -- 💡 Inlay hints toggle

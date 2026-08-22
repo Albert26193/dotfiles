@@ -23,6 +23,9 @@ require("one_monokai").setup({
     return {
       Normal                                = { bg = colors.bg:darken(0.85) },
       DiffChange                            = { fg = colors.white:darken(0.3) },
+      -- render-markdown 的 H3Bg 默认 link 到 DiffChange；此处显式定义，
+      -- 把 H3 标题行从 DiffChange 的 fg 覆盖中解耦，避免标题文字被染成暗灰不可读
+      RenderMarkdownH3Bg                    = { bg = colors.dark_gray },
       ErrorMsg                              = { fg = colors.pink, standout = true },
       EasyMotionShade                       = { fg = "#3c4b4c" },
       EasyMotionTarget                      = { fg = "#00ff00" },
