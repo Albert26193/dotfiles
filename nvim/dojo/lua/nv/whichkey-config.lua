@@ -249,7 +249,7 @@ local function setup()
 
     -- 📗 File explorer group
     { "<leader>f", group = "📗 File" },
-    { "<leader>ff", telescope_cmd("Telescope find_files"), desc = "📗 Find files" },
+    { "<leader>ff", nvim_tree_cmd("NvimTreeToggle"), desc = "📗 Toggle file tree" },
     { "<leader>fw", telescope_cmd("Telescope live_grep"), desc = "📗 Word search" },
     { "<leader>fc", telescope_cmd("Telescope current_buffer_fuzzy_find"), desc = "📗 Search current file" },
     { "<leader>fs", telescope_cmd("Telescope find_files"), desc = "📗 Search files" },

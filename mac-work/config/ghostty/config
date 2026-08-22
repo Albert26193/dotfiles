@@ -45,6 +45,11 @@ keybind = cmd+i=esc:i
 keybind = cmd+o=esc:o
 keybind = cmd+i=esc:i
 keybind = cmd+p=esc:p
+# cmd+shift+p 发送 alt+shift+p (ESC P)，触发 nvim 命令面板
+keybind = shift+cmd+p=unbind
+keybind = cmd+shift+p=esc:P
+# command palette: shift+cmd+p -> shift+cmd+alt+p
+keybind = shift+cmd+alt+p=toggle_command_palette
 keybind = cmd+b=esc:b
 keybind = cmd+j=esc:j
 keybind = cmd+k=esc:k

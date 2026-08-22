@@ -54,7 +54,6 @@ add_to_path() {
 add_to_path "~/.local/bin"
 [[ -f "$HOME/.local/bin/env" ]] && { source "$HOME/.local/bin/env" }
 
-
 #------------------- nvm  -------------------
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 

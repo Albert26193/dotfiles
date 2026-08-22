@@ -1,0 +1,27 @@
+session_name: main
+windows:
+  - window_name: win1
+    layout: even-horizontal
+    panes:
+      - null
+      - null
+  - window_name: win2
+    layout: even-horizontal
+    panes:
+      - null
+      - null
+  - window_name: win3
+    layout: even-horizontal
+    panes:
+      - null
+      - null
+  - window_name: win4
+    layout: even-horizontal
+    panes:
+      - null
+      - null
+  - window_name: win5
+    layout: even-horizontal
+    panes:
+      - null
+      - null

@@ -98,6 +98,7 @@ bindings = [
 { key = "T", mods = "Command", action = "CreateNewTab" },
 { key = "L", mods = "Control|Shift", chars = "l" },
 { key = "P", mods = "Command", chars = "\u001bp" },
+{ key = "P", mods = "Command|Shift", chars = "\u001bP" },
 { key = "B", mods = "Command", chars = "\u001bb" },
 { key = "j", mods = "Command", chars = "\u001bj" },
 { key = "l", mods = "Command", chars = "\u001bl" },
