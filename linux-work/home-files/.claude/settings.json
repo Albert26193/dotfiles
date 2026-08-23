@@ -70,5 +70,6 @@
     }
   },
   "skipDangerousModePermissionPrompt": true,
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "outputStyle": "Concise"
 }
