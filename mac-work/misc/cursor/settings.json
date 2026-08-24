@@ -2328,46 +2328,34 @@
       "bindings": [
         {
           "commands": [
-            "kilo-code.new.addToContext",
+            "claude-vscode.focus",
+            "claude-code.insertAtMentioned",
+          ],
+          "key": "c",
+          "name": "🔆 Agent: Add to Claude Code",
+          "type": "commands"
+        },
+        {
+          "commands": [
+            "copy-code-as-markdown.CopySelectionAsMarkdown",
+            "extension.vim_escape"
           ],
           "key": "k",
-          "name": "🔆 Claude Code: Add to Context",
+          "name": "🔆 Agent: Copy As Markdown",
+          "type": "commands"
+        },
+        {
+          "commands": [
+            "chatgpt.sidebarSecondaryView.focus",
+            "chatgpt.addToThread",
+          ],
+          "key": "x",
+          "name": "🔆 Claude Code: Add to Codex",
           "type": "commands"
         },
       ],
       "key": "k",
-      "name": "🔆 Claude Code",
-      "type": "bindings"
-    },
-    {
-      "bindings": [
-        {
-          "commands": [
-            "claude-code.insertAtMentioned",
-          ],
-          "key": "k",
-          "name": "🔆 Claude Code: Add to Context",
-          "type": "commands"
-        },
-        {
-          "commands": [
-            "contextCopy.copySelectedCodeWithContextCommand",
-          ],
-          "key": "c",
-          "name": "🔆 Claude Code: Add to Context",
-          "type": "commands"
-        },
-        {
-          "commands": [
-            "contextCopy.copySelectionWithContextCommand",
-          ],
-          "key": "i",
-          "name": "🔆 Claude Code: Add to Context",
-          "type": "commands"
-        },
-      ],
-      "key": "K",
-      "name": "🔆 Claude Code",
+      "name": "🔆 Agent",
       "type": "bindings"
     },
     {

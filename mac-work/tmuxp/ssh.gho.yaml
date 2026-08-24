@@ -39,7 +39,7 @@ windows:
   - window_name: frp.24-10
     panes:
       - shell_command:
-          - autossh -M 0 frp.53.68_24.24
+          - autossh -M 0 frp.lab.24.21
   - window_name: study11
     panes:
       - shell_command:
