@@ -851,13 +851,17 @@ lazy.setup({
               local ft = vim.bo[buf].filetype
               local display_name = name ~= "" and vim.fn.fnamemodify(name, ":t") or ("[" .. ft .. "]")
               table.insert(items, {
-                text = i .. ": " .. display_name,
+                text = display_name,
                 idx = i,
                 win = win,
               })
             end
             Snacks.picker.select(items, {
               prompt = "Select Window",
+              -- items 是 table,必须给 format_item,否则显示 tostring() 的 "table: 0x..."
+              format_item = function(item)
+                return item.text
+              end,
             }, function(item)
               if item then
                 vim.api.nvim_set_current_win(item.win)
