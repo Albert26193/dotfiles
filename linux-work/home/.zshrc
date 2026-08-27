@@ -42,6 +42,9 @@ export NVM_DIR="$HOME/.nvm"
 # --------------------- cargo -----------------------
 [[ -f "$HOME/.cargo/env" ]] && { source "$HOME/.cargo/env" }
 
+# --------------------- nix -------------------------
+[[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && { source "$HOME/.nix-profile/etc/profile.d/nix.sh" }
+
 # --------------------- bun -----------------------
 [ -s "$HOME/.bun/_bun" ] && { source "$HOME/.bun/_bun" }
 
