@@ -1,8 +1,16 @@
 #!/bin/bash
 
 # VSCode-oriented helper functions.
-# This file is sourced by ~/.albert-scripts/export.sh, so keep it side-effect
-# light: no set -e, no mandatory project-local source, no argv dispatch.
+# Sourced by bin/vsc-task (bash, `set -e`), which then invokes "$@" — the first
+# tasks.json argument is a function name here. Keep this file side-effect light:
+# no set -e, no mandatory project-local source, no argv dispatch.
+#
+# Layout lives in tasks.json, not in per-feature functions: every branch-scoped
+# location is passed in as a path template (see _vsc.dir.resolve).
+
+# ---------------------------------------------------------------------------
+# Environment
+# ---------------------------------------------------------------------------
 
 function _vsc.source.env.file() {
   local env_file="$1"
@@ -46,6 +54,9 @@ function vsc.osc.copy() {
   printf "\033]52;c;$(echo -n "$input" | base64)\a" >&2
 }
 
+# Expand a leading '@VAR' / '@VAR/sub/path' reference against the environment.
+# Anything else is echoed unchanged. Idempotent, and only ever applied at the
+# public function boundary — the _vsc.* helpers below take plain paths.
 function vsc.expand.var() {
   local input="$1"
   [[ -z "$input" ]] && return 1
@@ -79,6 +90,10 @@ function vsc.expand.var() {
   fi
 }
 
+# ---------------------------------------------------------------------------
+# Opening files
+# ---------------------------------------------------------------------------
+
 function vsc.find.code.cmd() {
   local candidates=("code" "code-insiders" "buddycn")
   local cmd
@@ -92,6 +107,8 @@ function vsc.find.code.cmd() {
   return 1
 }
 
+# Open an existing path in the editor. A file longer than <line_threshold>
+# lines is opened in a new window instead of the current one.
 function vsc.open.vscode() {
   local file_path
   file_path="$(vsc.expand.var "$1")" || return 1
@@ -191,9 +208,12 @@ function vsc.pick.fzf() {
   vsc.open.vscode "$file_path"
 }
 
+# ---------------------------------------------------------------------------
+# Git helpers
+# ---------------------------------------------------------------------------
+
 function _vsc.git.branch() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
+  local proj_dir="$1"
 
   [[ -z "$proj_dir" ]] && {
     echo "Error: project directory is required." >&2
@@ -205,19 +225,90 @@ function _vsc.git.branch() {
   }
 
   local branch
-  branch=$(cd "$proj_dir" && git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  branch=$(git -C "$proj_dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
   [[ -z "$branch" ]] && {
-    echo "Error: could not get branch name from: $proj_dir" >&2
+    echo "Error: not a git repository, or no branch checked out: $proj_dir" >&2
     return 1
   }
 
   echo "$branch"
 }
 
+# 'feat/foo' -> 'feat-foo', so a branch name is usable as one path component.
 function _vsc.safe.branch() {
   local branch="$1"
   echo "${branch//\//-}"
 }
+
+# ---------------------------------------------------------------------------
+# Path templates
+#
+# The single place where a branch-scoped location is computed. Callers pass a
+# template so the directory layout is declared in tasks.json instead of being
+# hard-coded once per feature. Supported placeholders:
+#
+#   {proj}      the project directory (argument 1, already @VAR-expanded)
+#   {basename}  basename of {proj}
+#   {branch}    current branch, '/' replaced by '-'
+#
+# A template without {branch} never shells out to git, so plain paths work
+# outside a repository. Progress messages go to stderr; stdout is the result.
+# ---------------------------------------------------------------------------
+
+function _vsc.dir.resolve() {
+  local proj_dir="$1"
+  local template="$2"
+  local mkdir_flag="${3:-}"
+
+  [[ -z "$template" ]] && {
+    echo "Error: path template is required." >&2
+    return 1
+  }
+
+  local resolved="$template"
+
+  if [[ "$resolved" == *'{proj}'* || "$resolved" == *'{basename}'* || "$resolved" == *'{branch}'* ]]; then
+    [[ -z "$proj_dir" ]] && {
+      echo "Error: project directory is required to resolve template: $template" >&2
+      return 1
+    }
+    [[ -d "$proj_dir" ]] || {
+      echo "Error: project directory does not exist: $proj_dir" >&2
+      return 1
+    }
+  fi
+
+  resolved="${resolved//\{proj\}/$proj_dir}"
+
+  if [[ "$resolved" == *'{basename}'* ]]; then
+    resolved="${resolved//\{basename\}/$(basename "$proj_dir")}"
+  fi
+
+  if [[ "$resolved" == *'{branch}'* ]]; then
+    local branch safe_branch
+    branch="$(_vsc.git.branch "$proj_dir")" || return 1
+    safe_branch="$(_vsc.safe.branch "$branch")"
+    echo "Branch: $branch -> $safe_branch" >&2
+    resolved="${resolved//\{branch\}/$safe_branch}"
+  fi
+
+  if [[ "$resolved" =~ \{[a-z]+\} ]]; then
+    echo "Error: unknown placeholder in template: $template" >&2
+    echo "Hint: supported placeholders are {proj}, {basename}, {branch}." >&2
+    return 1
+  fi
+
+  if [[ "$mkdir_flag" == "--mkdir" && ! -d "$resolved" ]]; then
+    echo "Creating directory: $resolved" >&2
+    mkdir -p "$resolved" || return 1
+  fi
+
+  echo "$resolved"
+}
+
+# ---------------------------------------------------------------------------
+# File helpers
+# ---------------------------------------------------------------------------
 
 function _vsc.open.ensure.file() {
   local file_path="${1:-}"
@@ -250,6 +341,7 @@ function _vsc.open.ensure.file() {
   fi
 }
 
+# Normalize free text into a filename-safe slug.
 function _vsc.open.slug() {
   local topic="${1:-draft}"
 
@@ -265,287 +357,11 @@ function _vsc.open.slug() {
   echo "$topic"
 }
 
-function _vsc.open.file() {
-  [[ $# -ge 1 ]] || {
-    echo "Error: file path is required." >&2
-    return 1
-  }
-
-  local file_path
-  file_path="$(vsc.expand.var "$1")" || return 1
-  local line_threshold="${2:-}"
-
-  _vsc.open.ensure.file "$file_path" || return 1
-  vsc.open.vscode "$file_path" "$line_threshold"
-}
-
-function _vsc.open.issue() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
-  local note_dir
-  note_dir="$(vsc.expand.var "$2")" || return 1
-  local file_name="${3:-}"
-
-  [[ -z "$note_dir" ]] && {
-    echo "Error: note directory is required." >&2
-    return 1
-  }
-  [[ -z "$file_name" ]] && {
-    echo "Error: file name is required." >&2
-    return 1
-  }
-
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  local safe_branch
-  safe_branch="$(_vsc.safe.branch "$branch")"
-  local full_path="$note_dir/$safe_branch/$file_name"
-
-  echo "Opening issue file for branch '$branch' ($safe_branch)..."
-  _vsc.open.ensure.file "$full_path" || return 1
-  vsc.open.vscode "$full_path"
-}
-
-function _vsc.iter.dir() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
-  local note_dir
-  note_dir="$(vsc.expand.var "$2")" || return 1
-
-  [[ -z "$note_dir" ]] && {
-    echo "Error: note directory is required." >&2
-    return 1
-  }
-
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  local safe_branch
-  safe_branch="$(_vsc.safe.branch "$branch")"
-  local iters_dir="$note_dir/$safe_branch/iters"
-
-  if [[ ! -d "$iters_dir" ]]; then
-    echo "Creating iter directory: $iters_dir" >&2
-    mkdir -p "$iters_dir"
-  fi
-
-  echo "$iters_dir"
-}
-
-function _vsc.iter.latest.path() {
-  local iters_dir="$1"
-  ls -v "$iters_dir"/iter-[0-9]*-*.md 2>/dev/null | tail -n 1
-}
-
-function _vsc.iter.next.num() {
-  local iters_dir="$1"
-  local latest
-  latest="$(_vsc.iter.latest.path "$iters_dir")"
-
-  local next_num=1
-  if [[ -n "$latest" ]]; then
-    local latest_name
-    latest_name="$(basename "$latest")"
-    latest_name="${latest_name#iter-}"
-    latest_name="${latest_name%%-*}"
-    next_num="$latest_name"
-    ((next_num++))
-  fi
-
-  echo "$next_num"
-}
-
-function _vsc.open.iter() {
-  local iters_dir
-  iters_dir="$(_vsc.iter.dir "$1" "$2")" || return 1
-
-  local latest
-  latest="$(_vsc.iter.latest.path "$iters_dir")"
-
-  if [[ -z "$latest" ]]; then
-    local topic
-    topic="$(_vsc.open.slug "${3:-}")" || return 1
-    latest="$iters_dir/iter-1-${topic}.md"
-    _vsc.open.ensure.file "$latest" "# iter-1: $topic" || return 1
-  fi
-
-  echo "Latest iter: $(basename "$latest")"
-  vsc.open.vscode "$latest"
-}
-
-function _vsc.new.iter() {
-  local iters_dir
-  iters_dir="$(_vsc.iter.dir "$1" "$2")" || return 1
-
-  local topic
-  topic="$(_vsc.open.slug "${3:-}")" || return 1
-
-  local next_num
-  next_num="$(_vsc.iter.next.num "$iters_dir")" || return 1
-
-  local target_file="$iters_dir/iter-${next_num}-${topic}.md"
-  echo "Creating iter file: $target_file"
-  _vsc.open.ensure.file "$target_file" "# iter-$next_num: $topic" || return 1
-
-  vsc.open.vscode "$target_file"
-}
-
-function _vsc.chat.dir() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
-
-  [[ -z "$proj_dir" ]] && {
-    echo "Error: project directory is required." >&2
-    return 1
-  }
-  [[ -d "$proj_dir" ]] || {
-    echo "Error: project directory does not exist: $proj_dir" >&2
-    return 1
-  }
-
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  local safe_branch
-  safe_branch="$(_vsc.safe.branch "$branch")"
-  local chat_dir="$proj_dir/.ai_dev_chat/$safe_branch"
-  if [[ ! -d "$chat_dir" ]]; then
-    echo "Creating chat directory: $chat_dir" >&2
-    mkdir -p "$chat_dir"
-  fi
-
-  echo "$chat_dir"
-}
-
-function _vsc.chat.latest.name() {
-  local chat_dir="$1"
-
-  ls -1 "$chat_dir" 2>/dev/null |
-    grep -E '^[0-9]+\.md$' |
-    sort -n |
-    tail -n 1
-}
-
-function _vsc.open.chat() {
-  local chat_dir
-  chat_dir="$(_vsc.chat.dir "$1")" || return 1
-
-  local latest
-  latest="$(_vsc.chat.latest.name "$chat_dir")"
-
-  local target_file
-  if [[ -z "$latest" ]]; then
-    target_file="$chat_dir/1.md"
-    echo "No chat files found, creating: $target_file"
-    : >"$target_file"
-  else
-    target_file="$chat_dir/$latest"
-  fi
-
-  vsc.open.vscode "$target_file"
-}
-
-function _vsc.new.chat() {
-  local chat_dir
-  chat_dir="$(_vsc.chat.dir "$1")" || return 1
-
-  local latest
-  latest="$(_vsc.chat.latest.name "$chat_dir")"
-
-  local next_num=1
-  if [[ -n "$latest" ]]; then
-    next_num="${latest%.md}"
-    ((next_num++))
-  fi
-
-  local target_file="$chat_dir/$next_num.md"
-  echo "Creating chat file: $target_file"
-  : >"$target_file"
-
-  vsc.open.vscode "$target_file"
-}
-
-function _vsc.talk.dir() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
-
-  local talk_dir
-  talk_dir="$(_vsc.branch.subdir "$proj_dir" ".ai_dev_talk")" || return 1
-  if [[ ! -d "$talk_dir" ]]; then
-    echo "Creating talk directory: $talk_dir" >&2
-    mkdir -p "$talk_dir"
-  fi
-
-  echo "$talk_dir"
-}
-
-function _vsc.open.talk() {
-  local talk_dir
-  talk_dir="$(_vsc.talk.dir "$1")" || return 1
-
-  local latest
-  latest="$(_vsc.chat.latest.name "$talk_dir")"
-
-  local target_file
-  if [[ -z "$latest" ]]; then
-    target_file="$talk_dir/1.md"
-    echo "No talk files found, creating: $target_file"
-    : >"$target_file"
-  else
-    target_file="$talk_dir/$latest"
-  fi
-
-  vsc.open.vscode "$target_file"
-}
-
-function _vsc.new.talk() {
-  local talk_dir
-  talk_dir="$(_vsc.talk.dir "$1")" || return 1
-
-  local latest
-  latest="$(_vsc.chat.latest.name "$talk_dir")"
-
-  local next_num=1
-  if [[ -n "$latest" ]]; then
-    next_num="${latest%.md}"
-    ((next_num++))
-  fi
-
-  local target_file="$talk_dir/$next_num.md"
-  echo "Creating talk file: $target_file"
-  : >"$target_file"
-
-  vsc.open.vscode "$target_file"
-}
-
-# Echo <proj_dir>/<sub>/<safe_branch> for the current branch, without creating
-# anything. Read-only helper shared by the vsc.ai.* openers.
-function _vsc.branch.subdir() {
-  local proj_dir="$1"
-  local sub="$2"
-
-  [[ -z "$proj_dir" ]] && {
-    echo "Error: project directory is required." >&2
-    return 1
-  }
-  [[ -d "$proj_dir" ]] || {
-    echo "Error: project directory does not exist: $proj_dir" >&2
-    return 1
-  }
-  [[ -z "$sub" ]] && {
-    echo "Error: subdirectory name is required." >&2
-    return 1
-  }
-
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  local safe_branch
-  safe_branch="$(_vsc.safe.branch "$branch")"
-  echo "$proj_dir/$sub/$safe_branch"
-}
-
-# Print the most-recently-modified (by mtime) markdown file under a directory,
-# searched recursively. Errors if the directory is missing or holds no *.md.
-function _vsc.latest.md() {
+# Print the most-recently-modified file matching <pattern> under a directory,
+# searched recursively. Errors if the directory is missing or has no match.
+function _vsc.latest.mtime() {
   local search_dir="$1"
+  local pattern="${2:-*.md}"
 
   [[ -z "$search_dir" ]] && {
     echo "Error: search directory is required." >&2
@@ -557,144 +373,275 @@ function _vsc.latest.md() {
   }
 
   local latest
-  latest=$(find "$search_dir" -type f -name '*.md' -printf '%T@\t%p\n' 2>/dev/null |
+  latest=$(find "$search_dir" -type f -name "$pattern" -printf '%T@\t%p\n' 2>/dev/null |
     sort -nr | head -n 1 | cut -f2-)
 
   [[ -z "$latest" ]] && {
-    echo "Error: no markdown files found under: $search_dir" >&2
+    echo "Error: no file matching '$pattern' under: $search_dir" >&2
     return 1
   }
 
   echo "$latest"
 }
 
-# Open the latest-modified markdown under .ai_dev/<branch> for the project.
-function vsc.ai.dev() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
+# ---------------------------------------------------------------------------
+# Sequence engine
+#
+# One numbering scheme parameterized by a name format containing '{n}' (the
+# sequence number) and optionally '{topic}' (a slug). The same format drives
+# matching and creation:
+#
+#   '{n}.md'                 <- 1.md, 2.md, ...
+#   'iter-{n}-{topic}.md'    <- iter-1-cache-miss.md, iter-2-retry.md, ...
+# ---------------------------------------------------------------------------
 
-  local dev_dir
-  dev_dir="$(_vsc.branch.subdir "$proj_dir" ".ai_dev")" || return 1
-
-  local latest
-  latest="$(_vsc.latest.md "$dev_dir")" || return 1
-
-  echo "Latest .ai_dev markdown: $(basename "$latest")"
-  vsc.open.vscode "$latest"
+# Derive a find(1) -name glob from a name format.
+function _vsc.seq.glob() {
+  local name_format="$1"
+  local glob="${name_format//\{n\}/[0-9]*}"
+  glob="${glob//\{topic\}/*}"
+  echo "$glob"
 }
 
-# Open the latest-modified markdown under .ai_dev_chat/<branch> for the project.
-function vsc.ai.chat() {
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
+# Echo the sequence number encoded in a file name, or fail when it does not
+# match the format. '{n}' must be a run of digits; '{topic}' matches anything.
+function _vsc.seq.num() {
+  local name_format="$1"
+  local file_name="$2"
 
-  local chat_dir
-  chat_dir="$(_vsc.branch.subdir "$proj_dir" ".ai_dev_chat")" || return 1
+  local prefix="${name_format%%\{n\}*}"
+  local suffix="${name_format#*\{n\}}"
 
-  local latest
-  latest="$(_vsc.latest.md "$chat_dir")" || return 1
+  [[ "$file_name" == "$prefix"* ]] || return 1
+  local rest="${file_name#"$prefix"}"
 
-  echo "Latest .ai_dev_chat markdown: $(basename "$latest")"
-  vsc.open.vscode "$latest"
+  local digits="${rest%%[!0-9]*}"
+  [[ -n "$digits" ]] || return 1
+
+  local tail="${rest#"$digits"}"
+  local suffix_glob="${suffix//\{topic\}/*}"
+  # shellcheck disable=SC2053 # right-hand side is an intentional glob
+  [[ "$tail" == $suffix_glob ]] || return 1
+
+  echo "$((10#$digits))"
 }
 
-function vsc.open() {
-  [[ $# -ge 1 ]] || {
-    echo "Error: open target is required." >&2
-    echo "Usage: vsc.open <file|issue|iter|chat|talk> ..." >&2
+# Substitute {n} / {topic} into a name or header format.
+function _vsc.seq.render() {
+  local template="$1"
+  local num="$2"
+  local topic="$3"
+
+  local rendered="${template//\{n\}/$num}"
+  rendered="${rendered//\{topic\}/$topic}"
+  echo "$rendered"
+}
+
+# Scan the direct children of <dir> for files matching <name_format>.
+# Echoes a TAB-separated "<highest_num>\t<match_count>\t<highest_path>";
+# a directory with no match yields "0\t0\t".
+function _vsc.seq.scan() {
+  local dir="$1"
+  local name_format="$2"
+
+  [[ "$name_format" == *'{n}'* ]] || {
+    echo "Error: name format must contain '{n}': $name_format" >&2
     return 1
   }
 
-  local kind="$1"
-  shift
+  local glob
+  glob="$(_vsc.seq.glob "$name_format")"
 
-  case "$kind" in
-    file | path | vscode)
-      _vsc.open.file "$@"
-      ;;
-    issue)
-      _vsc.open.issue "$@"
-      ;;
-    iter)
-      _vsc.open.iter "$@"
-      ;;
-    chat)
-      _vsc.open.chat "$@"
-      ;;
-    talk)
-      _vsc.open.talk "$@"
-      ;;
-    *)
-      _vsc.open.file "$kind" "$@"
-      ;;
-  esac
+  local best_num=0
+  local best_path=""
+  local count=0
+  local file_path file_name num
+  while IFS= read -r file_path; do
+    file_name="$(basename "$file_path")"
+    num="$(_vsc.seq.num "$name_format" "$file_name")" || continue
+    count=$((count + 1))
+    if ((num > best_num)); then
+      best_num="$num"
+      best_path="$file_path"
+    fi
+  done < <(find "$dir" -maxdepth 1 -type f -name "$glob" 2>/dev/null | sort)
+
+  printf '%s\t%s\t%s\n' "$best_num" "$count" "$best_path"
 }
 
-function vsc.open.iter() {
-  vsc.open iter "$@"
-}
-
-function vsc.new.iter() {
-  _vsc.new.iter "$@"
-}
-
-function vsc.open.chat() {
-  vsc.open chat "$@"
-}
-
-function vsc.new.chat() {
-  _vsc.new.chat "$@"
-}
-
-function vsc.open.talk() {
-  vsc.open talk "$@"
-}
-
-function vsc.new.talk() {
-  _vsc.new.talk "$@"
-}
-
-function vsc.open.issue() {
-  vsc.open issue "$@"
-}
-
-function vsc.get.branch() {
+# Shared argument parsing for vsc.open.seq / vsc.new.seq. Echoes a
+# TAB-separated "<dir>\t<name_format>\t<header_format>\t<topic>".
+function _vsc.seq.args() {
   local proj_dir
   proj_dir="$(vsc.expand.var "$1")" || return 1
+  local dir_template
+  dir_template="$(vsc.expand.var "$2")" || return 1
 
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  echo "$branch" | vsc.osc.copy
+  local name_format="${3:-}"
+  [[ -z "$name_format" ]] && name_format='{n}.md'
+  local header_format="${4:-}"
+
+  local topic
+  topic="$(_vsc.open.slug "${5:-}")" || return 1
+
+  local dir
+  dir="$(_vsc.dir.resolve "$proj_dir" "$dir_template" --mkdir)" || return 1
+
+  printf '%s\t%s\t%s\t%s\n' "$dir" "$name_format" "$header_format" "$topic"
 }
 
-function vsc.touch.pptt() {
+function _vsc.seq.usage() {
+  local fn_name="$1"
+  echo "Usage: $fn_name <proj_dir> <dir_template> [name_format] [header_format] [topic]" >&2
+  echo "  dir_template   e.g. '{proj}/.ai_dev_talk/{branch}'" >&2
+  echo "  name_format    default '{n}.md'; may use {n} and {topic}" >&2
+  echo "  header_format  default none; may use {n} and {topic}" >&2
+}
+
+# ---------------------------------------------------------------------------
+# Public entry points (called by name from tasks.json)
+# ---------------------------------------------------------------------------
+
+# Open one fixed file described by a path template, creating it and its parent
+# directories when missing.
+#   $1 project dir
+#   $2 path template, e.g. '{proj}/note/{branch}/plan.md'
+#   $3 optional line threshold above which a new window is used
+function vsc.open.at() {
+  [[ $# -ge 2 ]] && [[ -n "$2" ]] || {
+    echo "Usage: vsc.open.at <proj_dir> <path_template> [line_threshold]" >&2
+    return 1
+  }
+
   local proj_dir
   proj_dir="$(vsc.expand.var "$1")" || return 1
-  local note_dir
-  note_dir="$(vsc.expand.var "$2")" || return 1
+  local path_template
+  path_template="$(vsc.expand.var "$2")" || return 1
+  local line_threshold="${3:-}"
 
-  [[ -z "$proj_dir" ]] && {
-    echo "Error: project directory is required." >&2
-    return 1
-  }
-  [[ -z "$note_dir" ]] && {
-    echo "Error: note directory is required." >&2
-    return 1
-  }
-  [[ -d "$proj_dir" ]] || {
-    echo "Error: project directory does not exist: $proj_dir" >&2
+  local file_path
+  file_path="$(_vsc.dir.resolve "$proj_dir" "$path_template")" || return 1
+
+  _vsc.open.ensure.file "$file_path" || return 1
+  vsc.open.vscode "$file_path" "$line_threshold"
+}
+
+# Open the highest-numbered file in a sequence directory, creating #1 when the
+# directory holds no match yet.
+function vsc.open.seq() {
+  [[ $# -ge 2 ]] && [[ -n "$2" ]] || {
+    _vsc.seq.usage "vsc.open.seq"
     return 1
   }
 
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  local safe_branch
-  safe_branch="$(_vsc.safe.branch "$branch")"
-  local target="$note_dir/$safe_branch"
-  if [[ ! -d "$target" ]]; then
-    echo "Creating branch directory: $target"
-    mkdir -p "$target"
+  local parsed dir name_format header_format topic
+  parsed="$(_vsc.seq.args "$@")" || return 1
+  IFS=$'\t' read -r dir name_format header_format topic <<<"$parsed"
+
+  local scan best_num count best_path
+  scan="$(_vsc.seq.scan "$dir" "$name_format")" || return 1
+  IFS=$'\t' read -r best_num count best_path <<<"$scan"
+
+  if ((count > 0)); then
+    echo "Sequence dir: $dir"
+    echo "Latest of $count file(s) matching '$name_format': #$best_num $(basename "$best_path")"
+    vsc.open.vscode "$best_path"
+    return
   fi
+
+  local file_name header=""
+  file_name="$(_vsc.seq.render "$name_format" 1 "$topic")"
+  [[ -n "$header_format" ]] && header="$(_vsc.seq.render "$header_format" 1 "$topic")"
+
+  echo "Sequence dir: $dir"
+  echo "No file matching '$name_format' yet, starting the sequence at #1."
+  _vsc.open.ensure.file "$dir/$file_name" "$header" || return 1
+  vsc.open.vscode "$dir/$file_name"
+}
+
+# Create and open the next file in a sequence directory.
+function vsc.new.seq() {
+  [[ $# -ge 2 ]] && [[ -n "$2" ]] || {
+    _vsc.seq.usage "vsc.new.seq"
+    return 1
+  }
+
+  local parsed dir name_format header_format topic
+  parsed="$(_vsc.seq.args "$@")" || return 1
+  IFS=$'\t' read -r dir name_format header_format topic <<<"$parsed"
+
+  local scan best_num count best_path
+  scan="$(_vsc.seq.scan "$dir" "$name_format")" || return 1
+  IFS=$'\t' read -r best_num count best_path <<<"$scan"
+
+  local next_num=$((best_num + 1))
+  local file_name header=""
+  file_name="$(_vsc.seq.render "$name_format" "$next_num" "$topic")"
+  [[ -n "$header_format" ]] && header="$(_vsc.seq.render "$header_format" "$next_num" "$topic")"
+
+  local target="$dir/$file_name"
+  [[ -e "$target" ]] && {
+    echo "Error: refusing to overwrite existing file: $target" >&2
+    return 1
+  }
+
+  echo "Sequence dir: $dir"
+  if ((count > 0)); then
+    echo "Previous: #$best_num $(basename "$best_path") ($count file(s) matching '$name_format')"
+  else
+    echo "No file matching '$name_format' yet, starting the sequence at #$next_num."
+  fi
+  echo "Creating: #$next_num $file_name"
+
+  _vsc.open.ensure.file "$target" "$header" || return 1
+  vsc.open.vscode "$target"
+}
+
+# Open the most recently modified file under a directory, searched
+# recursively. Never creates anything — this is a "where did I just work"
+# shortcut, as opposed to the sequence openers above.
+#   $1 project dir
+#   $2 dir template, e.g. '{proj}/.ai_dev/{branch}'
+#   $3 optional name pattern, default '*.md'
+function vsc.open.latest() {
+  [[ $# -ge 2 ]] && [[ -n "$2" ]] || {
+    echo "Usage: vsc.open.latest <proj_dir> <dir_template> [name_pattern]" >&2
+    return 1
+  }
+
+  local proj_dir
+  proj_dir="$(vsc.expand.var "$1")" || return 1
+  local dir_template
+  dir_template="$(vsc.expand.var "$2")" || return 1
+  local pattern="${3:-}"
+  [[ -z "$pattern" ]] && pattern='*.md'
+
+  local dir
+  dir="$(_vsc.dir.resolve "$proj_dir" "$dir_template")" || return 1
+
+  local latest
+  latest="$(_vsc.latest.mtime "$dir" "$pattern")" || return 1
+
+  echo "Search dir: $dir"
+  echo "Most recently modified '$pattern': ${latest#"$dir"/}"
+  vsc.open.vscode "$latest"
+}
+
+# Create the plan/truth/progress trio in a branch-scoped directory.
+#   $1 project dir   $2 dir template
+function vsc.touch.pptt() {
+  [[ $# -ge 2 ]] && [[ -n "$2" ]] || {
+    echo "Usage: vsc.touch.pptt <proj_dir> <dir_template>" >&2
+    return 1
+  }
+
+  local proj_dir
+  proj_dir="$(vsc.expand.var "$1")" || return 1
+  local dir_template
+  dir_template="$(vsc.expand.var "$2")" || return 1
+
+  local target
+  target="$(_vsc.dir.resolve "$proj_dir" "$dir_template" --mkdir)" || return 1
 
   local files=("plan.md" "truth.md" "progress.md")
   local headers=("# plan" "# truth" "# progress")
@@ -705,18 +652,26 @@ function vsc.touch.pptt() {
     local fpath="$target/${files[$i]}"
     if [[ -f "$fpath" ]]; then
       echo "  skipped: ${files[$i]} (already exists)"
-      ((skipped++)) || true
+      skipped=$((skipped + 1))
     else
       printf '%s\n' "${headers[$i]}" >"$fpath"
       echo "  created: ${files[$i]}"
-      ((created++)) || true
+      created=$((created + 1))
     fi
   done
 
   echo ""
-  echo "Branch:  $branch ($safe_branch)"
   echo "Dir:     $target"
   echo "Created: $created, Skipped: $skipped (already existed)"
+}
+
+function vsc.get.branch() {
+  local proj_dir
+  proj_dir="$(vsc.expand.var "$1")" || return 1
+
+  local branch
+  branch="$(_vsc.git.branch "$proj_dir")" || return 1
+  echo "$branch" | vsc.osc.copy
 }
 
 function vsc.get.mergebase() {
@@ -739,7 +694,7 @@ function vsc.get.mergebase() {
   }
 
   local diff_commit_hash
-  diff_commit_hash=$(cd "$proj_dir" && git merge-base "origin/$master_branch" HEAD 2>/dev/null)
+  diff_commit_hash=$(git -C "$proj_dir" merge-base "origin/$master_branch" HEAD 2>/dev/null)
   [[ -z "$diff_commit_hash" ]] && {
     echo "Error: could not compute merge-base." >&2
     return 1

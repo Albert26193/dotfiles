@@ -72,10 +72,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open.issue",
+        "vsc.open.at",
         "${workspaceFolder}",
-        "${workspaceFolder}/note/A-Issue/${workspaceFolderBasename}",
-        "plan.md"
+        "{proj}/note/A-Issue/{basename}/{branch}/plan.md"
       ],
       "group": "none",
       "presentation": {
@@ -88,12 +87,33 @@
       "problemMatcher": []
     },
     {
+      "label": "vsc.touch.pptt",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.touch.pptt",
+        "${workspaceFolder}",
+        "{proj}/note/A-Issue/{basename}/{branch}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "last",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "vsc.open.chat",
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open.chat",
-        "${workspaceFolder}"
+        "vsc.open.seq",
+        "${workspaceFolder}",
+        "{proj}/.ai_dev_chat/{branch}"
       ],
       "group": "none",
       "presentation": {
@@ -110,8 +130,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.new.chat",
-        "${workspaceFolder}"
+        "vsc.new.seq",
+        "${workspaceFolder}",
+        "{proj}/.ai_dev_chat/{branch}"
       ],
       "group": "none",
       "presentation": {
@@ -128,8 +149,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open.talk",
-        "${workspaceFolder}"
+        "vsc.open.seq",
+        "${workspaceFolder}",
+        "{proj}/.ai_dev_talk/{branch}"
       ],
       "group": "none",
       "presentation": {
@@ -146,8 +168,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.new.talk",
-        "${workspaceFolder}"
+        "vsc.new.seq",
+        "${workspaceFolder}",
+        "{proj}/.ai_dev_talk/{branch}"
       ],
       "group": "none",
       "presentation": {
@@ -164,10 +187,11 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open",
-        "iter",
+        "vsc.open.seq",
         "${workspaceFolder}",
-        "${workspaceFolder}/note/A-Issue/${workspaceFolderBasename}"
+        "{proj}/note/A-Issue/{basename}/{branch}/iters",
+        "iter-{n}-{topic}.md",
+        "# iter-{n}: {topic}"
       ],
       "group": "none",
       "presentation": {
@@ -184,9 +208,12 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.new.iter",
+        "vsc.new.seq",
         "${workspaceFolder}",
-        "${workspaceFolder}/note/A-Issue/${workspaceFolderBasename}"
+        "{proj}/note/A-Issue/{basename}/{branch}/iters",
+        "iter-{n}-{topic}.md",
+        "# iter-{n}: {topic}",
+        "${input:iter_topic}"
       ],
       "group": "none",
       "presentation": {
@@ -203,8 +230,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.ai.dev",
-        "${workspaceFolder}"
+        "vsc.open.latest",
+        "${workspaceFolder}",
+        "{proj}/.ai_dev/{branch}"
       ],
       "group": "none",
       "presentation": {
@@ -221,8 +249,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.ai.chat",
-        "${workspaceFolder}"
+        "vsc.open.latest",
+        "${workspaceFolder}",
+        "{proj}/.ai_dev_chat/{branch}"
       ],
       "group": "none",
       "presentation": {
@@ -259,6 +288,12 @@
       "type": "promptString",
       "description": "mtr worker dir under mysql-test/var",
       "default": "empty"
+    },
+    {
+      "id": "iter_topic",
+      "type": "promptString",
+      "description": "iter topic (slugified into the file name)",
+      "default": "draft"
     }
   ]
 }

@@ -17,6 +17,7 @@
 [pull]
 	rebase = true
 [core]
+  pager = hunk pager
   editor = nvim
 	excludesFile = ~/.gitignore_global
 [interactive]
@@ -24,31 +25,6 @@
 [merge]
 	conflictStyle = zdiff3
 [url "https://git.woa.com/"]
-	insteadOf = https://git.code.oa.com/
-	insteadOf = http://git.code.oa.com/
-	insteadOf = http://git.woa.com/
-	insteadOf = git@git.woa.com:
-	insteadOf = git@git.code.oa.com:
-	insteadOf = https://git.code.oa.com/
-	insteadOf = http://git.code.oa.com/
-	insteadOf = http://git.woa.com/
-	insteadOf = git@git.woa.com:
-	insteadOf = git@git.code.oa.com:
-	insteadOf = https://git.code.oa.com/
-	insteadOf = http://git.code.oa.com/
-	insteadOf = http://git.woa.com/
-	insteadOf = git@git.woa.com:
-	insteadOf = git@git.code.oa.com:
-	insteadOf = https://git.code.oa.com/
-	insteadOf = http://git.code.oa.com/
-	insteadOf = http://git.woa.com/
-	insteadOf = git@git.woa.com:
-	insteadOf = git@git.code.oa.com:
-	insteadOf = https://git.code.oa.com/
-	insteadOf = http://git.code.oa.com/
-	insteadOf = http://git.woa.com/
-	insteadOf = git@git.woa.com:
-	insteadOf = git@git.code.oa.com:
 	insteadOf = https://git.code.oa.com/
 	insteadOf = http://git.code.oa.com/
 	insteadOf = http://git.woa.com/

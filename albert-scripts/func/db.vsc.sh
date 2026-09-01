@@ -92,21 +92,7 @@ function vsc.view.mtrlog() {
 }
 
 function _vsc.ai.mtr.dir() {
-  local proj_dir="$1"
-  [[ -z "$proj_dir" ]] && {
-    echo "Error: project directory is required." >&2
-    return 1
-  }
-  [[ -d "$proj_dir" ]] || {
-    echo "Error: project directory does not exist: $proj_dir" >&2
-    return 1
-  }
-
-  local branch
-  branch="$(_vsc.git.branch "$proj_dir")" || return 1
-  local safe_branch
-  safe_branch="$(_vsc.safe.branch "$branch")"
-  echo "$proj_dir/.ai_dev/$safe_branch/mtr"
+  _vsc.dir.resolve "$1" '{proj}/.ai_dev/{branch}/mtr'
 }
 
 function _vsc.ai.mtr.latest_ts() {
