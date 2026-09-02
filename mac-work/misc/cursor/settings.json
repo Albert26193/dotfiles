@@ -1103,6 +1103,17 @@
     // },
     {
       "before": [
+        "g",
+        "w"
+      ],
+      "after": [
+        "*",
+        "`",
+        "`"
+      ]
+    },
+    {
+      "before": [
         "<C-T>"
       ],
       "commands": [
@@ -1253,9 +1264,9 @@
         "]",
         "[",
         "%",
-        "F",
-        ")",
-        "%",
+        "0",
+        "f",
+        "(",
         "b"
       ],
       "commands": [
@@ -2765,4 +2776,5 @@
   "kilo-code.new.showTaskTimeline": true,
   "kilo-code.new.autoApprove.enabled": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
+  "diffEditor.renderSideBySide": false,
 }
