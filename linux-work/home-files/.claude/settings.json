@@ -52,7 +52,7 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "fable",
+  "model": "claude-fable-5[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline.sh\""
@@ -71,5 +71,17 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "tui": "fullscreen",
-  "outputStyle": "Concise"
+  "outputStyle": "Concise",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Please remove all mannered prose.\""
+          }
+        ]
+      }
+    ]
+  }
 }
