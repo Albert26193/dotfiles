@@ -38,8 +38,6 @@
       "git branch -D *": "ask",
       "git rebase *": "ask",
       "npm run publish": "ask",
-      "brew install *": "ask",
-      "brew upgrade *": "ask",
       "ssh *": "ask",
       "scp *": "ask",
       "rsync *": "ask"

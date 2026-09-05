@@ -32,6 +32,9 @@ export NVM_DIR="$HOME/.nvm"
 # --------------------- source -----------------------
 [[ -f "$HOME/.albert-scripts/export.sh" ]] && { source "$HOME/.albert-scripts/export.sh" }
 
+# --------------------- nix -------------------------
+[[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && { source "$HOME/.nix-profile/etc/profile.d/nix.sh" }
+
 # --------------------- cpp -----------------------
 ulimit -c unlimited
 
@@ -42,7 +45,6 @@ add_to_path() {
     fi
 }
 add_to_path "/data/bin"
-add_to_path "/home/linuxbrew/.linuxbrew/bin"
 export BUN_INSTALL="$HOME/.bun"
 add_to_path "$BUN_INSTALL/bin:$PATH"
 
@@ -56,7 +58,7 @@ add_to_path "$BUN_INSTALL/bin:$PATH"
 { command -v zoxide 2>&1 >/dev/null } && { eval "$(zoxide init zsh)" }
 
 #-------------------- starship ---------------------
-{ command -v starship 2>&1 >/dev/null } && { eval "$(starship init zsh)" }
+{ command -v starship >/dev/null 2>&1 } && { eval "$(starship init zsh)" }
 
 # --------------------- env -----------------------
 [[ -f "$HOME/.zsh.env" ]] && { source "$HOME/.zsh.env" }
@@ -64,4 +66,3 @@ add_to_path "$BUN_INSTALL/bin:$PATH"
 [[ -f "$HOME/.zsh.alias" ]] && { source "$HOME/.zsh.alias" }
 [[ -f "$HOME/.zsh.keybindings" ]] && { source "$HOME/.zsh.keybindings" }
 [[ -f "$HOME/.misc.env" ]] && { source "$HOME/.misc.env" }
-

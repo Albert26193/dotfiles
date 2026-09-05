@@ -9,7 +9,6 @@ function init_dotbot_scripts {
     bash "$script"
   done
 
-  # sh "${script_dir}/install_brew.sh"
 }
 
 init_dotbot_scripts
