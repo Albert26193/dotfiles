@@ -1,7 +1,7 @@
  pkgs: [
     pkgs.ccls
     pkgs.cgdb
-    pkgs.codex
+    pkgs.fast.codex
     pkgs.delta
     pkgs.dotbot
     pkgs.duf

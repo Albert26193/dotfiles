@@ -4,6 +4,17 @@
 首次运行 `nix flake lock` 生成 `flake.lock`。将这三个文件一起保存到 Git，供以后重放。
 ARM64 Linux 需要将 `flake.nix` 中的 `system` 改成 `aarch64-linux`。
 
+## 0. 两个档位
+
+`flake.nix` 声明两条来源，都指向 `nixpkgs-unstable`。两条来源各自锁定一个 rev。
+独立更新的能力来自"来源有两条"，不来自分支不同。
+
+- **基线档**：`nixpkgs`。清单里写 `pkgs.git` 这种，不带前缀。
+- **快变档**：`nixpkgs-fast`。清单里写 `pkgs.fast.codex` 这种，带 `fast.` 前缀。
+
+codex 之类的软件更新很快。把它放进快变档，就可以单独升级它，不动其余软件。
+要把某个软件移进快变档，给它加 `fast.` 前缀即可，不需要改 `flake.nix`。
+
 ## 1. 安装并加载 Nix
 
 在仓库根目录执行；如果已安装 Nix，可直接加载环境并查看版本。
@@ -83,13 +94,23 @@ test ! -e "$HOME/.nix-profile/bin/hello" && echo 'hello 已从当前环境移除
 
 ## 6. 升级版本与换机器重放
 
-主动升级 Nixpkgs 中的软件版本：
+两个档位分开升级。只升级快变档（codex 等带 `fast.` 前缀的软件）：
 
 ```bash
-nix flake update --flake path:.
+nix flake update nixpkgs-fast --flake path:.
 nix profile upgrade tools
 git diff -- flake.lock
 ```
+
+只升级基线档（其余软件）：
+
+```bash
+nix flake update nixpkgs --flake path:.
+nix profile upgrade tools
+```
+
+`git diff -- flake.lock` 只会显示被更新的那一条来源。另一条的 rev 保持不变。
+省略来源名时，`nix flake update` 同时更新两条来源。
 
 确认版本合适后，将 `flake.nix`、`packages.nix` 和生成的 `flake.lock` 一起提交。
 
