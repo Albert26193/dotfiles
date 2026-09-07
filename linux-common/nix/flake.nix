@@ -1,13 +1,11 @@
 {
   description = "Linux common command-line tools";
 
-  # 两条来源都指向 nixpkgs-unstable，但各自独立锁定一个 rev。
-  # 独立更新的能力来自"来源有两条"，不来自分支不同。
   inputs = {
     # 基线档：清单里不带 fast. 前缀的软件使用这条来源。
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # 快变档：清单里带 fast. 前缀的软件使用这条来源。
-    nixpkgs-fast.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # 快变档：直接跟踪 master，优先获得新版，可能需要本地构建。
+    nixpkgs-fast.url = "github:NixOS/nixpkgs/master";
   };
 
   outputs = { nixpkgs, nixpkgs-fast, ... }:
