@@ -2746,11 +2746,11 @@
   "explorer.confirmPasteNative": false,
   // "http.proxy": "http://127.0.0.1:7890",
   "markdownViewer.theme": "github-dark",
-  "markdownViewer.fontSize": 13,
+  "markdownViewer.fontSize": 10,
   "markdownViewer.fontFamily": "Georgia",
   "markdownViewer.lineNumbers": true,
   "markdownViewer.markdownViewerSettings": {
-    "": "",
+    "fontSize": 10,
   },
   "cSpell.userWords": [
     "claude"
@@ -2777,4 +2777,5 @@
   "kilo-code.new.autoApprove.enabled": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
   "diffEditor.renderSideBySide": false,
+  "cursor.composer.queueMessageDefaultBehavior": "steer",
 }
