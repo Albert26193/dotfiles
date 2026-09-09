@@ -3,7 +3,7 @@
   /*********** ClaudeCode ***********/
   /**********************************/
   // "claudeCode.claudeProcessWrapper": "/root/.local/bin/claude-internal",
-  "claudeCode.preferredLocation": "sidebar",
+  "claudeCode.preferredLocation": "panel",
   "claudeCode.useTerminal": true,
   "claudeCode.allowDangerouslySkipPermissions": true,
   "claudeCode.useCtrlEnterToSend": false,
@@ -2348,6 +2348,15 @@
         },
         {
           "commands": [
+            "kilo-code.new.addToContext",
+            "kilo-code.new.focusChatInput"
+          ],
+          "key": "o",
+          "name": "🔆 Agent: Copy to kilo code",
+          "type": "commands"
+        },
+        {
+          "commands": [
             "copy-code-as-markdown.CopySelectionAsMarkdown",
             "extension.vim_escape"
           ],
@@ -2776,6 +2785,6 @@
   "kilo-code.new.showTaskTimeline": true,
   "kilo-code.new.autoApprove.enabled": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
-  "diffEditor.renderSideBySide": false,
+  "diffEditor.renderSideBySide": true,
   "cursor.composer.queueMessageDefaultBehavior": "steer",
 }
