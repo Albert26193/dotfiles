@@ -342,19 +342,11 @@
         "command": "composer.sendToAgent",
         "when": "editorHasPromptBar && editorPromptBarFocused"
     },
-    // {
-    //     "key": "cmd+l",
-    //     "command": "-composer.sendToAgent",
-    //     "when": "editorHasPromptBar && editorPromptBarFocused"
-    // },
-    // {
-    //     "key": "cmd+l",
-    //     "command": "kilo-code.new.addToContext",
-    //     "when": "editorHasSelection && editorTextFocus"
-    // },
-    // {
-    //     "key": "cmd+k cmd+a",
-    //     "command": "-kilo-code.new.addToContext",
-    //     "when": "editorHasSelection && editorTextFocus"
-    // }
+    // ============================================================================
+    // cursor
+    // ============================================================================
+    {
+        "key": "alt+tab",
+        "command": "workbench.action.switchWindow"
+    }
 ]

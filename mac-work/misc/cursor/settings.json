@@ -2420,30 +2420,15 @@
           "type": "command"
         },
         {
-          "commands": [
-            "workbench.action.evenEditorWidths",
-            "workbench.action.increaseViewSize",
-            "workbench.action.increaseViewSize",
-            "workbench.action.increaseViewSize",
-            "workbench.action.increaseViewSize",
-            "workbench.action.increaseViewSize",
-            "workbench.action.increaseViewSize",
-            "find-it-faster.findWithinFilesWithType"
-          ],
-          "key": "w",
-          "name": "📗 word search",
-          "type": "commands"
-        },
-        {
-          "command": "periscope.searchCurrentFile",
-          "key": "c",
-          "name": "📗 periscope current file search",
-          "type": "command"
-        },
-        {
           "command": "periscope.searchFiles",
           "key": "s",
           "name": "📗  periscope search files",
+          "type": "command"
+        },
+        {
+          "command": "workbench.action.files.revert",
+          "key": "r",
+          "name": "📗  revert files",
           "type": "command"
         }
       ],
@@ -2784,7 +2769,7 @@
   "kilo-code.new.agentWorkStyle": "skipped",
   "kilo-code.new.showTaskTimeline": true,
   "kilo-code.new.autoApprove.enabled": true,
-  "diffEditor.hideUnchangedRegions.enabled": true,
   "diffEditor.renderSideBySide": true,
   "cursor.composer.queueMessageDefaultBehavior": "steer",
+  "diffEditor.hideUnchangedRegions.enabled": true,
 }
