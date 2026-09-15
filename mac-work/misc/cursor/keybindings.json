@@ -231,6 +231,8 @@
                 "copy-code-as-markdown.CopySelectionAsMarkdown",
                 "chatgpt.sidebarSecondaryView.focus",
                 "chatgpt.addToThread",
+                // panel max
+                "workbench.action.toggleMaximizedPanel",
             ]
         }
     },
@@ -254,7 +256,8 @@
             "commands": [
                 "copy-code-as-markdown.CopySelectionAsMarkdown",
                 "claude-vscode.focus",
-                // "claude-code.insertAtMentioned",
+                // panel max
+                "workbench.action.toggleMaximizedPanel",
             ]
         }
     },
@@ -346,7 +349,31 @@
     // cursor
     // ============================================================================
     {
-        "key": "alt+tab",
-        "command": "workbench.action.switchWindow"
-    }
+        "_comment": "open bottom panel",
+        "key": "cmd+j",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.maximizeEditorHideSidebar",
+                "workbench.action.evenEditorWidths",
+                "workbench.action.togglePanel",
+                "workbench.action.toggleMaximizedPanel",
+            ]
+        },
+        "when": "!panelVisible",
+    },
+    {
+        "_comment": "cloase bottom panel",
+        "key": "cmd+j",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.maximizeEditorHideSidebar",
+                "workbench.action.evenEditorWidths",
+                "workbench.action.closePanel",
+            ]
+        },
+        // "when": "panelVisible || terminalFocus || panelMaximized || terminal.visible",
+        "when": "panelVisible",
+    },
 ]

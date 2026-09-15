@@ -236,6 +236,7 @@
   "editor.aiStats.enabled": true,
   "editor.autoClosingBrackets": "languageDefined",
   "editor.autoIndent": "advanced",
+  "editor.codeLensFontSize": 12,
   "editor.foldingHighlight": true,
   // "editor.largeFileOptimizations": true,
   "editor.largeFileOptimizations": false,
@@ -2263,10 +2264,35 @@
       "type": "command"
     },
     {
-      "command": "workbench.action.quickOpen",
+      "bindings": [
+        {
+          "command": "codemap.focusFromCodeLens",
+          "key": "f",
+          "name": "✅ codemap focus",
+          "type": "command"
+        },
+        {
+          "command": "codemap.show",
+          "key": "s",
+          "name": "✅ codemap show",
+          "type": "command"
+        },
+        {
+          "command": "codemap.prevBlock",
+          "key": "p",
+          "name": "✅ codemap next",
+          "type": "command"
+        },
+        {
+          "command": "codemap.nextBlock",
+          "key": "n",
+          "name": "✅ codemap next",
+          "type": "command"
+        }
+      ],
       "key": "p",
-      "name": "⚡ quick open",
-      "type": "quick open"
+      "name": "✅ codemap",
+      "type": "bindings"
     },
     {
       "command": "copy.path",
@@ -2371,6 +2397,26 @@
           ],
           "key": "x",
           "name": "🔆 Claude Code: Add to Codex",
+          "type": "commands"
+        },
+        {
+          "commands": [
+            "workbench.action.maximizeEditorHideSidebar",
+            "workbench.action.togglePanel",
+            "workbench.action.closePanel"
+          ],
+          "key": "d",
+          "name": "🔆 close panel",
+          "type": "commands"
+        },
+        {
+          "commands": [
+            "workbench.action.maximizeEditorHideSidebar",
+            "workbench.action.togglePanel",
+            "workbench.action.toggleMaximizedPanel",
+          ],
+          "key": "s",
+          "name": "🔆 open panel",
           "type": "commands"
         },
       ],
@@ -2657,13 +2703,14 @@
       "editorInlayHint.typeForeground": "#81a2c9",
       "editorInlayHint.typeBackground": "#0066c65a",
       "editorInlayHint.parameterForeground": "#140c22",
-      "editorInlayHint.parameterBackground": "#4b9abeb4"
+      "editorInlayHint.parameterBackground": "#4b9abeb4",
       // "editorBracketHighlight.foreground1": "#c4c5c7c6",
       // "editorBracketHighlight.foreground2": "#01a3cc",
       // "editorBracketHighlight.foreground3": "#9ea900",
       // "editorBracketHighlight.foreground4": "#b430af",
       // "editorBracketHighlight.foreground5": "#da7e50",
       // "editorBracketHighlight.foreground6": "#f86effca",
+      "editorCodeLens.foreground": "#aba0fa",
     }
   },
   "workbench.editor.closeEmptyGroups": true,
@@ -2734,7 +2781,6 @@
   // ],
   "kilo-code.debug": false,
   "files.defaultLanguage": "markdown",
-  "workbench.colorTheme": "One Monokai",
   "todo-tree.ripgrep.ripgrep": "/opt/homebrew/bin/rg",
   "workbench.sideBar.location": "right",
   "explorer.confirmPasteNative": false,
@@ -2772,4 +2818,5 @@
   "diffEditor.renderSideBySide": true,
   "cursor.composer.queueMessageDefaultBehavior": "steer",
   "diffEditor.hideUnchangedRegions.enabled": true,
+  "workbench.colorTheme": "One Monokai",
 }

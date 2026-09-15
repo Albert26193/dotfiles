@@ -474,5 +474,13 @@
 		],
 		"enabled": true,
 		"profile": ""
+	},
+	{
+		"name": "agentic_files",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/ws-misc/agentic_files",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
 	}
 ]
