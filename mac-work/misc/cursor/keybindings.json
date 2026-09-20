@@ -370,10 +370,21 @@
             "commands": [
                 "workbench.action.maximizeEditorHideSidebar",
                 "workbench.action.evenEditorWidths",
+                "workbench.action.togglePanel",
                 "workbench.action.closePanel",
+                "workbench.action.toggleAuxiliaryBar",
+                "workbench.action.maximizeEditorHideSidebar",
+                "workbench.action.evenEditorWidths",
+                "workbench.action.closePanel",
+                // "workbench.action.togglePanel",
             ]
         },
         // "when": "panelVisible || terminalFocus || panelMaximized || terminal.visible",
         "when": "panelVisible",
     },
+    // {
+    //     "key": "cmd+j",
+    //     "command": "-workbench.action.togglePanel",
+    //     "when": "!isAuxiliaryWindowFocusedContext"
+    // },
 ]

@@ -2466,12 +2466,6 @@
           "type": "command"
         },
         {
-          "command": "periscope.searchFiles",
-          "key": "s",
-          "name": "📗  periscope search files",
-          "type": "command"
-        },
-        {
           "command": "workbench.action.files.revert",
           "key": "r",
           "name": "📗  revert files",
@@ -2817,6 +2811,8 @@
   "kilo-code.new.autoApprove.enabled": true,
   "diffEditor.renderSideBySide": true,
   "cursor.composer.queueMessageDefaultBehavior": "steer",
-  "diffEditor.hideUnchangedRegions.enabled": true,
   "workbench.colorTheme": "One Monokai",
+  "gitlens.graph.details.location": "auto",
+  "gitlens.views.openChangesInMultiDiffEditor": false,
+  "diffEditor.hideUnchangedRegions.enabled": true,
 }
