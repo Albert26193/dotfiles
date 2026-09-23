@@ -2815,4 +2815,5 @@
   "gitlens.graph.details.location": "auto",
   "gitlens.views.openChangesInMultiDiffEditor": false,
   "diffEditor.hideUnchangedRegions.enabled": true,
+  "gitlens.views.searchAndCompare.files.layout": "tree",
 }
