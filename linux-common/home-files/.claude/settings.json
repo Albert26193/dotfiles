@@ -11,6 +11,16 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Please remove all mannered prose.\""
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
