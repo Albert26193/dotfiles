@@ -37,6 +37,9 @@ alias "exp.cc.ds"="source ~/.claude/ds.env"
 alias "exp.cc.gpt"="source ~/.claude/gpt.env"
 alias "exp.cc.cc"="source ~/.claude/cc.env"
 alias "exp.cc.antigravity"="source ~/.claude/antigravity.env"
+alias "cx.ds"="codex --profile ds"
+alias "cx.gpt"="codex --profile gpt"
+alias "cx.cc"="codex --profile cc"
 
 #-------------------- export --------------------
 alias exp.mysql.sh="export MYSQL_PWD=$mysql_pwd_sh"

@@ -20,6 +20,9 @@ alias "txd"="tcodex --dangerously-bypass-approvals-and-sandbox"
 alias "exp.cc.ds"="source ~/.claude/ds.env"
 alias "exp.cc.gpt"="source ~/.claude/gpt.env"
 alias "exp.cc.cc"="source ~/.claude/cc.env"
+alias "cx.ds"="codex --profile ds"
+alias "cx.gpt"="codex --profile gpt"
+alias "cx.cc"="codex --profile cc"
 
 # claude 对话存档:翻篇到下一个 md 文件(配合 func/claude-save.sh 的 Stop hook)
 # 用法:在 Claude Code 里两轮之间敲  !cn

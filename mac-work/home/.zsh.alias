@@ -26,6 +26,9 @@ alias "txd"="tcodex --dangerously-bypass-approvals-and-sandbox"
 alias "exp.cc.ds"="source ~/.claude/ds.env"
 alias "exp.cc.gpt"="source ~/.claude/gpt.env"
 alias "exp.cc.cc"="source ~/.claude/cc.env"
+alias "cx.ds"="codex --profile ds --dangerously-bypass-approvals-and-sandbox"
+alias "cx.gpt"="codex --profile gpt --dangerously-bypass-approvals-and-sandbox"
+alias "cx.cc"="codex --profile cc --dangerously-bypass-approvals-and-sandbox"
 
 #--------------------- tmux --------------------
 alias "tp.gho"="tmuxp load -y $HOME/.dotfiles/mac-work/tmuxp/ssh.gho.yaml"
