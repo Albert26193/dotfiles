@@ -32,8 +32,8 @@ export NVM_DIR="$HOME/.nvm"
 # --------------------- source -----------------------
 [[ -f "$HOME/.albert-scripts/export.sh" ]] && { source "$HOME/.albert-scripts/export.sh" }
 
-# --------------------- nix -------------------------
-[[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && { source "$HOME/.nix-profile/etc/profile.d/nix.sh" }
+# --------------------- brew ------------------------
+[[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]] && { eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" }
 
 # --------------------- cpp -----------------------
 ulimit -c unlimited
