@@ -382,6 +382,14 @@
         // "when": "panelVisible || terminalFocus || panelMaximized || terminal.visible",
         "when": "panelVisible",
     },
+    {
+        "key": "cmd+right",
+        "command": "codemap.nextBlock"
+    },
+    {
+        "key": "cmd+left",
+        "command": "codemap.prevBlock"
+    },
     // {
     //     "key": "cmd+j",
     //     "command": "-workbench.action.togglePanel",

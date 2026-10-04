@@ -66,3 +66,6 @@ if [ -n "$OTTY_SHELL_INTEGRATION" ] && [ -r "$OTTY_SHELL_INTEGRATION/otty-integr
   . "$OTTY_SHELL_INTEGRATION/otty-integration.zsh"
 fi
 # <<< otty shell integration <<<
+
+# Added by Devin
+export PATH="/Users/albert/.codeium/windsurf/bin:$PATH"

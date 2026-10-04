@@ -2811,9 +2811,9 @@
   "kilo-code.new.autoApprove.enabled": true,
   "diffEditor.renderSideBySide": true,
   "cursor.composer.queueMessageDefaultBehavior": "steer",
-  "workbench.colorTheme": "One Monokai",
   "gitlens.graph.details.location": "auto",
   "gitlens.views.openChangesInMultiDiffEditor": false,
   "diffEditor.hideUnchangedRegions.enabled": true,
   "gitlens.views.searchAndCompare.files.layout": "tree",
+  "workbench.colorTheme": "One Monokai",
 }

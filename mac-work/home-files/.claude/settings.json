@@ -59,7 +59,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"Please remove all mannered prose.\""
+            "command": "echo \"Please remove all mannered prose.默认使用中文\""
           }
         ]
       }
@@ -72,14 +72,6 @@
   "enabledPlugins": {
     "claude-code-internal@claude-code-internal-plugins": true,
     "claude-hud@claude-hud": true
-  },
-  "extraKnownMarketplaces": {
-    "claude-hud": {
-      "source": {
-        "source": "github",
-        "repo": "jarrodwatts/claude-hud"
-      }
-    }
   },
   "outputStyle": "Concise",
   "tui": "fullscreen",
