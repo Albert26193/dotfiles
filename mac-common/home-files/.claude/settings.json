@@ -53,6 +53,18 @@
     ]
   },
   "model": "claude-fable-5[1m]",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Please remove all mannered prose.\""
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline.sh\""
@@ -67,21 +79,15 @@
         "source": "github",
         "repo": "jarrodwatts/claude-hud"
       }
+    },
+    "claude-community": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-community"
+      }
     }
   },
-  "skipDangerousModePermissionPrompt": true,
-  "tui": "fullscreen",
   "outputStyle": "Concise",
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo \"Please remove all mannered prose.\""
-          }
-        ]
-      }
-    ]
-  }
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true
 }
