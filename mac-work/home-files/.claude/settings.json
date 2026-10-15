@@ -1,4 +1,36 @@
 {
+  "advisorModel": "claude-fable-5-1",
+  "enabledPlugins": {
+    "claude-code-internal@claude-code-internal-plugins": true,
+    "claude-hud@claude-hud": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
+      }
+    }
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Please remove all mannered prose.\""
+          }
+        ]
+      }
+    ]
+  },
+  "model": "opus",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "outputStyle": "Concise",
   "permissions": {
     "allow": [
       "Read",
@@ -29,7 +61,8 @@
       "Bash(git:fetch:*)",
       "Bash(make -n dev)",
       "Bash(curl -sf http://localhost:19001/health)",
-      "Bash(make wait-backend *)"
+      "Bash(make wait-backend *)",
+      "Bash(python3 -c ' *)"
     ],
     "deny": [
       "Bash(git:checkout:main)",
@@ -52,28 +85,12 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "opus",
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo \"Please remove all mannered prose.默认使用中文\""
-          }
-        ]
-      }
-    ]
-  },
+  "remoteControlAtStartup": false,
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline.sh\""
   },
-  "enabledPlugins": {
-    "claude-code-internal@claude-code-internal-plugins": true,
-    "claude-hud@claude-hud": true
-  },
-  "outputStyle": "Concise",
-  "tui": "fullscreen",
-  "skipDangerousModePermissionPrompt": true
+  "tui": "fullscreen"
 }

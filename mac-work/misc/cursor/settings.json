@@ -1,8 +1,9 @@
 {
+  "claudeCode.claudeProcessWrapper": "/Users/albert/.local/bin/clauded",
   /**********************************/
   /*********** ClaudeCode ***********/
   /**********************************/
-  // "claudeCode.claudeProcessWrapper": "/root/.local/bin/claude-internal",
+  // "claudeCode.claudeProcessWrapper": "/root/.local/bin/tclaude",
   "claudeCode.preferredLocation": "panel",
   "claudeCode.useTerminal": true,
   "claudeCode.allowDangerouslySkipPermissions": true,
@@ -263,7 +264,7 @@
   "editor.find.autoFindInSelection": "multiline",
   // "editor.find.findOnType": false,
   // Chinese fonts support 中文测试
-  "editor.fontFamily": "'Iosevka Slab Light', 'Iosevka SS05 Light', 'Noto Serif SC', 'ZhuqueFangsong-Regular', 'Alibaba PuHuiTi 3.0'",
+  "editor.fontFamily": "'Iosevka Slab1 Light', 'Iosevka SS15 Light', 'Noto Serif SC', 'ZhuqueFangsong-Regular', 'Alibaba PuHuiTi 3.0'",
   "editor.fontSize": 13,
   "editor.fontLigatures": true,
   "editor.formatOnSave": true,
@@ -2813,7 +2814,8 @@
   "cursor.composer.queueMessageDefaultBehavior": "steer",
   "gitlens.graph.details.location": "auto",
   "gitlens.views.openChangesInMultiDiffEditor": false,
-  "diffEditor.hideUnchangedRegions.enabled": true,
   "gitlens.views.searchAndCompare.files.layout": "tree",
   "workbench.colorTheme": "One Monokai",
+  "workbench.externalBrowser": "chrome",
+  "diffEditor.hideUnchangedRegions.enabled": true,
 }
