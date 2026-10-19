@@ -53,6 +53,7 @@ alias "tp3"="tmuxp load -y /data/ws-shared/tdsql-dev-utils/tmuxp/w3.yaml"
 alias "tp.col3"="tmuxp load -y /data/ws-shared/tdsql-dev-utils/tmuxp/col3.yaml"
 alias "tp.vt"="tmuxp load -y /data/ws-shared/tdsql-dev-utils/tmuxp/vert.yaml"
 alias "tp.vsc"="tmuxp load -y /data/ws-shared/tdsql-dev-utils/tmuxp/vsc.yaml"
+alias "tp.main"="tmuxp load -y /data/.dotfiles/linux-work/tmuxp/main.yaml"
 
 alias "tm1"="tmux a -t w1"
 alias "tm2"="tmux a -t w2"

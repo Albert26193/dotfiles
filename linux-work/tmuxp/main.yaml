@@ -1,0 +1,49 @@
+session_name: main
+start_directory: "~" # 放在顶层，所有窗口默认继承
+windows:
+- window_name: w1
+  focus: true
+  layout: 5ec9,426x61,0,0{213x61,0,0{106x61,0,0,25,106x61,107,0,26},212x61,214,0{106x61,214,0,27,105x61,321,0,28}}
+  options:
+    automatic-rename: false
+  panes:
+    - focus: true
+    - null
+    - null
+    - null
+- window_name: w2
+  layout: 5ec9,426x61,0,0{213x61,0,0{106x61,0,0,25,106x61,107,0,26},212x61,214,0{106x61,214,0,27,105x61,321,0,28}}
+  options:
+    automatic-rename: false
+  panes:
+    - focus: true
+    - null
+    - null
+    - null
+- window_name: w3
+  layout: 5ec9,426x61,0,0{213x61,0,0{106x61,0,0,25,106x61,107,0,26},212x61,214,0{106x61,214,0,27,105x61,321,0,28}}
+  options:
+    automatic-rename: false
+  panes:
+    - focus: true
+    - null
+    - null
+    - null
+- window_name: w4
+  layout: 5ec9,426x61,0,0{213x61,0,0{106x61,0,0,25,106x61,107,0,26},212x61,214,0{106x61,214,0,27,105x61,321,0,28}}
+  options:
+    automatic-rename: false
+  panes:
+    - focus: true
+    - null
+    - null
+    - null
+- window_name: w5
+  layout: 87a6,426x61,0,0{106x61,0,0,31,106x61,107,0,32,106x61,214,0,33,105x61,321,0,34}
+  options:
+    automatic-rename: false
+  panes:
+    - focus: true
+    - null
+    - null
+    - null
