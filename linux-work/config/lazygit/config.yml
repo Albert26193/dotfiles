@@ -2,9 +2,9 @@ git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --oneline {{branchName}}"
   allBranchesLogCmds:
     - git log --graph --all --color=always --abbrev-commit --decorate --oneline
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: hunk pager
+      command: hunk pager
       # pager: delta --dark --paging=never
   log:
     showGraph: always
@@ -12,5 +12,3 @@ git:
     colorArg: always
     pager: hunk pager
     # pager: delta --dark --paging=never
-
-
