@@ -14,7 +14,7 @@
     "+ls"
   ],
   "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultModel": "deepseek-flash",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "llmintro/*",
