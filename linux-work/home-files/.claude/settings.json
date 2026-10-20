@@ -83,6 +83,8 @@
     }
   },
   "outputStyle": "Concise",
+  "verbose": false,
+  "viewMode": "focus",
   "modelSettings": {
     "claude-opus-5-5": {
       "effortLevel": "high"

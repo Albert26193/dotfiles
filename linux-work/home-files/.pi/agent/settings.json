@@ -24,6 +24,7 @@
   "packages": [
     "npm:pi-clean-mode",
     "npm:@tifan/pi-inline-skills",
-    "npm:@narumitw/pi-statusline"
+    "npm:@narumitw/pi-statusline",
+    "npm:pi-subagents"
   ]
 }
