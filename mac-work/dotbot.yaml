@@ -29,6 +29,11 @@
       create: true
       glob: true
       path: ./home-files/.claude/*
+    "~/.pi/agent/":
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.pi/agent/*
     "~/.config/zed/settings.json":
       force: true
       glob: true

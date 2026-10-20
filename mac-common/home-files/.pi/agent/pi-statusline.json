@@ -1,0 +1,32 @@
+{
+  "palettePreset": "custom",
+  "segmentText": {
+    "provider": { "prefix": "" },
+    "model": { "prefix": "" },
+    "thinking": { "prefix": "" },
+    "cwd": { "prefix": "" },
+    "branch": { "prefix": "" },
+    "tools": { "prefix": "" },
+    "context": { "prefix": "ctx " },
+    "tokens": { "prefix": "" },
+    "cache": { "prefix": "" },
+    "cost": { "prefix": "$" },
+    "time": { "prefix": "" },
+    "turn": { "prefix": "#" }
+  },
+  "palette": {
+    "brand": { "fg": "#090c0c", "bg": "#a3aed2" },
+    "provider": { "fg": "#090c0c", "bg": "#a3aed2" },
+    "model": { "fg": "#090c0c", "bg": "#a3aed2" },
+    "thinking": { "fg": "#090c0c", "bg": "#a3aed2" },
+    "cwd": { "fg": "#090c0c", "bg": "#769ff0" },
+    "branch": { "fg": "#769ff0", "bg": "#394260" },
+    "tools": { "fg": "#769ff0", "bg": "#212736" },
+    "context": { "fg": "#090c0c", "bg": "#ffb86c" },
+    "tokens": { "fg": "#769ff0", "bg": "#212736" },
+    "cache": { "fg": "#769ff0", "bg": "#212736" },
+    "cost": { "fg": "#a0a9cb", "bg": "#1d2230" },
+    "time": { "fg": "#a0a9cb", "bg": "#1d2230" },
+    "turn": { "fg": "#a0a9cb", "bg": "#1d2230" }
+  }
+}

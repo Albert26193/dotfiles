@@ -42,6 +42,11 @@
       create: true
       glob: true
       path: ./home-files/.codex/*
+    "~/.pi/agent/":
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.pi/agent/*
     "~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json":
       force: true
       glob: true
