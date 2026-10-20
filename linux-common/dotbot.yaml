@@ -32,6 +32,11 @@
       force: true
       glob: true
       path: ./home-files/.codex/*
+    ~/.pi/agent/:
+      force: true
+      create: true
+      glob: true
+      path: ./home-files/.pi/agent/*
     ~/.config/opencode/:
       force: true
       glob: true
