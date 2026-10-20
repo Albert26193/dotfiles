@@ -1,5 +1,5 @@
 model = "gpt-6-astra"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 approval_policy="never"
 sandbox_mode="danger-full-access"
 
@@ -46,10 +46,17 @@ trust_level = "trusted"
 [projects."/root/.dotfiles"]
 trust_level = "trusted"
 
+[projects."/data/ws-misc/agentic_files"]
+trust_level = "trusted"
+
+[tui]
+screen_reader_detection_done = true
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
 gpt-6-astra = 1
+"gpt-6.1-sol" = 1
 
 # HTTP (Streamable) MCP Servers
 [mcp_servers.docs-langchain]

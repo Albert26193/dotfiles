@@ -77,4 +77,3 @@ add_to_path "/home/linuxbrew/.linuxbrew/bin"
 [[ -f "$HOME/.zsh.keybindings" ]] && { source "$HOME/.zsh.keybindings" }
 [[ -f "$HOME/.misc.env" ]] && { source "$HOME/.misc.env" }
 
-

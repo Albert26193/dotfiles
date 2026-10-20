@@ -29,7 +29,8 @@
       "Bash(git:fetch:*)",
       "Bash(make -n dev)",
       "Bash(curl -sf http://localhost:19001/health)",
-      "Bash(make wait-backend *)"
+      "Bash(make wait-backend *)",
+      "Bash(python3 -c ' *)"
     ],
     "deny": [
       "Bash(git:checkout:main)",
@@ -52,7 +53,19 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "claude-fable-5[1m]",
+  "model": "opus",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Please remove all mannered prose.\""
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline.sh\""
@@ -69,19 +82,14 @@
       }
     }
   },
-  "skipDangerousModePermissionPrompt": true,
-  "tui": "fullscreen",
   "outputStyle": "Concise",
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo \"Please remove all mannered prose.\""
-          }
-        ]
-      }
-    ]
-  }
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
+  "remoteControlAtStartup": false
 }

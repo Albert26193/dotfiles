@@ -49,7 +49,7 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "claude-hy3",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.tclaude/statusline.sh\""
@@ -68,6 +68,7 @@
     }
   },
   "effortLevel": "high",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark"
 }

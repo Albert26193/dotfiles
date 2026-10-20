@@ -9,7 +9,33 @@ function ab.git.path {
 }
 
 function ab.git.all.branch {
-  git for-each-ref --format='%(authorname) %09 %(refname)' refs/remotes | fzf
+  local selected branch
+
+  # 本地分支 + 远程分支一起列出来
+  selected=$(
+    {
+      # 本地分支
+      git for-each-ref --format='local	%(authorname)	%(refname:short)' refs/heads
+      # 远程分支
+      git for-each-ref --format='remote	%(authorname)	%(refname:short)' refs/remotes
+    } | fzf --delimiter=$'\t' --with-nth=1,2,3 \
+      --preview 'git log -1 --color=always {3}'
+  )
+
+  [[ -z "$selected" ]] && return
+
+  # 取第三列（分支名）
+  branch=$(echo "$selected" | awk -F'\t' '{print $3}')
+
+  # 如果是远程分支（带 origin/ 等前缀），去掉前缀
+  if [[ "$branch" == */* ]]; then
+    branch="${branch#*/}"
+  fi
+
+  echo "$branch"
+
+  # 复制到剪贴板（OSC 52）
+  printf "\033]52;c;$(echo -n "$branch" | base64)\a" >&2
 }
 
 # 把一段 commit 写成 format-patch 文件（含起点）。
@@ -70,7 +96,7 @@ function ab.git.patch.id {
   for spec in "$@"; do
     printf '%s  ' "$spec"
     if [ -f "$spec" ]; then
-      git patch-id --stable < "$spec"
+      git patch-id --stable <"$spec"
     else
       git show --format= "$spec" | git patch-id --stable
     fi
