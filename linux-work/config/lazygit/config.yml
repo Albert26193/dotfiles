@@ -8,7 +8,7 @@ git:
       # pager: delta --dark --paging=never
   log:
     showGraph: always
-  paging:
-    colorArg: always
-    pager: hunk pager
-    # pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: hunk pager
+      # pager: delta --dark --paging=never
