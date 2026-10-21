@@ -2375,11 +2375,11 @@
         },
         {
           "commands": [
-            "kilo-code.new.addToContext",
-            "kilo-code.new.focusChatInput"
+            "pendant.focusInput",
+            "pendant.addSelectionToChat"
           ],
-          "key": "o",
-          "name": "🔆 Agent: Copy to kilo code",
+          "key": "a",
+          "name": "🔆 Agent: Copy to Pi",
           "type": "commands"
         },
         {
