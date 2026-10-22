@@ -72,9 +72,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open.at",
+        "vsc.open.latest",
         "${workspaceFolder}",
-        "{proj}/note/A-Issue/{basename}/{branch}/plan.md"
+        "{proj}/note/A-Issue/{basename}/{branch}/plans"
       ],
       "group": "none",
       "presentation": {
@@ -83,26 +83,6 @@
         "focus": false,
         "panel": "shared",
         "group": "last"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "vsc.touch.pptt",
-      "type": "shell",
-      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
-      "args": [
-        "vsc.touch.pptt",
-        "${workspaceFolder}",
-        "{proj}/note/A-Issue/{basename}/{branch}"
-      ],
-      "group": "none",
-      "presentation": {
-        "echo": false,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "group": "last",
-        "close": true
       },
       "problemMatcher": []
     },
@@ -111,66 +91,9 @@
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open.seq",
+        "vsc.open.latest",
         "${workspaceFolder}",
-        "{proj}/.ai_dev_chat/{branch}"
-      ],
-      "group": "none",
-      "presentation": {
-        "echo": false,
-        "reveal": "silent",
-        "focus": false,
-        "panel": "shared",
-        "group": "last"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "vsc.new.chat",
-      "type": "shell",
-      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
-      "args": [
-        "vsc.new.seq",
-        "${workspaceFolder}",
-        "{proj}/.ai_dev_chat/{branch}"
-      ],
-      "group": "none",
-      "presentation": {
-        "echo": false,
-        "reveal": "silent",
-        "focus": false,
-        "panel": "shared",
-        "group": "last"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "vsc.open.talk",
-      "type": "shell",
-      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
-      "args": [
-        "vsc.open.seq",
-        "${workspaceFolder}",
-        "{proj}/.ai_dev_talk/{branch}"
-      ],
-      "group": "none",
-      "presentation": {
-        "echo": false,
-        "reveal": "silent",
-        "focus": false,
-        "panel": "shared",
-        "group": "last"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "vsc.new.talk",
-      "type": "shell",
-      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
-      "args": [
-        "vsc.new.seq",
-        "${workspaceFolder}",
-        "{proj}/.ai_dev_talk/{branch}"
+        "{proj}/note/A-Issue/{basename}/{branch}/chat"
       ],
       "group": "none",
       "presentation": {
@@ -245,13 +168,15 @@
       "problemMatcher": []
     },
     {
-      "label": "vsc.ai.chat",
+      "label": "vsc.ai.bugs",
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
-        "vsc.open.latest",
+        "vsc.open.seq",
         "${workspaceFolder}",
-        "{proj}/.ai_dev_chat/{branch}"
+        "{proj}/note/A-Issue/{basename}/{branch}/bugs",
+        "{n}-bug.md",
+        "# bug-{n}: {topic}"
       ],
       "group": "none",
       "presentation": {
