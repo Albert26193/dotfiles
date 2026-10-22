@@ -11,7 +11,8 @@
   "defaultTools": [
     "+grep",
     "+find",
-    "+ls"
+    "+ls",
+    "+codemode"
   ],
   "defaultProvider": "deepseek",
   "defaultModel": "deepseek-flash",
