@@ -149,13 +149,13 @@
       "problemMatcher": []
     },
     {
-      "label": "vsc.open.dev",
+      "label": "vsc.open.tree",
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
         "vsc.open.latest",
         "${workspaceFolder}",
-        "{proj}/.ai_dev/{branch}"
+        "{proj}/note/A-Issue/{basename}/{branch}/ptree",
       ],
       "group": "none",
       "presentation": {
