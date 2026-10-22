@@ -262,6 +262,24 @@
         }
     },
     {
+        "_comment": "pendant for pi",
+        "key": "shift+cmd+i",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                // "pendant.focusInput",
+                // "pendant.addSelectionToChat",
+                "pendant.chatView.focus",
+                // panel
+                "workbench.action.maximizeEditorHideSidebar",
+                "workbench.action.closePanel",
+                "workbench.action.togglePanel",
+                "workbench.action.toggleMaximizedPanel",
+                "pendant.addSelectionToChat",
+            ]
+        }
+    },
+    {
         "key": "shift+enter",
         "command": "workbench.action.terminal.sendSequence",
         "args": {
@@ -390,9 +408,4 @@
         "key": "cmd+left",
         "command": "codemap.prevBlock"
     },
-    // {
-    //     "key": "cmd+j",
-    //     "command": "-workbench.action.togglePanel",
-    //     "when": "!isAuxiliaryWindowFocusedContext"
-    // },
 ]

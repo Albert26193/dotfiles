@@ -2367,7 +2367,12 @@
         {
           "commands": [
             "claude-vscode.focus",
-            "claude-code.insertAtMentioned",
+            // "claude-code.insertAtMentioned",
+            // panel
+            "workbench.action.maximizeEditorHideSidebar",
+            "workbench.action.closePanel",
+            "workbench.action.togglePanel",
+            "workbench.action.toggleMaximizedPanel",
           ],
           "key": "c",
           "name": "🔆 Agent: Add to Claude Code",
@@ -2375,8 +2380,14 @@
         },
         {
           "commands": [
+            // "pendant.focusInput",
+            // "pendant.addSelectionToChat",
+            // panel
+            "workbench.action.maximizeEditorHideSidebar",
+            "workbench.action.closePanel",
+            "workbench.action.togglePanel",
+            "workbench.action.toggleMaximizedPanel",
             "pendant.focusInput",
-            "pendant.addSelectionToChat"
           ],
           "key": "a",
           "name": "🔆 Agent: Copy to Pi",
@@ -2395,6 +2406,11 @@
           "commands": [
             "chatgpt.sidebarSecondaryView.focus",
             "chatgpt.addToThread",
+            // panel
+            "workbench.action.maximizeEditorHideSidebar",
+            "workbench.action.closePanel",
+            "workbench.action.togglePanel",
+            "workbench.action.toggleMaximizedPanel",
           ],
           "key": "x",
           "name": "🔆 Claude Code: Add to Codex",
@@ -2818,4 +2834,5 @@
   "workbench.colorTheme": "One Monokai",
   "workbench.externalBrowser": "chrome",
   "diffEditor.hideUnchangedRegions.enabled": true,
+  "cursor.composer.codeBlockWordWrap": true,
 }

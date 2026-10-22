@@ -437,7 +437,7 @@
 	},
 	{
 		"name": "knowledge-pod5",
-		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"
@@ -467,7 +467,7 @@
 	},
 	{
 		"name": "knowledge-cvm",
-		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"

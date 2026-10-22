@@ -388,8 +388,8 @@
 		"profile": ""
 	},
 	{
-		"name": "knowledge-pod4",
-		"rootPath": "vscode-remote://ssh-remote+root.21.214.96.252-pod4/data/workspace6/WiseCat",
+		"name": "nexa-shark-pod5",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/ref/nexa-shark",
 		"paths": [],
 		"tags": [],
 		"enabled": true,
@@ -407,7 +407,7 @@
 	},
 	{
 		"name": "knowledge-pod2",
-		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.235.149-pod2/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"
@@ -417,7 +417,7 @@
 	},
 	{
 		"name": "knowledge-pod3",
-		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.146.14-pod3/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"
@@ -437,7 +437,7 @@
 	},
 	{
 		"name": "knowledge-pod5",
-		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.71.79-pod5/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"
@@ -447,7 +447,7 @@
 	},
 	{
 		"name": "knowledge-pod6",
-		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.21.214.199.211-pod6/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"
@@ -467,7 +467,7 @@
 	},
 	{
 		"name": "knowledge-cvm",
-		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace6/WiseCat",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace6/Nexa-knowledge",
 		"paths": [],
 		"tags": [
 			"wisecat"
@@ -476,18 +476,10 @@
 		"profile": ""
 	},
 	{
-		"name": "pencil-catalog",
-		"rootPath": "/Users/albert/workspace/pencil-catalog",
+		"name": "agentic_files",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/ws-misc/agentic_files",
 		"paths": [],
 		"tags": [],
-		"enabled": true,
-		"profile": ""
-	},
-	{
-		"name": "knowledge",
-		"rootPath": "/Users/albert/workspace/WiseCat",
-		"paths": [],
-		"tags": ["wisecat"],
 		"enabled": true,
 		"profile": ""
 	}
