@@ -49,6 +49,9 @@ trust_level = "trusted"
 [projects."/data/ws-misc/agentic_files"]
 trust_level = "trusted"
 
+[projects."/data/workspace6/Nexa-knowledge"]
+trust_level = "trusted"
+
 [tui]
 screen_reader_detection_done = true
 
