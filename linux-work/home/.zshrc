@@ -42,9 +42,6 @@ export NVM_DIR="$HOME/.nvm"
 # --------------------- cargo -----------------------
 [[ -f "$HOME/.cargo/env" ]] && { source "$HOME/.cargo/env" }
 
-# --------------------- nix -------------------------
-[[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && { source "$HOME/.nix-profile/etc/profile.d/nix.sh" }
-
 # --------------------- bun -----------------------
 [ -s "$HOME/.bun/_bun" ] && { source "$HOME/.bun/_bun" }
 
@@ -63,6 +60,7 @@ add_to_path "/home/linuxbrew/.linuxbrew/bin"
 
 #---------------------- mise -----------------------
 { command -v mise 2>&1 >/dev/null } && { eval "$(mise activate zsh)" }
+export GOPLSCACHE="$HOME/.cache/gopls"
 
 #--------------------- zoxide ----------------------
 { command -v zoxide 2>&1 >/dev/null } && { eval "$(zoxide init zsh)" }

@@ -155,7 +155,7 @@
       "args": [
         "vsc.open.latest",
         "${workspaceFolder}",
-        "{proj}/note/A-Issue/{basename}/{branch}/ptree",
+        "{proj}/note/A-Issue/{basename}/{branch}/ptree"
       ],
       "group": "none",
       "presentation": {
