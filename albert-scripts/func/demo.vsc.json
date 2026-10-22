@@ -149,7 +149,7 @@
       "problemMatcher": []
     },
     {
-      "label": "vsc.ai.dev",
+      "label": "vsc.open.dev",
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [
@@ -168,7 +168,7 @@
       "problemMatcher": []
     },
     {
-      "label": "vsc.ai.bugs",
+      "label": "vsc.open.bugs",
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
       "args": [

@@ -598,8 +598,8 @@ function vsc.new.seq() {
 }
 
 # Open the most recently modified file under a directory, searched
-# recursively. Never creates anything — this is a "where did I just work"
-# shortcut, as opposed to the sequence openers above.
+# recursively. Creates the directory and seeds 'index.md' when there is
+# nothing to open yet.
 #   $1 project dir
 #   $2 dir template, e.g. '{proj}/.ai_dev/{branch}'
 #   $3 optional name pattern, default '*.md'
@@ -617,52 +617,19 @@ function vsc.open.latest() {
   [[ -z "$pattern" ]] && pattern='*.md'
 
   local dir
-  dir="$(_vsc.dir.resolve "$proj_dir" "$dir_template")" || return 1
+  dir="$(_vsc.dir.resolve "$proj_dir" "$dir_template" --mkdir)" || return 1
 
   local latest
-  latest="$(_vsc.latest.mtime "$dir" "$pattern")" || return 1
+  if latest="$(_vsc.latest.mtime "$dir" "$pattern" 2>/dev/null)"; then
+    echo "Search dir: $dir"
+    echo "Most recently modified '$pattern': ${latest#"$dir"/}"
+  else
+    latest="$dir/index.md"
+    echo "No '$pattern' in '$dir', seeding: index.md"
+    _vsc.open.ensure.file "$latest" || return 1
+  fi
 
-  echo "Search dir: $dir"
-  echo "Most recently modified '$pattern': ${latest#"$dir"/}"
   vsc.open.vscode "$latest"
-}
-
-# Create the plan/truth/progress trio in a branch-scoped directory.
-#   $1 project dir   $2 dir template
-function vsc.touch.pptt() {
-  [[ $# -ge 2 ]] && [[ -n "$2" ]] || {
-    echo "Usage: vsc.touch.pptt <proj_dir> <dir_template>" >&2
-    return 1
-  }
-
-  local proj_dir
-  proj_dir="$(vsc.expand.var "$1")" || return 1
-  local dir_template
-  dir_template="$(vsc.expand.var "$2")" || return 1
-
-  local target
-  target="$(_vsc.dir.resolve "$proj_dir" "$dir_template" --mkdir)" || return 1
-
-  local files=("plan.md" "truth.md" "progress.md")
-  local headers=("# plan" "# truth" "# progress")
-  local created=0
-  local skipped=0
-  local i
-  for i in "${!files[@]}"; do
-    local fpath="$target/${files[$i]}"
-    if [[ -f "$fpath" ]]; then
-      echo "  skipped: ${files[$i]} (already exists)"
-      skipped=$((skipped + 1))
-    else
-      printf '%s\n' "${headers[$i]}" >"$fpath"
-      echo "  created: ${files[$i]}"
-      created=$((created + 1))
-    fi
-  done
-
-  echo ""
-  echo "Dir:     $target"
-  echo "Created: $created, Skipped: $skipped (already existed)"
 }
 
 function vsc.get.branch() {
