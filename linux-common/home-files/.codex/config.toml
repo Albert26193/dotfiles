@@ -6,25 +6,7 @@ sandbox_mode="danger-full-access"
 model_context_window = 1000000
 model_auto_compact_token_limit=400000
 
-[projects."/home/albert/temp"]
-trust_level = "trusted"
-
-[projects."/home/albert/.dotfiles"]
-trust_level = "trusted"
-
-[projects."/home/albert"]
-trust_level = "trusted"
-
-[projects."/home/albert/.agents/skills"]
-trust_level = "trusted"
-
-[projects."/home/albert/remote-codespace/vitepress-clear-blog"]
-trust_level = "trusted"
-
-[projects."/home/albert/.my-skills"]
-trust_level = "trusted"
-
-[projects."/home/albert/remote-scripts/backup"]
+[projects."/home/albert/**"]
 trust_level = "trusted"
 
 [tui]
