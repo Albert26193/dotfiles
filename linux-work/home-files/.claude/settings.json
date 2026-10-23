@@ -93,5 +93,14 @@
   "tui": "fullscreen",
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
-  "remoteControlAtStartup": false
+  "remoteControlAtStartup": false,
+  "bindings": [
+    {
+      "context": "Chat",
+      "bindings": {
+        "enter": "chat:queueSubmit",
+        "shift+enter": "chat:submit"
+      }
+    }
+  ]
 }

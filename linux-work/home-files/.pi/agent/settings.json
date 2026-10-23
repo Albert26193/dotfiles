@@ -26,6 +26,7 @@
     "npm:pi-clean-mode",
     "npm:@tifan/pi-inline-skills",
     "npm:@narumitw/pi-statusline",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "npm:pi-lens"
   ]
 }
