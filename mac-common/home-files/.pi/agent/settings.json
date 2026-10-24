@@ -1,6 +1,6 @@
 {
   "$schema": "https://pi.dev/schemas/settings.schema.json",
-  "lastChangelogVersion": "1.3.0",
+  "lastChangelogVersion": "1.4.0",
   "theme": "dracula",
   "hideThinkingBlock": true,
   "tuiMode": "fullscreen",
@@ -26,6 +26,8 @@
     "npm:pi-clean-mode",
     "npm:@tifan/pi-inline-skills",
     "npm:@narumitw/pi-statusline",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "npm:pi-lens",
+    "npm:pi-web-access"
   ]
 }
