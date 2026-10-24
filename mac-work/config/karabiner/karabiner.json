@@ -4,11 +4,11 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "空格键：长按是 Command，单击是空格",
+            "description": "Command 键：长按是 Control，单击是 Command",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "spacebar",
+                  "key_code": "right_command",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -20,12 +20,12 @@
                 },
                 "to": [
                   {
-                    "key_code": "left_command"
+                    "key_code": "right_control"
                   }
                 ],
                 "to_if_alone": [
                   {
-                    "key_code": "spacebar"
+                    "key_code": "right_command"
                   }
                 ],
                 "type": "basic"
