@@ -22,6 +22,8 @@ alias "ccd"="IS_SANDBOX=1 claude --dangerously-skip-permissions"
 alias "exp.cc.cc"="source ~/.claude/cc.env"
 alias "exp.cc.ds"="source ~/.claude/ds.env"
 alias "exp.cc.gpt"="source ~/.claude/gpt.env"
+alias "exp.cc.mp"="source ~/.claude/magpie.env"
+
 alias "exp.cc.kimi"="source ~/.claude/kimi.env"
 alias "exp.cc.antigravity"="source ~/.claude/antigravity.env"
 alias "cx.cc"="codex --profile cc"
