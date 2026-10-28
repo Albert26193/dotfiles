@@ -4,6 +4,13 @@
       type: symlink
       relative: false
       canonicalize: true
+      force: true
+      create: true
+      glob: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
 
 - clean:
     ~/:
@@ -12,73 +19,36 @@
       force: true
       recursive: true
 
+# 目标路径含 Library/Application Support，超 80 列不可避免
+# yamllint disable rule:line-length
 - link:
-    ~/:
-      force: true
-      glob: true
-      path: ./home/.*
-    ~/.config/:
-      force: true
-      glob: true
-      path: ./config/*
-    "~/.albert-scripts/":
-      force: true
-      path: ../albert-scripts
-    "~/.config/zed/settings.json":
-      force: true
-      glob: true
-      path: ./misc/zed/settings.json
-    "~/.config/zed/keymap.json":
-      force: true
-      glob: true
-      path: ./misc/zed/keymap.json
-    "~/.claude/":
-      force: true
-      create: true
-      glob: true
-      path: ./home-files/.claude/*
-    "~/.codex/":
-      force: true
-      create: true
-      glob: true
-      path: ./home-files/.codex/*
-    "~/.pi/agent/":
-      force: true
-      create: true
-      glob: true
-      path: ./home-files/.pi/agent/*
-    "~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json":
-      force: true
-      glob: true
-      path: ./misc/project-manager/projects.json
-    # cursor
-    # "~/Library/Application Support/Cursor/User/settings.json":
-    #   force: true
-    #   glob: true
-    #   path: ./misc/cursor/settings.json
-    # "~/Library/Application Support/Cursor/User/keybindings.json":
-    #   force: true
-    #   glob: true
-    #   path: ./misc/cursor/keybindings.json
-    # "~/Library/Application Support/Cursor/User/globalStorage/alefragnani.project-manager/projects.json":
-    #   force: true
-    #   glob: true
-    #   path: ./misc/project-manager/cursor-projects.json
+    # home / config / scripts
+    ~/: ./home/.*
+    ~/.config/: ./config/*
+    ~/.albert-scripts/: ../albert-scripts
 
+    # zed
+    ~/.config/zed/settings.json: ./misc/zed/settings.json
+    ~/.config/zed/keymap.json: ./misc/zed/keymap.json
 
+    # AI agents
+    ~/.claude/: ./home-files/.claude/*
+    ~/.codex/: ./home-files/.codex/*
+    ~/.pi/agent/: ./home-files/.pi/agent/*
+
+    # VSCode
+    ~/Library/Application Support/Code/User/settings.json: ./misc/vscode/settings.json
+    ~/Library/Application Support/Code/User/keybindings.json: ./misc/vscode/keybindings.json
+    ~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json: ./misc/project-manager/projects.json
+
+# yamllint enable rule:line-length
 
 - shell:
-  - 
-    command: " [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh \
-              || echo 'omz installed' "
-    stdin: true
-    stdout: true
-    stderr: true
-    description: for test
-    quiet: false
+    - command: >-
+        [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh
+        || echo 'omz installed'
+      description: for test
 
 # - create:
 #     - ~/downloads
 #     - ~/.local
-
-

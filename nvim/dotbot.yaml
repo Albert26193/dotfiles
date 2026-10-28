@@ -4,6 +4,9 @@
       type: symlink
       relative: false
       canonicalize: true
+      force: true
+      create: true
+      glob: true
 
 - clean:
     ~/:
@@ -14,10 +17,8 @@
 
 - link:
     ~/.config/:
-      force: true
-      glob: true
       path: ./*
-      exclude: [ dotbot.yaml, scripts ]
+      exclude: [dotbot.yaml, scripts]
 
 # - shell:
 #   - 

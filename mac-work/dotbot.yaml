@@ -4,6 +4,13 @@
       type: symlink
       relative: false
       canonicalize: true
+      force: true
+      create: true
+      glob: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
 
 - clean:
     ~/:
@@ -12,74 +19,44 @@
       force: true
       recursive: true
 
+# 目标路径含 Library/Application Support，超 80 列不可避免
+# yamllint disable rule:line-length
 - link:
-    ~/:
-      force: true
-      glob: true
-      path: ./home/.*
-    ~/.config/:
-      force: true
-      glob: true
-      path: ./config/*
-    "~/.albert-scripts/":
-      force: true
-      path: ../albert-scripts
-    "~/.claude/":
-      force: true
-      create: true
-      glob: true
-      path: ./home-files/.claude/*
-    "~/.pi/agent/":
-      force: true
-      create: true
-      glob: true
-      path: ./home-files/.pi/agent/*
-    "~/.config/zed/settings.json":
-      force: true
-      glob: true
-      path: ./misc/zed/settings.json
-    "~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json":
-      force: true
-      glob: true
-      path: ./misc/project-manager/projects.json
+    # home / config / scripts
+    ~/: ./home/.*
+    ~/.config/: ./config/*
+    ~/.albert-scripts/: ../albert-scripts
+
+    # zed
+    ~/.config/zed/settings.json: ./misc/zed/settings.json
+
+    # AI agents
+    ~/.claude/: ./home-files/.claude/*
+    ~/.pi/agent/: ./home-files/.pi/agent/*
+
+    # VSCode
+    ~/Library/Application Support/Code/User/settings.json: ./misc/vscode/settings.json
+    ~/Library/Application Support/Code/User/keybindings.json: ./misc/vscode/keybindings.json
+    ~/Library/Application Support/Code/User/globalStorage/alefragnani.project-manager/projects.json: ./misc/project-manager/projects.json
+
     # CodeBuddy
-    "~/Library/Application Support/CodeBuddy CN/User/settings.json":
-      force: true
-      glob: true
-      path: ./misc/CodeBuddy/settings.json
-    "~/Library/Application Support/CodeBuddy CN/User/keybindings.json":
-      force: true
-      glob: true
-      path: ./misc/CodeBuddy/keybindings.json
-    "~/Library/Application Support/CodeBuddy CN/User/globalStorage/alefragnani.project-manager/projects.json":
-      force: true
-      glob: true
-      path: ./misc/project-manager/codebuddy-projects.json
+    ~/Library/Application Support/CodeBuddy CN/User/settings.json: ./misc/CodeBuddy/settings.json
+    ~/Library/Application Support/CodeBuddy CN/User/keybindings.json: ./misc/CodeBuddy/keybindings.json
+    ~/Library/Application Support/CodeBuddy CN/User/globalStorage/alefragnani.project-manager/projects.json: ./misc/project-manager/codebuddy-projects.json
+
     # Cursor
-    "~/Library/Application Support/Cursor/User/settings.json":
-      force: true
-      glob: true
-      path: ./misc/cursor/settings.json
-    "~/Library/Application Support/Cursor/User/keybindings.json":
-      force: true
-      glob: true
-      path: ./misc/cursor/keybindings.json
-    "~/Library/Application Support/Cursor/User/globalStorage/alefragnani.project-manager/projects.json":
-      force: true
-      glob: true
-      path: ./misc/project-manager/cursor-projects.json
+    ~/Library/Application Support/Cursor/User/settings.json: ./misc/cursor/settings.json
+    ~/Library/Application Support/Cursor/User/keybindings.json: ./misc/cursor/keybindings.json
+    ~/Library/Application Support/Cursor/User/globalStorage/alefragnani.project-manager/projects.json: ./misc/project-manager/cursor-projects.json
+
+# yamllint enable rule:line-length
 
 - shell:
-  - 
-    command: " [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh \
-              || echo 'omz installed' "
-    stdin: true
-    stdout: true
-    stderr: true
-    description: for test
-    quiet: false
+    - command: >-
+        [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh
+        || echo 'omz installed'
+      description: for test
 
 # - create:
 #     - ~/downloads
 #     - ~/.local
-

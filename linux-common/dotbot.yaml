@@ -4,6 +4,13 @@
       type: symlink
       relative: false
       canonicalize: true
+      force: true
+      create: true
+      glob: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
 
 - clean:
     ~/:
@@ -13,43 +20,23 @@
       recursive: true
 
 - link:
-    ~/:
-      force: true
-      glob: true
-      path: ./home/.*
-    ~/.config/:
-      force: true
-      glob: true
-      path: ./config/*
-    ~/.albert-scripts/:
-      force: true
-      path: ../albert-scripts
-    ~/.claude/:
-      force: true
-      glob: true
-      path: ./home-files/.claude/*
-    ~/.codex/:
-      force: true
-      glob: true
-      path: ./home-files/.codex/*
-    ~/.pi/agent/:
-      force: true
-      create: true
-      glob: true
-      path: ./home-files/.pi/agent/*
-    ~/.config/opencode/:
-      force: true
-      glob: true
-      path: ./config-files/opencode/*
+    # home / config / scripts
+    ~/: ./home/.*
+    ~/.config/: ./config/*
+    ~/.albert-scripts/: ../albert-scripts
+
+    # AI agents
+    ~/.claude/: ./home-files/.claude/*
+    ~/.codex/: ./home-files/.codex/*
+    ~/.pi/agent/: ./home-files/.pi/agent/*
+    ~/.config/opencode/: ./config-files/opencode/*
 
 - shell:
-  - 
-    command: "if ! command -v zsh &>/dev/null; then echo 'Error: zsh is not installed, skipping init.sh'; exit 1; fi && bash ./init-scripts/init.sh"
-    stdin: true
-    stdout: true
-    stderr: true
-    description: for test
-    quiet: false
+    - command: >-
+        if ! command -v zsh &>/dev/null;
+        then echo 'Error: zsh is not installed, skipping init.sh'; exit 1; fi
+        && bash ./init-scripts/init.sh
+      description: for test
 
 # - create:
 #     - ~/downloads
