@@ -45,7 +45,7 @@ function install_brew {
 }
 
 function install_brew_packages {
-  local packages=("lazygit" "neovim" "tailspin" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git" "jq" "duf" "zoxide" "starship" "tmuxp" "hunk")
+  local packages=("lazygit" "neovim" "tailspin" "ccls" "dotbot" "starship" "gdb" "cgdb" "mycli" "ripgrep" "fd" "fzf" "yazi" "tmux" "git" "jq" "duf" "zoxide" "starship" "tmuxp" "hunk" "ast-grep" "typos-lsp")
   printf "%s\n" "${packages[*]}"
 
   # 一次性获取所有已安装的包

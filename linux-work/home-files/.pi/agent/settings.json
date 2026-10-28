@@ -28,6 +28,7 @@
     "npm:@narumitw/pi-statusline",
     "npm:pi-subagents",
     "npm:pi-lens",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:pi-prose"
   ]
 }
