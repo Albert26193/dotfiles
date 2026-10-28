@@ -5,6 +5,7 @@
                 "rules": [
                     {
                         "description": "方向键：直接映射成 Right Control，Fn + 方向键才是真正的方向键",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {

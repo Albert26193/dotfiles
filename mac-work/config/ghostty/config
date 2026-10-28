@@ -1,4 +1,5 @@
 # font
+font-family = "Noto Sans Serif SC"     # 中文回退
 font-family = "IosevkaTermSlab Nerd Font"
 font-size = 15
 
