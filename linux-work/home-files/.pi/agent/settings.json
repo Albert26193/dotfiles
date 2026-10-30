@@ -14,8 +14,8 @@
     "+ls",
     "+codemode"
   ],
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-flash",
+  "defaultProvider": "magpie",
+  "defaultModel": "claude-opus-5-5",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "llmintro/*",
