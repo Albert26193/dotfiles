@@ -11,7 +11,7 @@ model_context_window = 1000000
 model_auto_compact_token_limit=500000
 service_tier = "priority"
 
-review_model = "gpt-5.6-luna"
+review_model = "gpt-6-astra"
 disable_response_storage = true
 network_access = "enabled"
 approvals_reviewer = "user"
@@ -20,6 +20,9 @@ approvals_reviewer = "user"
 trust_level = "trusted"
 
 [projects."/root/**"]
+trust_level = "trusted"
+
+[projects."/data/workspace6/**"]
 trust_level = "trusted"
 
 [tui]
