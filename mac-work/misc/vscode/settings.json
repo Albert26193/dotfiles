@@ -534,6 +534,7 @@
         // "variable": {
         //   "foreground": "#56b6c2"
         // },
+        "property": "#678abf",
         "variable.declaration": {
           "foreground": "#61afef",
           "fontStyle": "italic"
@@ -624,8 +625,8 @@
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 300,
   "files.exclude": {
-    "**/.DS_Store": false,
-    "**/.git": false,
+    // "**/.DS_Store": false,
+    // "**/.git": false,
     "out": false
   },
   "files.insertFinalNewline": true,
@@ -680,6 +681,7 @@
   "chat.agentSessionsViewLocation": "view",
   "chat.agent.enabled": true,
   "chat.mcp.autostart": "newAndOutdated",
+  "chat.disableAIFeatures": true,
   /**********************************/
   /************ gitlens *************/
   /**********************************/

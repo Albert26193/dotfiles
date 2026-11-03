@@ -31,8 +31,9 @@
     "editor.defaultFormatter": "golang.go",
     "editor.semanticHighlighting.enabled": true,
     "editor.formatOnSave": true,
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
   },
+  "go.diagnostic.vulncheck": "Imports",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
@@ -455,49 +456,49 @@
     }
   },
   "editor.semanticTokenColorCustomizations": {
-    "[*Solarized*]": {
-      "rules": {
-        // "editorWhitespace.foreground": "#2d2d2d00",
-        // "editorWhitespace.background": "#0b0b0b00",
-        "enum:cpp": {
-          "foreground": "#829703"
-        },
-        "enumMember:cpp": {
-          "foreground": "#829703"
-        },
-        "class:cpp": {
-          "foreground": "#82bbeadf"
-        },
-        "field:cpp": {
-          "foreground": "#81bc7fe6"
-        },
-        "function": {
-          "foreground": "#ff93c7cf"
-          // "foreground": "#ffb6c1dd"
-        },
-        "parameter:cpp": {
-          "foreground": "#cb4b16"
-        },
-        "macro": "#6d71c4",
-        "struct": "#5ffffc92",
-        "method": {
-          // "foreground": "#ddb383e6"
-          "foreground": "#ddb383dd"
-        },
-        "*.static:cpp": {
-          "foreground": "#b58900",
-          "fontStyle": "italic"
-        },
-        "namespace": "#288bd2",
-        "typeAlias:cpp": {
-          "foreground": "#288bd2"
-        },
-        "variable": {
-          "foreground": "#aeb8b8e0"
-          // "foreground": "#9facaddd"
-        },
-      }
-    },
+    // "[*Solarized*]": {
+    //   "rules": {
+    //     // "editorWhitespace.foreground": "#2d2d2d00",
+    //     // "editorWhitespace.background": "#0b0b0b00",
+    //     "enum:cpp": {
+    //       "foreground": "#829703"
+    //     },
+    //     "enumMember:cpp": {
+    //       "foreground": "#829703"
+    //     },
+    //     "class:cpp": {
+    //       "foreground": "#82bbeadf"
+    //     },
+    //     "field:cpp": {
+    //       "foreground": "#81bc7fe6"
+    //     },
+    //     "function": {
+    //       "foreground": "#ff93c7cf"
+    //       // "foreground": "#ffb6c1dd"
+    //     },
+    //     "parameter:cpp": {
+    //       "foreground": "#cb4b16"
+    //     },
+    //     "macro": "#6d71c4",
+    //     "struct": "#5ffffc92",
+    //     "method": {
+    //       // "foreground": "#ddb383e6"
+    //       "foreground": "#ddb383dd"
+    //     },
+    //     "*.static:cpp": {
+    //       "foreground": "#b58900",
+    //       "fontStyle": "italic"
+    //     },
+    //     "namespace": "#288bd2",
+    //     "typeAlias:cpp": {
+    //       "foreground": "#288bd2"
+    //     },
+    //     "variable": {
+    //       "foreground": "#aeb8b8e0"
+    //       // "foreground": "#9facaddd"
+    //     },
+    //   }
+    // },
     "[One Monokai]": {
       "rules": {
         // "enum:cpp": "#829703",
@@ -521,17 +522,22 @@
           "fontStyle": "italic"
         },
         // 通用语义（已与 CPP 配色对齐） --> go
-        // "method": "#c678dd",
-        // "parameter": "#e06c75",
+        "parameter": {
+          // "foreground": "#61afef",
+          "fontStyle": ""
+        },
         "string": "#dcbd98c0",
         // "function": "#54c073",
         "method": "#54c073",
         "type": "#61afef",
+        // "enumMember": "#829703",
+        // "variable": {
+        //   "foreground": "#56b6c2"
+        // },
         "property": "#678abf",
-        "enumMember": "#829703",
-        // // "variable": "#c9c9c9e0",
-        "variable": {
-          "foreground": "#c9c9c9e0"
+        "variable.declaration": {
+          "foreground": "#61afef",
+          "fontStyle": "italic"
         },
         // 2. 全局/包级变量
         "variable.static": {
@@ -553,6 +559,10 @@
           // "foreground": "#56b6c2",
           "fontStyle": "underline"
         },
+        // "variable.other.property.go": {
+        //   "foreground": "#56b6c2",
+        //   "fontStyle": "italic"
+        // },
       },
     }
   },
@@ -704,6 +714,9 @@
     "launchpad": false
   },
   "gitlens.views.showRelativeDateMarkers": false,
+  "gitlens.graph.details.location": "auto",
+  "gitlens.views.openChangesInMultiDiffEditor": false,
+  "gitlens.views.searchAndCompare.files.layout": "tree",
   /**********************************/
   /************** log ***************/
   /**********************************/
@@ -1052,27 +1065,27 @@
     // "[x]",
     "[Marker]"
   ],
-  "todo-tree.highlights.customHighlight": {
-    "BUG": {
-      "background": "#da1111",
-      "foreground": "#111111",
-      "icon": "bug",
-      "iconColour": "#f236ff",
-      "rulerColour": "#ffffff"
-    },
-    "TAGS": {
-      "background": "#4aadcd",
-      "foreground": "#2a2a2a"
-    },
-    "[Marker]": {
-      "background": "#cb4c16",
-      "foreground": "#e6e6e6"
-    },
-    "TODO": {
-      "background": "#a1ff0a",
-      "foreground": "#1a1a1a"
-    }
-  },
+  // "todo-tree.highlights.customHighlight": {
+  //   "BUG": {
+  //     "background": "#da1111",
+  //     "foreground": "#111111",
+  //     "icon": "bug",
+  //     "iconColour": "#f236ff",
+  //     "rulerColour": "#ffffff"
+  //   },
+  //   "TAGS": {
+  //     "background": "#4aadcd",
+  //     "foreground": "#2a2a2a"
+  //   },
+  //   "[Marker]": {
+  //     "background": "#cb4c16",
+  //     "foreground": "#e6e6e6"
+  //   },
+  //   "TODO": {
+  //     "background": "#a1ff0a",
+  //     "foreground": "#1a1a1a"
+  //   }
+  // },
   "todo-tree.highlights.enabled": true,
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   /**********************************/
@@ -2605,6 +2618,8 @@
   "whichkey.showIcons": true,
   "window.density.editorTabHeight": "compact",
   "window.dialogStyle": "native",
+  "window.density.layout": "compact",
+  "window.zoomLevel": 0.7,
   /**********************************/
   /********** work benach ***********/
   /**********************************/
@@ -2616,9 +2631,11 @@
     "[Solarized*], [One Monokai]": {
       // "editorBracketMatch.foreground": "#000",
       // 新增行的整行背景（半透明深绿）
-      "diffEditor.insertedLineBackground": "#2ea04326",
+      "diffEditor.insertedLineBackground": "#1c3318ac",
       // 新增行的具体文字背景（稍微深一点点的半透明绿）
       "diffEditor.insertedTextBackground": "#1c3318ac",
+      "diffEditor.unchangedRegionBackground": "#2a2d34", // 设为一个与编辑器背景协调的深色
+      "diffEditor.unchangedRegionForeground": "#888888",
       "editorBracketMatch.border": "#fff",
       "bookmarks.overviewRuler": "#0000",
       "editor.foldBackground": "#002b36aa",
@@ -2667,7 +2684,6 @@
       // "peekViewEditor.background": "#00141a",
       //
       // "editor.background": "#053642",
-      // "diffEditor.insertedTextBackground": "#002000df",
       "editorOverviewRuler.commentUnresolvedForeground": "#000",
       "editorOverviewRuler.commonContentForeground": "#0000",
       "editorOverviewRuler.currentContentForeground": "#0000",
@@ -2759,6 +2775,12 @@
   "workbench.editor.empty.hint": "hidden",
   "workbench.startupEditor": "none",
   "workbench.navigationControl.enabled": false,
+  "workbench.preferredDarkColorTheme": "One Monokai",
+  "workbench.colorTheme": "One Monokai",
+  "workbench.externalBrowser": "chrome",
+  "workbench.activityBar.compact": true,
+  "workbench.editor.tabActionReserveSpace": false,
+  "workbench.experimental.modernUIEditorTabStyle": "connected",
   /**********************************/
   /********* search editor **********/
   /**********************************/
@@ -2785,7 +2807,7 @@
   /************** misc **************/
   /**********************************/
   // "testing.automaticallyOpenPeekViewDuringAutoRun": true,
-  // "editor.letterSpacing": 0.1,
+  "editor.letterSpacing": -0.1,
   "material-icon-theme.hidesExplorerArrows": true,
   "extensions.verifySignature": false,
   "accelerated.accelerationTable": [
@@ -2804,26 +2826,8 @@
   "git.openRepositoryInParentFolders": "always",
   "codingcopilot.enableImageGen": false,
   "window.commandCenter": true,
-  // "terminal.integrated.commandsToSkipShell": [
-  //   "kilo-code.new.agentManagerOpen",
-  //   "kilo-code.new.agentManager.showTerminal"
-  // ],
-  "kilo-code.debug": false,
   "files.defaultLanguage": "markdown",
-  "todo-tree.ripgrep.ripgrep": "/opt/homebrew/bin/rg",
   "explorer.confirmPasteNative": false,
-  // "http.proxy": "http://127.0.0.1:7890",
-  "markdownViewer.theme": "github-dark",
-  "markdownViewer.fontSize": 10,
-  "markdownViewer.fontFamily": "Georgia",
-  "markdownViewer.lineNumbers": true,
-  "markdownViewer.markdownViewerSettings": {
-    "fontSize": 10,
-  },
-  "cSpell.userWords": [
-    "claude"
-  ],
-  // "markdownViewer.scrollSync": true,
   "copyCodeAsMarkdown.usingTemplateName": "claudeRange",
   "copyCodeAsMarkdown.templates": {
     "default": "*{filename}* {lineNumber}:\n```{lang}\n{text}\n```",
@@ -2833,22 +2837,8 @@
     "claudeRange": "@{filename}:{lineNumber}-{lineNumberEnd}",
     "claudeWithCode": "@{filename}:{lineNumber}-{lineNumberEnd}\n```{lang}\n{text}\n```"
   },
-  "workbench.preferredDarkColorTheme": "One Monokai",
-  "terminal.integrated.commandsToSkipShell": [
-    "kilo-code.new.agentManagerOpen",
-    "kilo-code.new.agentManager.showTerminal",
-    "kilo-code.new.agentManager.previousTerminal",
-    "kilo-code.new.agentManager.nextTerminal"
-  ],
   "diffEditor.renderSideBySide": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
-  "workbench.colorTheme": "One Monokai",
-  "workbench.externalBrowser": "chrome",
-  "gitlens.graph.details.location": "auto",
-  "gitlens.views.openChangesInMultiDiffEditor": false,
-  "gitlens.views.searchAndCompare.files.layout": "tree",
-  "chat.disableAIFeatures": true,
   "comments.openView": "never",
   "codemap.expandCommentOnFocus": false,
-  "window.zoomLevel": 0.7
 }
