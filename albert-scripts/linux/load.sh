@@ -50,3 +50,21 @@ function ab.load.claude {
   _ab.load.force "$1" && force=1
   _ab.load.copy "demo.claude.json" ".claude/settings.json" "$force"
 }
+
+# ab.load.ignore -> append "!note/" to .ignore so rg/fd (and VS Code Ctrl+P) see
+# gitignored notes. Idempotent; keeps any existing rules.
+function ab.load.ignore {
+  local dst="${PWD}/.ignore"
+  local rule='!note/'
+
+  if [[ -f "$dst" ]] && grep -qxF "$rule" "$dst"; then
+    echo "exists: ${rule} in $dst"
+    return 0
+  fi
+
+  if [[ -s "$dst" && -n "$(tail -c1 "$dst")" ]]; then
+    echo >>"$dst"
+  fi
+  echo "$rule" >>"$dst"
+  echo "wrote: ${rule} -> $dst"
+}

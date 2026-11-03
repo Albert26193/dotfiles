@@ -21,3 +21,6 @@ yarn-error.log*
 # compile_commands.json
 compile_commands.json
 **/*/compile_commands.json
+
+# rg/fd whitelist, local only
+.ignore

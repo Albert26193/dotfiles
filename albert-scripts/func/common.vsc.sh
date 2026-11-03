@@ -51,7 +51,7 @@ function vsc.load.env() {
 function vsc.osc.copy() {
   local input
   input=$(cat | tee /dev/tty)
-  printf "\033]52;c;$(echo -n "$input" | base64)\a" >&2
+  printf "\033]52;c;$(echo -n "$input" | base64 | tr -d '\n')\a" >&2
 }
 
 # Expand a leading '@VAR' / '@VAR/sub/path' reference against the environment.
@@ -639,6 +639,25 @@ function vsc.get.branch() {
   local branch
   branch="$(_vsc.git.branch "$proj_dir")" || return 1
   echo "$branch" | vsc.osc.copy
+}
+
+# Copy the path a template resolves to, e.g. the branch-scoped issue dir.
+#   $1 project dir
+#   $2 path template, e.g. '{proj}/note/A-Issue/{basename}/{branch}'
+function vsc.get.path() {
+  [[ $# -eq 2 ]] && [[ -n "$2" ]] || {
+    echo "Usage: vsc.get.path <proj_dir> <path_template>" >&2
+    return 1
+  }
+
+  local proj_dir
+  proj_dir="$(vsc.expand.var "$1")" || return 1
+  local path_template
+  path_template="$(vsc.expand.var "$2")" || return 1
+
+  local resolved
+  resolved="$(_vsc.dir.resolve "$proj_dir" "$path_template")" || return 1
+  echo "$resolved" | vsc.osc.copy
 }
 
 function vsc.get.mergebase() {

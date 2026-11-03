@@ -48,6 +48,26 @@
       "problemMatcher": []
     },
     {
+      "label": "vsc.copy_locate",
+      "type": "shell",
+      "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
+      "args": [
+        "vsc.get.path",
+        "${workspaceFolder}",
+        "note/A-Issue/{basename}/{branch}"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": false,
+        "reveal": "never",
+        "focus": false,
+        "panel": "shared",
+        "group": "last",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "vsc.get.mergebase",
       "type": "shell",
       "command": "${env:HOME}/.albert-scripts/bin/vsc-task",
@@ -59,7 +79,7 @@
       "group": "none",
       "presentation": {
         "echo": false,
-        "reveal": "always",
+        "reveal": "never",
         "focus": false,
         "panel": "shared",
         "group": "last",
