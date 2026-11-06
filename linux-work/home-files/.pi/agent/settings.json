@@ -1,6 +1,6 @@
 {
   "$schema": "https://pi.dev/schemas/settings.schema.json",
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.0",
   "theme": "dracula",
   "hideThinkingBlock": true,
   "tuiMode": "fullscreen",
@@ -29,6 +29,13 @@
     "npm:pi-subagents",
     "npm:pi-lens",
     "npm:pi-web-access",
-    "npm:pi-prose"
-  ]
+    "npm:pi-prose",
+    "npm:billion-context-pi"
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:@narumitw/pi-statusline\",\"scope\":\"user\"}": "0.50.4",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.85.0",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.8",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0"
+  }
 }
