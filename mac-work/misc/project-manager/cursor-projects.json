@@ -482,5 +482,13 @@
 		"tags": [],
 		"enabled": true,
 		"profile": ""
+	},
+	{
+		"name": "workspace7",
+		"rootPath": "vscode-remote://ssh-remote+7b22686f73744e616d65223a22726f6f742e392e3133342e3133332e3234342e63766d227d/data/workspace7",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
 	}
 ]
