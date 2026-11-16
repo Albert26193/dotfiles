@@ -1,0 +1,14 @@
+# pet —— CLI 片段管理器（https://github.com/knqyf263/pet）
+# 整目录 symlink 到 ~/.config/pet，改完即生效
+# snippetfile 必须显式声明：pet 只在 config.toml 缺失时才自动生成默认值
+
+[General]
+  snippetfile = "~/.config/pet/snippet.toml"
+  editor = "nvim"
+  column = 40
+  selectcmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets: "
+  backend = "gist"
+  sortby = "recency"
+  color = false
+  format = "[$description]: $command $tags"
+  cmd = ["sh", "-c"]

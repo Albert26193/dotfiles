@@ -1,0 +1,13 @@
+
+[[Snippets]]
+  Description = "uv python install 3.13"
+  Output = ""
+  Tag = []
+  command = "uv python install 3.13 --default"
+
+[[Snippets]]
+  Description = "docker cleanup: prune unused containers, images, cache"
+  Output = ""
+  Tag = ["docker", "cleanup"]
+  command = """docker system df
+docker system prune -a"""

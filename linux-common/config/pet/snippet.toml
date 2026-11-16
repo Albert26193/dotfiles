@@ -1,0 +1,9 @@
+# pet 片段库：`pet new` 追加 / `pet edit` 直接编辑
+# 注意 pet 用 toml encoder 整体重写本文件，注释与格式在首次保存后会被平铺
+
+[[Snippets]]
+  Description = "docker cleanup: prune unused containers, images, cache"
+  Output = ""
+  Tag = ["docker", "cleanup"]
+  command = """docker system df
+docker system prune -a"""
