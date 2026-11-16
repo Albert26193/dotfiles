@@ -1,5 +1,4 @@
 {
-  "claudeCode.claudeProcessWrapper": "/Users/albert/.local/bin/clauded",
   "claudeCode.preferredLocation": "panel",
   "claudeCode.useTerminal": false,
   "claudeCode.allowDangerouslySkipPermissions": true,
@@ -223,7 +222,7 @@
   /***************************************/
   /************* diffEditor **************/
   /***************************************/
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.wordWrap": "on",
   /**********************************/
   /************* editor *************/
@@ -2839,7 +2838,8 @@
     "claudeWithCode": "@{filename}:{lineNumber}-{lineNumberEnd}\n```{lang}\n{text}\n```"
   },
   "diffEditor.renderSideBySide": true,
-  "diffEditor.hideUnchangedRegions.enabled": true,
   "comments.openView": "never",
   "codemap.expandCommentOnFocus": false,
+  "workbench.panel.showLabels": false,
+  "diffEditor.hideUnchangedRegions.enabled": true,
 }

@@ -69,6 +69,3 @@ fi
 
 # Added by Devin
 export PATH="/Users/albert/.codeium/windsurf/bin:$PATH"
-# >>> clauded PATH >>>
-case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
-# <<< clauded PATH <<<
