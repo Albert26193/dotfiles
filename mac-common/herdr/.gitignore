@@ -1,0 +1,5 @@
+# herdr 把运行时文件写在 config.toml 同目录，HERDR_CONFIG_PATH 指到这里时会落进来
+release-notes.json
+*.log
+session*.json
+sessions/

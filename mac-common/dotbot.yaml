@@ -31,6 +31,10 @@
     ~/.config/zed/settings.json: ./misc/zed/settings.json
     ~/.config/zed/keymap.json: ./misc/zed/keymap.json
 
+    # herdr：只链配置和布局，~/.config/herdr/ 下 session.json / 日志不入库
+    ~/.config/herdr/config.toml: ./herdr/config.toml
+    ~/.config/herdr/layouts: ./herdr/layouts
+
     # AI agents
     ~/.claude/: ./home-files/.claude/*
     ~/.codex/: ./home-files/.codex/*

@@ -10,3 +10,21 @@
   Tag = ["docker", "cleanup"]
   command = """docker system df
 docker system prune -a"""
+
+[[Snippets]]
+  Description = "install codex cli"
+  Output = ""
+  Tag = ["install", "ai"]
+  command = "curl -fsSL https://chatgpt.com/codex/install.sh | sh"
+
+[[Snippets]]
+  Description = "install claude code (cc)"
+  Output = ""
+  Tag = ["install", "ai"]
+  command = "curl -fsSL https://claude.ai/install.sh | bash"
+
+[[Snippets]]
+  Description = "install pi coding agent"
+  Output = ""
+  Tag = ["install", "ai"]
+  command = "curl -fsSL https://pi.dev/install.sh | sh"

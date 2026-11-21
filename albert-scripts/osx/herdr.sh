@@ -78,10 +78,12 @@ function ab.herdr.now {
   ab.herdr.save "${1:-1000}" && ab.herdr.view
 }
 
-# ab.tmux.prune 的对应物：保留最新 3 份
-function ab.herdr.prune {
+# ab.tmux.prune 的对应物：确认后只保留最新 3 份
+ab.herdr.prune() (
+  source "${ALBERT_SCRIPTS_PATH:-$HOME/.albert-scripts}/utils/utils.sh"
   [[ -d "$_AB_HERDR_LOG" ]] || return 0
+  yn_prompt "prune herdr logs (keep newest 3)?" || return 0
   ls -t "$_AB_HERDR_LOG"/*.herdr.log 2>/dev/null | tail -n +4 | while read -r f; do
-    rm "$f" && printf "rm %s\n" "$f"
+    rm "$f" && print_green_line "rm $f"
   done
-}
+)

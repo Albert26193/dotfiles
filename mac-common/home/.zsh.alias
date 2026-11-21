@@ -40,3 +40,8 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 #--------------------- autossh --------------------
 alias "assh"="autossh -M 0"
 
+#--------------------- herdr ----------------------
+alias "hd"="herdr"
+alias "hp.main"="ab.herdr.load main"
+alias "hp.kill.main"="ab.herdr.kill main"
+
