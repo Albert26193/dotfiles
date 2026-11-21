@@ -1,0 +1,92 @@
+# ==============================================================================
+# herdr 配置（mac-common，体验期）
+#
+# 链接位置：~/.config/herdr/config.toml（dotbot 只链接这个文件，
+#           ~/.config/herdr/ 下的 session.json / 日志等运行时文件不入库）
+# 生效方式：herdr server reload-config，或 herdr 内 prefix+shift+r
+# 校验版本：herdr 0.8.0（protocol 19）
+# 完整默认值：herdr --default-config
+#
+# 对齐原则：尽量复刻 mac-common/home/.tmux.conf 的手感，tmux 本身不动。
+# ==============================================================================
+
+# 跳过首次引导（引导流程会回写本文件，而本文件是 dotfiles 里的 symlink）
+onboarding = false
+
+[theme]
+name = "catppuccin"
+
+[terminal]
+# 新 pane / tab 跟随来源 pane 的 cwd（≈ tmux_conf_new_*_retain_current_path）
+new_cwd = "follow"
+
+[keys]
+# mac tmux 用默认 C-b，保持一致
+prefix = "ctrl+b"
+
+# ---- 与 tmux 同名的手感 ----
+# prefix+h/j/k/l 焦点、prefix+z zoom、prefix+[ copy mode、prefix+1..9 切 tab
+# 均为 herdr 默认，无需声明
+
+# fuzzy pick：herdr 原生 goto picker，同时保留 tmux 的 C-f 肌肉记忆
+goto = ["prefix+g", "prefix+ctrl+f"]
+
+# 不用前缀直接 ctrl+1..9 切 tab（≈ bind-key -n C-1 select-window -t 1）
+switch_tab = ["prefix+1..9", "ctrl+1..9"]
+
+# ---- tmux 里没有、herdr 白送的 ----
+# prefix+shift+h/j/k/l  swap pane
+# prefix+r              resize mode
+# prefix+w              workspace 导航
+
+# ---- 自定义命令：补齐 tmux 绑定 ----
+# prefix+e ≈ bind e select-layout even-horizontal（保持结构、比例均分）
+[[keys.command]]
+key = "prefix+e"
+type = "shell"
+command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py equal"
+description = "equalize splits"
+
+# prefix+m ≈ bind p join-pane（prefix+p 仍是 herdr 的 previous tab）
+[[keys.command]]
+key = "prefix+m"
+type = "popup"
+command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py move"
+description = "move pane to tab"
+width = "60%"
+height = "50%"
+
+# lazygit 浮窗（herdr 文档示例，体验 popup 能力）
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit"
+width = "85%"
+height = "85%"
+
+[ui]
+# tmux 新建 window 不提示命名
+prompt_new_tab_name = false
+tab_bar_position = "top"
+
+[ui.toast]
+# agent 完成 / 需要输入时，在 herdr 内弹提示
+delivery = "herdr"
+
+[session]
+# server 重启后自动 resume 支持的 agent 会话（pi/claude/codex/droid…）
+resume_agents_on_restore = true
+
+[advanced]
+# ≈ history-limit 1000000；herdr 按字节计，默认 10MB，这里给 50MB/pane
+scrollback_limit_bytes = 50000000
+
+[experimental]
+# 中文输入法：TUI agent 隐藏光标时候选框也能跟随
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "pi", "codex"]
+# 进入 prefix 时临时切到英文输入源，避免中文输入法吞掉 prefix 后的按键
+switch_ascii_input_source_in_prefix = true
+# 屏幕内容落盘（重启后回放），会把终端输出写到磁盘，默认关闭
+pane_history = false

@@ -1,9 +1,8 @@
 # font
-font-family = IosevkaTermSlab Nerd Font
+font-family = "Sarasa Term SC"
 font-size = 15
 
 # theme
-# theme = iTerm2 Solarized Dark
 theme = custom-dracula
 
 # background
