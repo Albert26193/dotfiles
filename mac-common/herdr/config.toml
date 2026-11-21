@@ -21,40 +21,117 @@ name = "catppuccin"
 new_cwd = "follow"
 
 [keys]
-# mac tmux 用默认 C-b，保持一致
+# ==============================================================================
+# tmux 风格键位：tmux 默认键 + mac-common/home/.tmux.conf 里的自定义键
+# herdr 自己的默认键在不冲突时保留为别名（v / minus / g / b 等）
+# 内置动作和 [[keys.command]] 同键时内置动作胜出，所以要让位的内置键必须显式改掉
+# ==============================================================================
 prefix = "ctrl+b"
 
-# ---- 与 tmux 同名的手感 ----
-# prefix+h/j/k/l 焦点、prefix+z zoom、prefix+[ copy mode、prefix+1..9 切 tab
-# 均为 herdr 默认，无需声明
+# ---- window（= herdr tab）----
+new_tab = "prefix+c"                             # c  new-window
+next_tab = "prefix+n"                            # n  next-window
+previous_tab = "prefix+shift+p"                  # p  被你的 .tmux.conf 改成 join-pane，这里同样让位
+rename_tab = "prefix+,"                          # ,  rename-window
+close_tab = "prefix+&"                           # &  kill-window
+switch_tab = ["prefix+1..9", "ctrl+1..9"]        # 1..9 + bind -n C-1..9
 
-# fuzzy pick：herdr 原生 goto picker，同时保留 tmux 的 C-f 肌肉记忆
-goto = ["prefix+g", "prefix+ctrl+f"]
+# ---- session（= herdr workspace）----
+rename_workspace = "prefix+$"                    # $  rename-session
+previous_workspace = "prefix+("                  # (  switch-client -p
+next_workspace = "prefix+)"                      # )  switch-client -n
+detach = "prefix+d"                              # d  detach-client
+workspace_picker = "prefix+s"                    # s  choose-session
+goto = ["prefix+w", "prefix+ctrl+f", "prefix+g"] # w  choose-tree / 你的 C-f fzf
+settings = "prefix+shift+s"                      # herdr 默认 prefix+s，让给 choose-session
 
-# 不用前缀直接 ctrl+1..9 切 tab（≈ bind-key -n C-1 select-window -t 1）
-switch_tab = ["prefix+1..9", "ctrl+1..9"]
+# ---- pane ----
+split_vertical = ["prefix+%", "prefix+v"]          # %  split-window -h（左右）
+split_horizontal = ["prefix+\"", "prefix+minus"]   # "  split-window -v（上下）
+close_pane = "prefix+x"                          # x  kill-pane
+zoom = "prefix+z"                                # z  resize-pane -Z
+focus_pane_left = ["prefix+h", "prefix+left"]    # h/←  select-pane -L
+focus_pane_down = ["prefix+j", "prefix+down"]
+focus_pane_up = ["prefix+k", "prefix+up"]
+focus_pane_right = ["prefix+l", "prefix+right"]
+cycle_pane_next = ["prefix+o", "prefix+tab"]     # o  select-pane -t :.+
+last_pane = "prefix+;"                           # ;  last-pane
+swap_pane_left = ["prefix+{", "prefix+shift+h"]  # {  swap-pane -U（herdr 按方向，近似）
+swap_pane_right = ["prefix+}", "prefix+shift+l"] # }  swap-pane -D
+resize_mode = "prefix+r"                         # herdr 独有：进入后 hjkl 连续调整
 
-# ---- tmux 里没有、herdr 白送的 ----
-# prefix+shift+h/j/k/l  swap pane
-# prefix+r              resize mode
-# prefix+w              workspace 导航
+# ---- 其它 ----
+copy_mode = "prefix+["                           # [  copy-mode
+help = "prefix+?"                                # ?  list-keys
+reload_config = "prefix+shift+r"
+toggle_sidebar = "prefix+b"
+# 下面三个 herdr 默认键与上面的 tmux 键冲突，换位
+edit_scrollback = "prefix+shift+e"              # 默认 prefix+e → 让给 equalize
+open_notification_target = "prefix+shift+o"     # 默认 prefix+o → 让给 select-pane next
+rename_pane = "prefix+shift+t"                   # 默认 prefix+shift+p → 让给 previous_tab
 
-# ---- 自定义命令：补齐 tmux 绑定 ----
-# prefix+e ≈ bind e select-layout even-horizontal（保持结构、比例均分）
+# ---- 自定义命令：补齐 herdr 没有的 tmux 动作 ----
+# e  ≈ 你的 bind e select-layout even-horizontal（所有 pane 排成一行再均分）
 [[keys.command]]
 key = "prefix+e"
 type = "shell"
-command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py equal"
-description = "equalize splits"
+command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py even right"
+description = "even-horizontal"
 
-# prefix+m ≈ bind p join-pane（prefix+p 仍是 herdr 的 previous tab）
+# C-e  ≈ linux .tmux.conf 的 bind C-e select-layout even-vertical
 [[keys.command]]
-key = "prefix+m"
+key = "prefix+ctrl+e"
+type = "shell"
+command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py even down"
+description = "even-vertical"
+
+# =  ≈ select-layout -E（结构不变，只把比例均分）
+[[keys.command]]
+key = "prefix+="
+type = "shell"
+command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py equal"
+description = "balance splits"
+
+# p  ≈ 你的 bind p join-pane（fzf 选目标 tab）
+[[keys.command]]
+key = "prefix+p"
 type = "popup"
 command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py move"
-description = "move pane to tab"
+description = "join pane to tab"
 width = "60%"
 height = "50%"
+
+# !  ≈ break-pane
+[[keys.command]]
+key = "prefix+!"
+type = "shell"
+command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py break"
+description = "break pane to new tab"
+
+# C-←↑↓→  ≈ resize-pane -L/-U/-D/-R（0.8.0 没有 resize_pane_* 键，走 CLI）
+[[keys.command]]
+key = "prefix+ctrl+left"
+type = "shell"
+command = "herdr pane resize --current --direction left --amount 0.05"
+description = "resize left"
+
+[[keys.command]]
+key = "prefix+ctrl+right"
+type = "shell"
+command = "herdr pane resize --current --direction right --amount 0.05"
+description = "resize right"
+
+[[keys.command]]
+key = "prefix+ctrl+up"
+type = "shell"
+command = "herdr pane resize --current --direction up --amount 0.05"
+description = "resize up"
+
+[[keys.command]]
+key = "prefix+ctrl+down"
+type = "shell"
+command = "herdr pane resize --current --direction down --amount 0.05"
+description = "resize down"
 
 # lazygit 浮窗（herdr 文档示例，体验 popup 能力）
 [[keys.command]]
@@ -70,6 +147,7 @@ height = "85%"
 prompt_new_tab_name = false
 tab_bar_position = "top"
 
+show_agent_labels_on_pane_borders = true
 [ui.toast]
 # agent 完成 / 需要输入时，在 herdr 内弹提示
 delivery = "herdr"

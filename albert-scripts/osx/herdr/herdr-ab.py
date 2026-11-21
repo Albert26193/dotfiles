@@ -7,9 +7,11 @@
 子命令：
   load <layout.json>   按 tmuxp 风格的 JSON 创建 workspace + tabs（≈ tmuxp load）
   export [--tab ID]    把当前 workspace 导出为同格式 JSON（≈ tmuxp freeze）
-  equal [right|down]   当前 tab 所有分割比例均分（≈ tmux select-layout even-*）
+  equal [right|down]   当前 tab 所有分割比例均分，结构不变（≈ tmux select-layout -E）
+  even [right|down]    所有 pane 排成一行 / 一列再均分（≈ select-layout even-horizontal / even-vertical）
   move                 fzf 选目标 tab，把当前 pane 搬过去（≈ tmux join-pane）
   kill <label>         关闭指定 label 的 workspace（≈ tmux kill-session -t）
+  break                当前 pane 拆到新 tab（≈ tmux break-pane）
   call <method> [json] 直接调用任意 socket API 方法（调试用）
 
 socket 解析顺序：$HERDR_SOCKET_PATH → $HERDR_SESSION 对应 session →
@@ -258,6 +260,51 @@ def cmd_equal(args):
 
 
 # ------------------------------------------------------------------------------
+# even：真正的 tmux even-horizontal / even-vertical
+# 把当前 tab 的所有 pane 排成一行（right）或一列（down），再均分。
+# 用 pane.move 搬活的 pane，进程 / scrollback 不受影响。
+# ------------------------------------------------------------------------------
+def leaves(node, out):
+    if node.get("type") == "split":
+        leaves(node["first"], out)
+        leaves(node["second"], out)
+    else:
+        out.append(node["pane_id"])
+    return out
+
+
+def is_chain(node, direction):
+    """已经是同一方向的一串 pane（只含该方向的 split）。"""
+    if node.get("type") != "split":
+        return True
+    return (node["direction"] == direction
+            and is_chain(node["first"], direction) and is_chain(node["second"], direction))
+
+
+def cmd_even(args):
+    direction = args[0] if args else "right"
+    if direction not in ("right", "down"):
+        die("even 参数只能是 right（even-horizontal）/ down（even-vertical）")
+    layout = call("layout.export")["layout"]
+    tab_id, focused = layout["tab_id"], layout["focused_pane_id"]
+    if not is_chain(layout["root"], direction):
+        # pane.move 不允许同 tab 内移动（reason=same_tab），所以经一个临时 tab 中转：
+        # 先把 pane 搬到新 tab，再搬回来贴在上一个 pane 的右侧 / 下方
+        ws_id = layout["workspace_id"]
+        panes = leaves(layout["root"], [])
+        prev = panes[0]
+        for pane_id in panes[1:]:
+            call("pane.move", {"pane_id": pane_id, "focus": False,
+                               "destination": {"type": "new_tab", "workspace_id": ws_id}})
+            dest = {"type": "tab", "tab_id": tab_id, "split": direction, "target_pane_id": prev}
+            call("pane.move", {"pane_id": pane_id, "destination": dest, "focus": False})
+            prev = pane_id
+        call("tab.focus", {"tab_id": tab_id})
+        call("pane.focus", {"pane_id": focused})
+    cmd_equal([direction])
+
+
+# ------------------------------------------------------------------------------
 # move：fzf 选目标 tab，搬运当前 pane
 # ------------------------------------------------------------------------------
 def cmd_move(args):
@@ -306,8 +353,15 @@ def main(argv):
         cmd_export(rest)
     elif cmd == "equal":
         cmd_equal(rest)
+    elif cmd == "even":
+        cmd_even(rest)
     elif cmd == "move":
         cmd_move(rest)
+    elif cmd == "break":
+        # ≈ tmux break-pane：当前 pane 拆到同 workspace 的新 tab
+        pane = call("pane.current")["pane"]
+        dest = {"type": "new_tab", "workspace_id": pane["workspace_id"]}
+        call("pane.move", {"pane_id": pane["pane_id"], "destination": dest, "focus": True})
     elif cmd == "kill":
         if not rest:
             die("用法: herdr-ab kill <workspace-label>")

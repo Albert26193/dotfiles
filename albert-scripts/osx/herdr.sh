@@ -24,13 +24,19 @@ function ab.herdr.export {
   python3 "$_AB_HERDR_PY" export "$@"
 }
 
-# tmux select-layout even-* 的对应物（已绑定 prefix+e）
+# tmux select-layout -E 的对应物：结构不变，只均分比例（已绑定 prefix+=）
 function ab.herdr.equal {
   _ab.herdr.check || return 1
   python3 "$_AB_HERDR_PY" equal "$@"
 }
 
-# tmux join-pane 的对应物（已绑定 prefix+m）
+# tmux select-layout even-horizontal / even-vertical（已绑定 prefix+e / prefix+C-e）
+function ab.herdr.even {
+  _ab.herdr.check || return 1
+  python3 "$_AB_HERDR_PY" even "${1:-right}"
+}
+
+# tmux join-pane 的对应物（已绑定 prefix+p）
 function ab.herdr.move {
   _ab.herdr.check || return 1
   python3 "$_AB_HERDR_PY" move "$@"
