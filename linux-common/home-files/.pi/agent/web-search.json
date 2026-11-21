@@ -1,0 +1,7 @@
+{
+  "searchRouting": {
+    "providers": ["deepseek", "exa"],
+    "fallbackOn": ["transient", "quota", "network", "invalid-response", "empty"]
+  },
+  "deepseekApiKey": "!jq -er .providers.deepseek.apiKey ~/.pi/agent/models.json"
+}

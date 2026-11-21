@@ -14,13 +14,13 @@
     "+ls",
     "+codemode"
   ],
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-flash",
+  "defaultProvider": "magpie",
+  "defaultModel": "claude-opus-5-5",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "llmintro/*",
     "deepseek/*",
-    "magpie/*"
+    "magpie/**"
   ],
   "packages": [
     "npm:pi-clean-mode",
@@ -28,11 +28,13 @@
     "npm:@narumitw/pi-statusline",
     "npm:pi-subagents",
     "npm:pi-lens",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:@estebanforge/pi-antigravity-bridge"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0",
     "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.7",
-    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0"
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
+    "{\"source\":\"npm:@estebanforge/pi-antigravity-bridge\",\"scope\":\"user\"}": "1.13.0"
   }
 }
