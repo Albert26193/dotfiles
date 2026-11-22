@@ -2,7 +2,6 @@
 
 # @desc: 在预设搜索目录中模糊查找文件或目录并输出路径
 # @usage: ab.fs.search [query...]
-# @alias: fs
 function ab.fs.search {
   local fd_command="fd"
   if command -v "fdfind" &>/dev/null; then
@@ -64,7 +63,6 @@ function ab.fs.search {
 
 # @desc: 在预设搜索目录中模糊查找并 cd 跳转到目标目录
 # @usage: ab.fs.jump [query...]
-# @alias: fj
 function ab.fs.jump {
   local target_file
   target_file="$(ab.fs.search "$1" "$2" "$3")"
@@ -82,7 +80,6 @@ function ab.fs.jump {
 
 # @desc: 在预设搜索目录中模糊查找文件并用编辑器打开
 # @usage: ab.fs.edit [query...]
-# @alias: fe
 function ab.fs.edit {
   local target_file
   target_file="$(ab.fs.search "$1" "$2" "$3")"

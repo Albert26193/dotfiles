@@ -2,7 +2,6 @@
 
 # @desc: fzf 选择 mysqld/sqlengine 进程并用 cgdb attach 调试
 # @usage: ab.gdb.attach [query]
-# @alias: ab.ca
 function ab.gdb.attach {
   local query_param="$1"
   local debugger_path="/home/linuxbrew/.linuxbrew/bin/gdb"

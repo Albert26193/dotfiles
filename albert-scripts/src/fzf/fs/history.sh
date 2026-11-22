@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # @desc: 模糊检索 shell 历史命令并在确认后执行
-# @alias: fh
 function ab.fs.history {
   local selected_command
   selected_command=$(

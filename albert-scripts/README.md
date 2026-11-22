@@ -58,7 +58,6 @@ albert-scripts/
 ```bash
 # @desc: 通过 OSC 52 将标准输入写入本地剪贴板（必填）
 # @usage: cmd | ab.clip（选填；带参数命令请以函数名开头，如 ab.codex [off|<query>]）
-# @alias: oc（选填；空格分隔，仅填写 .zsh.alias 中存在的 1:1 短别名）
 # @tags: clipboard osc52（选填；空格分隔，补充搜索关键词）
 function ab.clip {
   ...
@@ -72,7 +71,7 @@ function ab.clip {
 
 全部实现在单文件 `src/meta/ab.sh` 中（纯 Shell + POSIX `awk`）：
 
-- **`ab [query]`**：打开 fzf 交互面板检索全部公开命令（可按命令名、分类 `[dev]`、`@alias`、`@tags`、`@desc` 过滤），右侧预览元信息与 `bat` 高亮源码（无 `bat` 时自动降级纯文本行号预览）。
+- **`ab [query]`**：打开 fzf 交互面板检索全部公开命令（可按命令名、分类 `[dev]`、`@tags`、`@desc` 过滤；不感知 `.zsh.alias`），右侧预览元信息与 `bat` 高亮源码（无 `bat` 时自动降级纯文本行号预览）。
   - `Enter`：zsh 下用 `print -z` 放入命令行缓冲区（bash 下打印到标准输出）。
   - `Ctrl-X`：写入历史并立即执行。
   - `Ctrl-E`：用 `${FS_EDITOR:-nvim}` 直接跳转到对应源文件定义行。
@@ -87,6 +86,6 @@ function ab.clip {
 
 1. 按功能放进 `src/<category>/<domain>.sh`（文件过大时拆成 `src/<category>/<domain>/*.sh`，共享私有函数放 `_common.sh`）。
 2. 使用 `function ab.<domain>.<action> {`（私有 helper 用 `_ab.<domain>.*`），函数内变量全部 `local`。
-3. 函数上方补齐 `# @desc:`（必要时补 `@usage` / `@alias` / `@tags`）。
+3. 函数上方补齐 `# @desc:`（必要时补 `@usage` / `@tags`）。
 4. 如需短别名，同步添加到对应 `.zsh.alias`。
 5. 运行 `ab.lint` 确认 `0 violations`，并执行 `source ~/.albert-scripts/export.sh` 验证加载正常。

@@ -1,42 +1,36 @@
 #!/bin/bash
 
-function _ab.ab.files {
-  find "$1" -type f -name '*.sh' | LC_ALL=C sort
-}
-
 function _ab.ab.index {
   local src_root="$1"
   local files=() file
   while IFS= read -r file; do
     [[ -n "${file}" ]] && files+=("${file}")
-  done < <(_ab.ab.files "${src_root}")
+  done < <(find "${src_root}" -type f -name '*.sh' | LC_ALL=C sort)
   [[ ${#files[@]} -eq 0 ]] && return 0
 
   awk -v root="${src_root}" '
     FNR == 1 {
       rel = substr(FILENAME, length(root) + 2)
       split(rel, p, "/"); cat = p[1]
-      desc = usage = aliases = tags = ""
+      desc = usage = tags = ""
     }
     /^[ \t]*#[ \t]*@desc:/  { sub(/^[ \t]*#[ \t]*@desc:[ \t]*/,  ""); desc = $0; next }
     /^[ \t]*#[ \t]*@usage:/ { sub(/^[ \t]*#[ \t]*@usage:[ \t]*/, ""); usage = $0; next }
-    /^[ \t]*#[ \t]*@alias:/ { sub(/^[ \t]*#[ \t]*@alias:[ \t]*/, ""); aliases = $0; next }
     /^[ \t]*#[ \t]*@tags:/  { sub(/^[ \t]*#[ \t]*@tags:[ \t]*/,  ""); tags = $0; next }
     /^[ \t]*#/              { next }
     /^function[ \t]+[a-zA-Z0-9._-]+[ \t]*\{/ {
       name = $2
       if (cat != "_utils" && name !~ /^_/ && name != "ab") {
         has_args = (index(usage, name " ") == 1) ? "1" : "0"
-        alias_col = (aliases != "" ? " \033[32m(" aliases ")\033[0m" : "")
-        tags_col  = (tags != ""    ? " \033[2m[" tags "]\033[0m"    : "")
-        display = sprintf("\033[36m%-22s\033[0m  \033[33m%-7s\033[0m%s %s%s",
-          name, "[" cat "]", alias_col, desc, tags_col)
+        tags_col = (tags != "" ? " \033[2m[" tags "]\033[0m" : "")
+        display = sprintf("\033[36m%-22s\033[0m  \033[33m%-7s\033[0m %s%s",
+          name, "[" cat "]", desc, tags_col)
         printf "%s\t%s\t%d\t%s\t%s\n", name, rel, FNR, has_args, display
       }
-      desc = usage = aliases = tags = ""
+      desc = usage = tags = ""
       next
     }
-    { desc = usage = aliases = tags = "" }
+    { desc = usage = tags = "" }
   ' "${files[@]}"
 }
 
@@ -47,34 +41,32 @@ function _ab.ab.preview {
 
   local meta
   meta=$(awk -v target_line="${target_line}" -v fn_name="${fn_name}" '
-    found == 1 { if ($0 == "}") { bend = NR; exit }; next }
+    found { if ($0 == "}") { bend = NR; exit }; next }
     /^[ \t]*#/ && !/^#!/ {
-      if (cstart == 0) cstart = NR
+      if (!cstart) cstart = NR
       if (/^[ \t]*#[ \t]*@desc:/)  { sub(/^[ \t]*#[ \t]*@desc:[ \t]*/,  ""); desc = $0 }
       if (/^[ \t]*#[ \t]*@usage:/) { sub(/^[ \t]*#[ \t]*@usage:[ \t]*/, ""); usage = $0 }
-      if (/^[ \t]*#[ \t]*@alias:/) { sub(/^[ \t]*#[ \t]*@alias:[ \t]*/, ""); aliases = $0 }
       if (/^[ \t]*#[ \t]*@tags:/)  { sub(/^[ \t]*#[ \t]*@tags:[ \t]*/,  ""); tags = $0 }
       next
     }
-    /^function[ \t]+[a-zA-Z0-9._-]+[ \t]*\{/ && $2 == fn_name && (target_line == 0 || NR == target_line) {
-      bstart = (cstart > 0 ? cstart : NR); fline = NR; found = 1; next
+    /^function[ \t]+[a-zA-Z0-9._-]+[ \t]*\{/ && $2 == fn_name && (!target_line || NR == target_line) {
+      bstart = (cstart ? cstart : NR); fline = NR; found = 1; next
     }
-    { cstart = 0; desc = usage = aliases = tags = "" }
+    { cstart = 0; desc = usage = tags = "" }
     END {
       if (!found) exit 1
       if (!bend) bend = NR
-      printf "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", bstart, fline, bend, desc, usage, aliases, tags
+      printf "%d\t%d\t%d\t%s\t%s\t%s\n", bstart, fline, bend, desc, usage, tags
     }
   ' "${full_path}") || { printf 'Function not found: %s in %s\n' "${fn_name}" "${rel_path}"; return 1; }
 
-  local bstart fline bend desc usage aliases tags
-  IFS=$'\t' read -r bstart fline bend desc usage aliases tags <<<"${meta}"
+  local bstart fline bend desc usage tags
+  IFS=$'\t' read -r bstart fline bend desc usage tags <<<"${meta}"
 
   printf '\033[1;36m%s\033[0m  \033[33m[%s]\033[0m\n' "${fn_name}" "${rel_path%%/*}"
-  [[ -n "${desc}" ]]    && printf '%s\n' "${desc}"
-  [[ -n "${usage}" ]]   && printf '\033[2musage:\033[0m %s\n' "${usage}"
-  [[ -n "${aliases}" ]] && printf '\033[2malias:\033[0m \033[32m%s\033[0m\n' "${aliases}"
-  [[ -n "${tags}" ]]    && printf '\033[2mtags :\033[0m %s\n' "${tags}"
+  [[ -n "${desc}" ]]  && printf '%s\n' "${desc}"
+  [[ -n "${usage}" ]] && printf '\033[2musage:\033[0m %s\n' "${usage}"
+  [[ -n "${tags}" ]]  && printf '\033[2mtags :\033[0m %s\n' "${tags}"
   printf '\033[2mfile : src/%s:%s\033[0m\n' "${rel_path}" "${fline}"
   printf '\033[2m────────────────────────────────────────────────────────\033[0m\n'
 
@@ -94,28 +86,18 @@ function _ab.ab.preview {
 # @usage: ab [query]
 # @tags: picker search
 function ab {
-  if ! command -v fzf &>/dev/null; then
-    _ab.ui.red "error: 'fzf' is not installed or not in PATH."
-    return 1
-  fi
+  command -v fzf &>/dev/null || { _ab.ui.red "error: 'fzf' is not installed or not in PATH."; return 1; }
 
   local src_root="${ALBERT_SCRIPTS_PATH:-${HOME}/.albert-scripts}/src"
   local self_file="${src_root}/meta/ab.sh"
-
   local selection
+
   selection=$(
     _ab.ab.index "${src_root}" |
-      fzf --ansi \
-        --delimiter=$'\t' \
-        --with-nth=5 \
-        --query="$*" \
-        --height=70% \
-        --layout=reverse \
-        --border \
-        --prompt="ab> " \
+      fzf --ansi --delimiter=$'\t' --with-nth=5 --query="$*" \
+        --height=70% --layout=reverse --border --prompt="ab> " \
         --header="Enter: 放命令行 | Ctrl-X: 立即执行 | Ctrl-E: 编辑源码" \
-        --expect=ctrl-e,ctrl-x \
-        --preview-window="right:50%:wrap" \
+        --expect=ctrl-e,ctrl-x --preview-window="right:50%:wrap" \
         --preview "bash -c 'source \"\$1\" && _ab.ab.preview \"\$2\" \"\$3\" \"\$4\" \"\$5\"' _ '${self_file}' '${src_root}' {2} {3} {1}"
   ) || return 0
 
@@ -128,9 +110,7 @@ function ab {
   [[ -z "${cmd}" ]] && return 0
 
   case "${key}" in
-    ctrl-e)
-      "${FS_EDITOR:-nvim}" "+${line}" "${src_root}/${rel_path}"
-      ;;
+    ctrl-e) "${FS_EDITOR:-nvim}" "+${line}" "${src_root}/${rel_path}" ;;
     ctrl-x)
       [[ -n "${ZSH_VERSION:-}" ]] && print -s "${cmd}"
       eval "${cmd}"
@@ -154,12 +134,8 @@ function ab.lint {
   local files=() file
   while IFS= read -r file; do
     [[ -n "${file}" ]] && files+=("${file}")
-  done < <(_ab.ab.files "${src_root}")
-
-  if [[ ${#files[@]} -eq 0 ]]; then
-    _ab.ui.red "ab.lint FAILED: no .sh files found under ${src_root}"
-    return 1
-  fi
+  done < <(find "${src_root}" -type f -name '*.sh' | LC_ALL=C sort)
+  [[ ${#files[@]} -eq 0 ]] && { _ab.ui.red "ab.lint FAILED: no .sh files under ${src_root}"; return 1; }
 
   awk -v root="${src_root}" -v q="'" '
     FNR == 1 {
@@ -168,10 +144,10 @@ function ab.lint {
       expected = (cat == "_utils" ? "_ab." : "ab." dom)
       desc = ""
     }
-    /^[ \t]*alias[ \t]+/          { err[++ec] = rel ":" FNR ": alias is not allowed inside src/ (put in .zsh.alias)" }
-    /^[ \t]*#[ \t]*@desc:/        { sub(/^[ \t]*#[ \t]*@desc:[ \t]*/, ""); desc = $0; next }
-    /^[ \t]*#/                    { next }
-    /^[a-zA-Z0-9._-]+[ \t]*\(\)/  { err[++ec] = rel ":" FNR ": non-canonical syntax " q $0 q " (use " q "function name {" q ")"; desc = ""; next }
+    /^[ \t]*alias[ \t]+/         { err[++ec] = rel ":" FNR ": alias is not allowed inside src/ (put in .zsh.alias)" }
+    /^[ \t]*#[ \t]*@desc:/       { sub(/^[ \t]*#[ \t]*@desc:[ \t]*/, ""); desc = $0; next }
+    /^[ \t]*#/                   { next }
+    /^[a-zA-Z0-9._-]+[ \t]*\(\)/ { err[++ec] = rel ":" FNR ": non-canonical syntax " q $0 q " (use " q "function name {" q ")"; desc = ""; next }
     /^function[ \t]+[a-zA-Z0-9._-]+[ \t]*\{/ {
       name = $2; loc = rel ":" FNR; is_priv = (name ~ /^_/)
       if (name in seen) err[++ec] = loc ": duplicate function " q name q " (first seen at " seen[name] ")"

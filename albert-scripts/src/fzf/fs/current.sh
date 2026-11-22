@@ -2,7 +2,6 @@
 
 # @desc: 在当前目录树下模糊查找文件或目录并输出路径
 # @usage: ab.fs.current.search [query...]
-# @alias: cs
 function ab.fs.current.search {
   local fd_command="fd"
   if command -v "fdfind" &>/dev/null; then
@@ -34,7 +33,6 @@ function ab.fs.current.search {
 
 # @desc: 在当前目录树下模糊查找并 cd 跳转到目标目录
 # @usage: ab.fs.current.jump [query...]
-# @alias: cj
 function ab.fs.current.jump {
   local target_file
   target_file="$(ab.fs.current.search "$@")"
@@ -52,7 +50,6 @@ function ab.fs.current.jump {
 
 # @desc: 在当前目录树下模糊查找文件并用编辑器打开
 # @usage: ab.fs.current.edit [query...]
-# @alias: ce
 function ab.fs.current.edit {
   local target_file
   target_file="$(ab.fs.current.search "$@")"
