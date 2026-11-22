@@ -1,5 +1,5 @@
 personality = "pragmatic"
-model = "gpt-5.6-sol"
+model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 approval_policy="never"
 sandbox_mode="danger-full-access"
@@ -22,6 +22,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/data/workspace6/WiseCat"]
+trust_level = "trusted"
+
+[projects."/data/workspace6/Nexa-knowledge"]
 trust_level = "trusted"
 
 [features]
