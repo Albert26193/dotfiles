@@ -31,7 +31,6 @@
     ~/.tcodex/: ./home-files/.tcodex/*
     ~/.codebuddy/: ./home-files/.codebuddy/*
     ~/.claude/: ./home-files/.claude/*
-    ~/.codex/: ./home-files/.codex/*
     ~/.pi/agent/: ./home-files/.pi/agent/*
     ~/.config/opencode/: ./config-files/opencode/*
 

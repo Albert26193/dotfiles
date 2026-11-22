@@ -20,7 +20,7 @@
   "enabledModels": [
     "llmintro/*",
     "deepseek/*",
-    "magpie/*"
+    "magpie/**"
   ],
   "packages": [
     "npm:pi-clean-mode",

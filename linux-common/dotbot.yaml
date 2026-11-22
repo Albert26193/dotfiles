@@ -27,7 +27,6 @@
 
     # AI agents
     ~/.claude/: ./home-files/.claude/*
-    ~/.codex/: ./home-files/.codex/*
     ~/.pi/agent/: ./home-files/.pi/agent/*
     ~/.config/opencode/: ./config-files/opencode/*
 
