@@ -201,7 +201,6 @@ print_info_line "This is info"
 
 - `osx/` - macOS-specific utilities
 - `linux/` - Linux-specific utilities
-- `osx-snip/` - macOS snippet tools
 
 ---
 

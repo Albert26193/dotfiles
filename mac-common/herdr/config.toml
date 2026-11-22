@@ -70,44 +70,6 @@ edit_scrollback = "prefix+shift+e"              # 默认 prefix+e → 让给 equ
 open_notification_target = "prefix+shift+o"     # 默认 prefix+o → 让给 select-pane next
 rename_pane = "prefix+shift+t"                   # 默认 prefix+shift+p → 让给 previous_tab
 
-# ---- 自定义命令：补齐 herdr 没有的 tmux 动作 ----
-# e  ≈ 你的 bind e select-layout even-horizontal（所有 pane 排成一行再均分）
-[[keys.command]]
-key = "prefix+e"
-type = "shell"
-command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py even right"
-description = "even-horizontal"
-
-# C-e  ≈ linux .tmux.conf 的 bind C-e select-layout even-vertical
-[[keys.command]]
-key = "prefix+ctrl+e"
-type = "shell"
-command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py even down"
-description = "even-vertical"
-
-# =  ≈ select-layout -E（结构不变，只把比例均分）
-[[keys.command]]
-key = "prefix+="
-type = "shell"
-command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py equal"
-description = "balance splits"
-
-# p  ≈ 你的 bind p join-pane（fzf 选目标 tab）
-[[keys.command]]
-key = "prefix+p"
-type = "popup"
-command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py move"
-description = "join pane to tab"
-width = "60%"
-height = "50%"
-
-# !  ≈ break-pane
-[[keys.command]]
-key = "prefix+!"
-type = "shell"
-command = "python3 ~/.albert-scripts/osx/herdr/herdr-ab.py break"
-description = "break pane to new tab"
-
 # C-←↑↓→  ≈ resize-pane -L/-U/-D/-R（0.8.0 没有 resize_pane_* 键，走 CLI）
 [[keys.command]]
 key = "prefix+ctrl+left"

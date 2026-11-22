@@ -9,7 +9,7 @@
 
 **/*/lazy-lock.json
 
-**/*/__pycache__
+**/__pycache__/
 
 **/*/auth.json
 **/*/sessions

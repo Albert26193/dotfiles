@@ -2,9 +2,6 @@
 
 source "${HOME}/.config/sketchybar/variables.sh" # Loads all defined colors
 
-# AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
-# AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
-
 # General bar and defaults
 sketchybar --bar height=30 \
 	color="${BAR_COLOR}" \
@@ -38,11 +35,9 @@ sketchybar --bar height=30 \
 # Left
 # source "$ITEM_DIR/spaces.sh"
 source "${ITEM_DIR}/apple.sh"
-source "${ITEM_DIR}/aerospace.sh"
 
 # Center (of notch)
 source "${ITEM_DIR}/front_app.sh"
-source "${ITEM_DIR}/front_app_workspace.sh"
 
 # Right
 source "${ITEM_DIR}/clock.sh"

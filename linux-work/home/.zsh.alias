@@ -71,6 +71,10 @@ alias "fh"="ab.fs.history"
 alias "cs"="ab.fs.current.search"
 alias "cj"="ab.fs.current.jump"
 alias "ce"="ab.fs.current.edit"
+alias "oc"="ab.clip"
+alias "oc.fc"="ab.clip.last"
+alias "np"="ab.pager"
+alias "ab.ca"="ab.gdb.attach"
 
 #-------------------- dotbot --------------------
 alias "dotbot.linux"="cd $HOME/.dotfiles/ && dotbot -c $HOME/.dotfiles/linux-work/dotbot.yaml"
