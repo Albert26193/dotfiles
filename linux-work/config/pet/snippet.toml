@@ -28,3 +28,15 @@ docker system prune -a"""
   Output = ""
   Tag = ["install", "ai"]
   command = "curl -fsSL https://pi.dev/install.sh | sh"
+
+[[Snippets]]
+  Description = "mise: switch global Python to 3.11"
+  Output = ""
+  Tag = ["python", "mise"]
+  command = "mise use -g python@3.11 python@3.13"
+
+[[Snippets]]
+  Description = "mise: switch global Python to 3.13"
+  Output = ""
+  Tag = ["python", "mise"]
+  command = "mise use -g python@3.13 python@3.11"
