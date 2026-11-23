@@ -482,5 +482,21 @@
 		"tags": [],
 		"enabled": true,
 		"profile": ""
+	},
+	{
+		"name": "slp-global",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace7/slp-global",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "hy-data-pipeline-framework",
+		"rootPath": "vscode-remote://ssh-remote+root.9.134.133.244.cvm/data/workspace7/hy-data-pipeline-framework",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
 	}
 ]
