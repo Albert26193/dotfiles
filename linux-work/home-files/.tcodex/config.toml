@@ -30,6 +30,9 @@ trust_level = "trusted"
 [projects."/data/workspace7/*"]
 trust_level = "trusted"
 
+[projects."/data/workspace7/slp-global"]
+trust_level = "trusted"
+
 [features]
 goals = true
 
