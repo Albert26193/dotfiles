@@ -32,9 +32,10 @@
     "npm:@estebanforge/pi-antigravity-bridge"
   ],
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0",
-    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.7",
-    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
-    "{\"source\":\"npm:@estebanforge/pi-antigravity-bridge\",\"scope\":\"user\"}": "1.13.0"
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.85.0",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.8",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0",
+    "{\"source\":\"npm:@estebanforge/pi-antigravity-bridge\",\"scope\":\"user\"}": "1.13.2",
+    "{\"source\":\"npm:@narumitw/pi-statusline\",\"scope\":\"user\"}": "0.50.4"
   }
 }
