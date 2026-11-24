@@ -106,7 +106,7 @@
   "chatgpt.commentCodeLensEnabled": false,
   "chatgpt.composerEnterBehavior": "enter",
   // "chatgpt.cliExecutable": "/root/.nvm/versions/node/v22.18.0/bin/tcodex",
-  "chatgpt.cliExecutable": "/root/.local/bin/codex",
+  "chatgpt.cliExecutable": "/root/.local/bin/tcodex",
   /**********************************/
   /*********** bash-ide ************/
   /**********************************/
@@ -2842,4 +2842,6 @@
   "codemap.expandCommentOnFocus": false,
   "workbench.panel.showLabels": false,
   "diffEditor.hideUnchangedRegions.enabled": true,
+  "chatgpt.localeOverride": "en-US",
+  "chatgpt.reviewDelivery": "inline",
 }
