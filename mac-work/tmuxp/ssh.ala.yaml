@@ -36,10 +36,22 @@ windows:
     panes:
       - shell_command:
           - autossh -M 0 root.9.134.133.244.cvm
-  - window_name: mac10
+  - window_name: ark10
+    panes:
+      - shell_command:
+          - autossh -M 0 albert.53.68.ark.frp
+  - window_name: frp.24-11
+    panes:
+      - shell_command:
+          - autossh -M 0 frp.lab.24.21
+  - window_name: study12
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.202.137-study12
+  - window_name: mac13
     panes:
       - 
-  - window_name: mac11
+  - window_name: mac14
     panes:
       - 
 
