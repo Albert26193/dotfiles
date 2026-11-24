@@ -100,3 +100,25 @@ function ab.git.patch.id {
     fi
   done
 }
+
+# @desc: 向当前 Git 仓库的 info/exclude 追加本地忽略规则（已存在则跳过）
+# @usage: ab.git.exclude [pattern...]
+function ab.git.exclude {
+  local file pattern
+  file=$(git rev-parse --git-path info/exclude) || return
+  mkdir -p "$(dirname "$file")"
+  if [ $# -eq 0 ]; then
+    set -- /note /.codemap /.ignore /.ai_dev
+  fi
+  # 文件末尾无换行时先补一个，避免新规则与最后一行粘连
+  if [ -s "$file" ] && [ -n "$(tail -c 1 "$file")" ]; then
+    echo >>"$file"
+  fi
+  for pattern in "$@"; do
+    if grep -qxF -- "$pattern" "$file" 2>/dev/null; then
+      continue
+    fi
+    echo "$pattern" >>"$file"
+    echo "+ $pattern"
+  done
+}
