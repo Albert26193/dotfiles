@@ -75,3 +75,7 @@ export GOPLSCACHE="$HOME/.cache/gopls"
 [[ -f "$HOME/.zsh.keybindings" ]] && { source "$HOME/.zsh.keybindings" }
 [[ -f "$HOME/.misc.env" ]] && { source "$HOME/.misc.env" }
 
+
+
+# Added by Antigravity CLI installer
+export PATH="/root/.local/bin:$PATH"

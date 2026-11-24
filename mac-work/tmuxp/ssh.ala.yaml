@@ -28,14 +28,18 @@ windows:
     panes:
       - shell_command:
           - autossh -M 0 root.21.91.146.49-pod7
+  - window_name: tjj8
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.251.168-tjj8
   - window_name: cvm
     panes:
       - shell_command:
           - autossh -M 0 root.9.134.133.244.cvm
-  - window_name: mac9
+  - window_name: mac10
     panes:
       - 
-  - window_name: mac10
+  - window_name: mac11
     panes:
       - 
 

@@ -28,22 +28,26 @@ windows:
     panes:
       - shell_command:
           - autossh -M 0 root.21.91.146.49-pod7
-  - window_name: cvm8
+  - window_name: tjj8
+    panes:
+      - shell_command:
+          - autossh -M 0 root.21.91.251.168-tjj8
+  - window_name: cvm9
     panes:
       - shell_command:
           - autossh -M 0 root.9.134.133.244.cvm
-  - window_name: ark9
+  - window_name: ark10
     panes:
       - shell_command:
           - autossh -M 0 albert.53.68.ark.frp
-  - window_name: frp.24-10
+  - window_name: frp.24-11
     panes:
       - shell_command:
           - autossh -M 0 frp.lab.24.21
-  - window_name: study11
+  - window_name: study12
     panes:
       - shell_command:
-          - autossh -M 0 root.21.91.202.137-study11
-  - window_name: mac12
+          - autossh -M 0 root.21.91.202.137-study12
+  - window_name: mac13
     panes:
       - ""
