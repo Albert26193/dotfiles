@@ -48,19 +48,25 @@ function ab.load.claude {
   _ab.load.copy "demo.claude.json" ".claude/settings.json" "${force}"
 }
 
-# @desc: 向当前项目 .ignore 幂等追加 !note/ 规则
+# @desc: 向当前项目 .ignore 幂等追加反忽略规则（!note/、!.ai_dev 等）
 function ab.load.ignore {
   local dst="${PWD}/.ignore"
-  local rule='!note/'
+  local rules=(
+    '!note/'
+    '!.ai_dev'
+  )
+  local rule
 
-  if [[ -f "${dst}" ]] && grep -qxF "${rule}" "${dst}"; then
-    echo "exists: ${rule} in ${dst}"
-    return 0
-  fi
+  for rule in "${rules[@]}"; do
+    if [[ -f "${dst}" ]] && grep -qxF "${rule}" "${dst}"; then
+      echo "exists: ${rule} in ${dst}"
+      continue
+    fi
 
-  if [[ -s "${dst}" && -n "$(tail -c1 "${dst}")" ]]; then
-    echo >>"${dst}"
-  fi
-  echo "${rule}" >>"${dst}"
-  echo "wrote: ${rule} -> ${dst}"
+    if [[ -s "${dst}" && -n "$(tail -c1 "${dst}")" ]]; then
+      echo >>"${dst}"
+    fi
+    echo "${rule}" >>"${dst}"
+    echo "wrote: ${rule} -> ${dst}"
+  done
 }
