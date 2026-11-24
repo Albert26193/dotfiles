@@ -34,12 +34,6 @@
     ~/.pi/agent/: ./home-files/.pi/agent/*
     ~/.config/opencode/: ./config-files/opencode/*
 
-- shell:
-    - command: >-
-        [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh
-        || echo 'omz installed'
-      description: for test
-
 # - create:
 #     - ~/downloads
 #     - ~/.local

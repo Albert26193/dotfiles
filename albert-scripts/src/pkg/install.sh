@@ -24,7 +24,7 @@ function ab.install.brew {
 
   if ! id "${brew_user}" &>/dev/null; then
     _ab.ui.yellow "Creating user '${brew_user}' with home '${brew_home}'..."
-    useradd       --create-home       --home-dir "${brew_home}"       --shell /bin/bash       --comment "Linuxbrew package manager"       --groups wheel       "${brew_user}"
+    useradd       --create-home       --home-dir "${brew_home}"       --shell /bin/bash       --comment "Linuxbrew package manager"       "${brew_user}"
   else
     _ab.ui.green "User '${brew_user}' already exists."
   fi

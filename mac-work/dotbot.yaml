@@ -51,12 +51,6 @@
 
 # yamllint enable rule:line-length
 
-- shell:
-    - command: >-
-        [ -d $HOME/.oh-my-zsh/ ] && bash ./init-scripts/init.sh
-        || echo 'omz installed'
-      description: for test
-
 # - create:
 #     - ~/downloads
 #     - ~/.local
