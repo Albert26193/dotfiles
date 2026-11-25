@@ -722,5 +722,15 @@
 		],
 		"enabled": true,
 		"profile": ""
+	},
+	{
+		"name": "Nexa-knowledge-tjj8",
+		"rootPath": "vscode-remote://ssh-remote+root.21.91.251.168-tjj8/data/workspace6/Nexa-knowledge",
+		"paths": [],
+		"tags": [
+			"wisecat"
+		],
+		"enabled": true,
+		"profile": ""
 	}
 ]
