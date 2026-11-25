@@ -4,8 +4,9 @@
 --   ⌥⌘ + H → 聚焦左半边的窗口（最靠前的一扇）
 --   ⌥⌘ + L → 聚焦右半边的窗口（最靠前的一扇）
 --   ⌥⌘ + M → 最大化（铺满当前屏的可用区域）
---   ⌥⌘ + J → 焦点主左 + 其它叠右；主区循环 1/2 → 2/3 → 1/3（对侧为剩余宽度）
---   ⌥⌘ + K → 焦点主右 + 其它叠左；同上
+--   ⌥⌘ + J → 左区宽度循环 1/2 → 2/3 → 1/3；左半边的窗叠左区，右半边的窗叠右区（剩余宽度）
+--   ⌥⌘ + K → 右区宽度循环 1/2 → 2/3 → 1/3；同上
+--   ⌥⌘ + Enter → 左右区窗口互换，并各占 1/2
 
 local spaces = require("hs.spaces")
 local hotkey = hs.hotkey
@@ -138,28 +139,6 @@ local function siblingWindows(main)
 	return out
 end
 
---- mainSide: "left" | "right"
---- 焦点占该侧 frac（循环 1/2→2/3→1/3）；其它窗全部叠在对侧剩余宽度（彼此交叠）
-local function mainSideOthersStackCycle(mainSide)
-	local main = focusedStandardWindow()
-	if not main or main:isFullScreen() then
-		return
-	end
-
-	local frac = FRACTIONS[nextFractionIndex(main, mainSide)]
-	local sf = main:screen():frame()
-	local otherSide = mainSide == "left" and "right" or "left"
-	local mainFrame = sideFractionFrame(sf, mainSide, frac)
-	local otherFrame = sideFractionFrame(sf, otherSide, 1 - frac)
-
-	-- 先摆从窗（交叠），再摆主窗并 focus，保证主窗在前
-	for _, win in ipairs(siblingWindows(main)) do
-		win:setFrame(otherFrame, 0)
-	end
-	main:setFrame(mainFrame, 0)
-	main:focus()
-end
-
 --- 归属半边：窗口中心与屏中心比较；中心在屏中心附近（≈铺满）返回 nil
 local function windowHalf(win)
 	local sf = win:screen():frame()
@@ -173,6 +152,77 @@ local function windowHalf(win)
 		return "right"
 	end
 	return nil
+end
+
+--- 焦点及同屏同 Space 窗按中心归左右区；居中（≈铺满）的窗：焦点归 focusFallback，其它归 otherFallback（nil = 不参与）
+local function groupByHalf(focus, focusFallback, otherFallback)
+	local groups = { left = {}, right = {} }
+	local function assign(win, fallback)
+		local half = windowHalf(win) or fallback
+		if half then
+			groups[half][#groups[half] + 1] = win
+		end
+	end
+	assign(focus, focusFallback)
+	for _, win in ipairs(siblingWindows(focus)) do
+		assign(win, otherFallback)
+	end
+	return groups
+end
+
+--- side: "left" | "right"，该侧区域宽度循环 1/2→2/3→1/3，对侧占剩余宽度
+--- 按窗口中心归左右区；居中（≈铺满）的窗：焦点归 side，其它归对侧
+local function splitCycle(side)
+	local focus = focusedStandardWindow()
+	if not focus or focus:isFullScreen() then
+		return
+	end
+
+	local otherSide = side == "left" and "right" or "left"
+	local groups = groupByHalf(focus, side, otherSide)
+
+	-- 档位以该侧已贴边的窗判定；都不在档上则从 1/2 开始
+	local idx = 1
+	for _, win in ipairs(groups[side]) do
+		if currentFractionIndex(win, side) then
+			idx = nextFractionIndex(win, side)
+			break
+		end
+	end
+	local frac = FRACTIONS[idx]
+	local sf = focus:screen():frame()
+	local frames = {
+		[side] = sideFractionFrame(sf, side, frac),
+		[otherSide] = sideFractionFrame(sf, otherSide, 1 - frac),
+	}
+
+	for half, wins in pairs(groups) do
+		for _, win in ipairs(wins) do
+			win:setFrame(frames[half], 0)
+		end
+	end
+	focus:focus()
+end
+
+--- 左右区窗口互换并均分；居中（≈铺满）的窗不动
+local function swapHalves()
+	local focus = focusedStandardWindow()
+	if not focus or focus:isFullScreen() then
+		return
+	end
+
+	local groups = groupByHalf(focus, nil, nil)
+	local sf = focus:screen():frame()
+	local frames = {
+		left = sideFractionFrame(sf, "right", 1 / 2),
+		right = sideFractionFrame(sf, "left", 1 / 2),
+	}
+	for half, wins in pairs(groups) do
+		for _, win in ipairs(wins) do
+			win:setFrame(frames[half], 0)
+		end
+	end
+	focus:focus()
 end
 
 --- 同屏、同 Space、可布局、中心落在指定半边的标准窗
@@ -242,13 +292,17 @@ hotkey.bind(mods, "m", function()
 end)
 
 hotkey.bind(mods, "j", function()
-	mainSideOthersStackCycle("left")
+	splitCycle("left")
 end)
 
 hotkey.bind(mods, "k", function()
-	mainSideOthersStackCycle("right")
+	splitCycle("right")
+end)
+
+hotkey.bind(mods, "return", function()
+	swapHalves()
 end)
 
 print(
-	"[init] window-layout 已加载（⌥⌘+[/] 左右循环；⌥⌘+H/L 聚焦半窗；⌥⌘+M 最大化；⌥⌘+J/K 主从叠对侧 1/2→2/3→1/3）"
+	"[init] window-layout 已加载（⌥⌘+[/] 左右循环；⌥⌘+H/L 聚焦半窗；⌥⌘+M 最大化；⌥⌘+J/K 左区/右区 1/2→2/3→1/3；⌥⌘+Enter 左右互换均分）"
 )
