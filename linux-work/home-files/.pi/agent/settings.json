@@ -29,7 +29,8 @@
     "npm:pi-subagents",
     "npm:pi-lens",
     "npm:pi-web-access",
-    "npm:@estebanforge/pi-antigravity-bridge"
+    "npm:@estebanforge/pi-antigravity-bridge",
+    "npm:billion-context"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.90.0",
