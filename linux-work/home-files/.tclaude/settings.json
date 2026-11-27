@@ -49,7 +49,7 @@
       "Bash(rm:*)"
     ]
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.tclaude/statusline.sh\""
