@@ -105,7 +105,6 @@
   "chatgpt.openOnStartup": false,
   "chatgpt.commentCodeLensEnabled": false,
   "chatgpt.composerEnterBehavior": "enter",
-  // "chatgpt.cliExecutable": "/root/.nvm/versions/node/v22.18.0/bin/tcodex",
   "chatgpt.cliExecutable": "/root/.local/bin/tcodex",
   /**********************************/
   /*********** bash-ide ************/
@@ -233,7 +232,7 @@
   "editor.aiStats.enabled": true,
   "editor.autoClosingBrackets": "languageDefined",
   "editor.autoIndent": "advanced",
-  "editor.codeLensFontSize": 12,
+  "editor.codeLensFontSize": 11,
   "editor.foldingHighlight": true,
   // "editor.largeFileOptimizations": true,
   "editor.largeFileOptimizations": false,
@@ -2620,7 +2619,7 @@
   "window.density.editorTabHeight": "compact",
   "window.dialogStyle": "native",
   "window.density.layout": "compact",
-  "window.zoomLevel": 0.7,
+  "window.zoomLevel": 0.9,
   /**********************************/
   /********** work benach ***********/
   /**********************************/

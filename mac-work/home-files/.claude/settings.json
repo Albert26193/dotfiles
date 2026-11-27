@@ -1,36 +1,4 @@
 {
-  "advisorModel": "claude-fable-5-1",
-  "enabledPlugins": {
-    "claude-code-internal@claude-code-internal-plugins": true,
-    "claude-hud@claude-hud": true
-  },
-  "extraKnownMarketplaces": {
-    "claude-hud": {
-      "source": {
-        "source": "github",
-        "repo": "jarrodwatts/claude-hud"
-      }
-    }
-  },
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo \"Please remove all mannered prose.\""
-          }
-        ]
-      }
-    ]
-  },
-  "model": "opus",
-  "modelSettings": {
-    "claude-opus-5-5": {
-      "effortLevel": "high"
-    }
-  },
-  "outputStyle": "Concise",
   "permissions": {
     "allow": [
       "Read",
@@ -85,12 +53,44 @@
       "Bash(rm:*)"
     ]
   },
-  "remoteControlAtStartup": false,
-  "showThinkingSummaries": true,
-  "skipDangerousModePermissionPrompt": true,
+  "model": "opus[1m]",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Please remove all mannered prose.\""
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline.sh\""
   },
-  "tui": "fullscreen"
+  "enabledPlugins": {
+    "claude-code-internal@claude-code-internal-plugins": true,
+    "claude-hud@claude-hud": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
+      }
+    }
+  },
+  "outputStyle": "Concise",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "advisorModel": "claude-fable-5-1",
+  "tui": "fullscreen",
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
+  "remoteControlAtStartup": false
 }
