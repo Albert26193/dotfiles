@@ -28,3 +28,9 @@ docker system prune -a"""
   Output = ""
   Tag = ["install", "ai"]
   command = "curl -fsSL https://pi.dev/install.sh | sh"
+
+[[Snippets]]
+  Description = "pi update"
+  Output = ""
+  Tag = []
+  command = "pi update && pi update --extensions"
