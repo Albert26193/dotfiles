@@ -8,12 +8,6 @@ windows:
     panes:
       - shell_command:
           - autossh -M 0 albert.frp.24.21
-  - window_name: win3
-    panes:
-      - null
-  - window_name: win4
-    panes:
-      - null
-  - window_name: win5
+  - window_name: mac
     panes:
       - null
