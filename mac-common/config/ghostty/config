@@ -1,4 +1,6 @@
 # font
+font-family = "IosevkaTermSlab Nerd Font"
+# 中文回退
 font-family = "Sarasa Term SC"
 font-size = 15
 
