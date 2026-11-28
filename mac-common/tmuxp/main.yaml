@@ -1,27 +1,19 @@
 session_name: main
 windows:
-  - window_name: win1
-    layout: even-horizontal
+  - window_name: ark.frp
     panes:
-      - null
-      - null
-  - window_name: win2
-    layout: even-horizontal
+      - shell_command:
+          - autossh -M 0 albert.ark.frp
+  - window_name: lab.frp
     panes:
-      - null
-      - null
+      - shell_command:
+          - autossh -M 0 albert.frp.24.21
   - window_name: win3
-    layout: even-horizontal
     panes:
-      - null
       - null
   - window_name: win4
-    layout: even-horizontal
     panes:
-      - null
       - null
   - window_name: win5
-    layout: even-horizontal
     panes:
-      - null
       - null

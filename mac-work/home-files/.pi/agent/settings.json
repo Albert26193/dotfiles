@@ -1,6 +1,6 @@
 {
   "$schema": "https://pi.dev/schemas/settings.schema.json",
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.6.0",
   "theme": "dracula",
   "hideThinkingBlock": true,
   "tuiMode": "fullscreen",
@@ -14,8 +14,8 @@
     "+ls",
     "+codemode"
   ],
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-flash",
+  "defaultProvider": "magpie",
+  "defaultModel": "claude-opus-5-5",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "llmintro/*",
@@ -28,6 +28,15 @@
     "npm:@narumitw/pi-statusline",
     "npm:pi-subagents",
     "npm:pi-lens",
-    "npm:pi-web-access"
-  ]
+    "npm:pi-web-access",
+    "npm:@estebanforge/pi-antigravity-bridge",
+    "npm:billion-context"
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.90.0",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.5.2",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.48.0",
+    "{\"source\":\"npm:@estebanforge/pi-antigravity-bridge\",\"scope\":\"user\"}": "1.13.3",
+    "{\"source\":\"npm:@narumitw/pi-statusline\",\"scope\":\"user\"}": "0.51.2"
+  }
 }
